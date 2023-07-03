@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      borderRadius: {
+        "4xl": "40px",
+      },
       fontFamily: {
         pretendard: [...defaultTheme.fontFamily.sans],
       },
