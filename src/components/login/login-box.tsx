@@ -5,7 +5,7 @@ import LoginInput from "./login-input.client";
 
 export default function LoginBox() {
   return (
-    <div className="w-full md:w-[640px] h-[830px] relative">
+    <div className="w-full h-screen md:w-[640px] md:h-[830px] relative">
       <div
         className="w-full h-full rounded-xl flex flex-col items-center text-center"
         style={{
