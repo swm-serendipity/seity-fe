@@ -12,6 +12,9 @@ module.exports = {
       borderRadius: {
         "4xl": "40px",
       },
+      gap: {
+        18: "72px",
+      },
       fontFamily: {
         pretendard: [...defaultTheme.fontFamily.sans],
       },

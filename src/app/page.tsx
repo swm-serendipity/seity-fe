@@ -24,9 +24,12 @@ export default function Home() {
         ))}
       </div>
 
-      <div>
+      <div className="flex flex-col">
         <Link href={"/login"} className="text-blue-900">
           로그인 페이지로 가기
+        </Link>
+        <Link href={"/chat"} className="text-blue-900">
+          채팅 페이지로 가기
         </Link>
       </div>
     </main>
