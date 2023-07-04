@@ -1,6 +1,6 @@
 type SidebarNotificationSvgProps = {
   color: string;
-  class?: any;
+  className?: any;
 };
 
 const SidebarNotificationSvg = ({

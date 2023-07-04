@@ -1,6 +1,5 @@
 import "@/styles/global-styles.css";
 import { Metadata } from "next";
-import { RecoilRoot } from "recoil";
 
 export const metadata: Metadata = {
   title: "Seity AI Chatbot",

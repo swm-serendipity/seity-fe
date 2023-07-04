@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { FoldIconButton } from "../ui/icon-button";
+import { FoldIconButton } from "../../ui/icon-button";
 import SideBarProfile from "./sidebar-profile";
-import { SidebarMenuButton } from "../ui/sidebar-button";
+import { SidebarMenuButton } from "../../ui/sidebar-button";
 import { Dispatch, SetStateAction } from "react";
 
 type SideBarBoxProps = {

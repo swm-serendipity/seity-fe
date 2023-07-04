@@ -1,6 +1,6 @@
 type SidebarPopularPromptSvgProps = {
   color: string;
-  class?: any;
+  className?: any;
 };
 
 const SidebarPopularPromptSvg = ({

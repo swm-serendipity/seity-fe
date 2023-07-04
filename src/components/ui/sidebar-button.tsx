@@ -44,9 +44,9 @@ export const SidebarMenuButton = ({
       onMouseDown={handleMouseDown}
     >
       {type == "popular" ? (
-        <SidebarPopularPromptSvg color={color} class="ml-2.5" />
+        <SidebarPopularPromptSvg color={color} className="ml-2.5" />
       ) : (
-        <SidebarNotificationSvg color={color} class="ml-2.5" />
+        <SidebarNotificationSvg color={color} className="ml-2.5" />
       )}
       <p className="ml-1.5" style={{ color: color }}>
         {text}
