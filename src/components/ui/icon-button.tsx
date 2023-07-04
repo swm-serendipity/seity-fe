@@ -8,10 +8,12 @@ type FoldButtonProps = {
 export const FoldIconButton = ({ color, onClick }: FoldButtonProps) => {
   return (
     <button
-      className="bg-whitebg-default w-[36px] h-[36px] flex justify-center items-center border rounded-md"
+      className={`${
+        color == "black" ? "bg-whitebg-default" : "bg-blackbg-default"
+      } w-[36px] h-[36px] flex justify-center items-center border rounded-md`}
       onClick={onClick}
       style={{
-        borderColor: color ? "#6F6F6F" : "EBEBEB",
+        borderColor: color == "black" ? "#6F6F6F" : "#EBEBEb",
       }}
     >
       <Image

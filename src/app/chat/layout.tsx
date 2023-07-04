@@ -1,4 +1,3 @@
-import SideBarBox from "@/components/sidebar/sidebar-box.client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,10 +10,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex h-screen">
-      <SideBarBox />
-      <div className="flex-grow">{children}</div>
-    </div>
-  );
+  return <div>{children}</div>;
 }
