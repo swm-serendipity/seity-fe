@@ -15,6 +15,9 @@ module.exports = {
       gap: {
         18: "72px",
       },
+      margin: {
+        18.5: "75px",
+      },
       fontFamily: {
         pretendard: [...defaultTheme.fontFamily.sans],
       },
@@ -51,9 +54,10 @@ module.exports = {
           point: "#FFC95D",
         },
         "sidebar-button": {
-          default: "#292929",
+          default: "#232527",
           hover: "#393939",
           click: "#171717",
+          alert: "#FF5E5E",
         },
       },
       backgroundImage: {

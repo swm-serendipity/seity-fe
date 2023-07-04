@@ -1,4 +1,4 @@
-import SideBarBox from "@/components/sidebar/sidebar-box";
+import SideBarBox from "@/components/sidebar/sidebar-box.client";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -20,11 +20,17 @@ export default function SideBarBox() {
       <div className="ml-5 mt-16">
         <SideBarProfile />
       </div>
-      <div className="mt-7">
+      <div className="mt-7 flex flex-col items-center gap-2">
         <SidebarMenuButton
-          lefticon="/sidebar-popular-prompt.svg"
           text="인기 프롬프트"
           onClick={() => {}}
+          type="popular"
+        />
+        <SidebarMenuButton
+          text="알림"
+          onClick={() => {}}
+          type="notification"
+          notificationCount={21}
         />
       </div>
     </div>
