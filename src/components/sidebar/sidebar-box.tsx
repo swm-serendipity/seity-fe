@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { FoldIconButton } from "../ui/icon-button";
 import SideBarProfile from "./sidebar-profile";
+import { SidebarMenuButton } from "../ui/sidebar-button";
 
 export default function SideBarBox() {
   return (
@@ -16,8 +17,15 @@ export default function SideBarBox() {
         />
         <FoldIconButton color="black" onClick={() => {}} />
       </div>
-      <div className="ml-5 mt-20">
+      <div className="ml-5 mt-16">
         <SideBarProfile />
+      </div>
+      <div className="mt-7">
+        <SidebarMenuButton
+          lefticon="/sidebar-popular-prompt.svg"
+          text="인기 프롬프트"
+          onClick={() => {}}
+        />
       </div>
     </div>
   );

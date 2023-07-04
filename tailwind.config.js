@@ -50,6 +50,11 @@ module.exports = {
           disable: "#828282",
           point: "#FFC95D",
         },
+        "sidebar-button": {
+          default: "#292929",
+          hover: "#393939",
+          click: "#171717",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
