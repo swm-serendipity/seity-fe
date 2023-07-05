@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import SideBarBox from "./sidebar/sidebar-box.client";
+import SideBarBox from "./sidebar/sidebar-box";
 import { FoldIconButton } from "../ui/icon-button";
 import PromptBox from "./prompt/prompt-box";
 
@@ -8,7 +8,6 @@ export default function ChatBox() {
   const [showSidebar, setShowSidebar] = useState(true);
   const handleFoldButton = () => {
     setShowSidebar(true);
-    console.log(1);
   };
   return (
     <div

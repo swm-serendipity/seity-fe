@@ -58,6 +58,8 @@ module.exports = {
           hover: "#393939",
           click: "#171717",
           alert: "#FF5E5E",
+          hr: "#3D3D3D",
+          divider: "#808284",
         },
       },
       backgroundImage: {

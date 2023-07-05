@@ -3,6 +3,8 @@ import { FoldIconButton } from "../../ui/icon-button";
 import SideBarProfile from "./sidebar-profile";
 import { SidebarMenuButton } from "../../ui/sidebar-button";
 import { Dispatch, SetStateAction } from "react";
+import SidebarHistory from "./sidebar-history";
+import SidebarSetting from "./sidebar-setting";
 
 type SideBarBoxProps = {
   showSidebar: boolean;
@@ -18,7 +20,7 @@ export default function SideBarBox({
   };
   return (
     <div
-      className={`bg-whitebg-default w-[260px] flex-shrink-0 rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 ${
+      className={`flex flex-col bg-whitebg-default w-[260px] min-h-full flex-shrink-0 rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 relative ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -47,6 +49,11 @@ export default function SideBarBox({
           type="notification"
           notificationCount={21}
         />
+      </div>
+      <div className="w-full h-[10px] bg-sidebar-button-hr mt-5 mb-7" />
+      <div className="flex flex-col flex-1 justify-between h-auto">
+        <SidebarHistory />
+        <SidebarSetting />
       </div>
     </div>
   );
