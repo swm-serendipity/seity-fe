@@ -1,11 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBarBox from "./sidebar/sidebar-box";
 import { FoldIconButton } from "../ui/icon-button";
 import PromptBox from "./prompt/prompt-box";
 
 export default function ChatBox() {
   const [showSidebar, setShowSidebar] = useState(true);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setShowSidebar(window.innerWidth > 640);
+    };
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   const handleFoldButton = () => {
     setShowSidebar(true);
   };
@@ -18,7 +29,7 @@ export default function ChatBox() {
     >
       <SideBarBox showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       {!showSidebar && (
-        <div className="absolute top-6 left-5 z-0">
+        <div className="absolute top-6 left-5 z-0 hidden sm:block">
           <FoldIconButton color="white" onClick={handleFoldButton} />
         </div>
       )}
