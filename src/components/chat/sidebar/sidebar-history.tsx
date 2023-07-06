@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function SidebarHistory() {
   const isHistory = true;
   return (
-    <div className="mx-5 flex-col flex h-full">
+    <div className="mx-5 flex-col flex overflow-y-auto">
       <div className="text-blackbg-default text-h4 font-h4 mb-2.5">History</div>
       {isHistory ? (
         <div>

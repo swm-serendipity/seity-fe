@@ -101,7 +101,7 @@ export const SidebarHistoryButton = ({
 
   return (
     <button
-      className={`flex w-[220px] h-[44px] hover:bg-sidebar-button-hover rounded-md relative
+      className={`flex w-full h-[44px] hover:bg-sidebar-button-hover rounded-md relative
     active:bg-sidebar-button-click text-body-medium items-center mt-1
     ${select ? "bg-sidebar-button-hover" : "bg-sidebar-button-default"}`}
       onMouseDown={handleMouseDown}

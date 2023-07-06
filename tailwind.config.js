@@ -69,5 +69,22 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".custom-scrollbar::-webkit-scrollbar": {
+          width: "8px",
+          background: "transparent",
+        },
+        ".custom-scrollbar": {
+          "scrollbar-width": "8px",
+        },
+        ".custom-scrollbar::-webkit-scrollbar-thumb": {
+          "background-color": "rgba(255, 255, 255, 0.3)",
+          "border-radius": "40px",
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };

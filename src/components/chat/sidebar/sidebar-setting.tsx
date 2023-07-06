@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function SidebarSetting() {
   return (
     <div
-      className="h-[54px] border-t border-sidebar-button-divider mx-5 flex items-center"
+      className="border-t border-sidebar-button-divider mx-5 flex h-[54px]"
       onClick={() => {}}
     >
       <button className="flex items-center text-body-medium text-blackbg-default w-full h-full">

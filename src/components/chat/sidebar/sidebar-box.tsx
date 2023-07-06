@@ -20,7 +20,7 @@ export default function SideBarBox({
   };
   return (
     <div
-      className={`flex flex-col bg-whitebg-default w-[260px] min-h-full flex-shrink-0 rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 relative ${
+      className={`flex flex-col bg-whitebg-default w-[260px] min-h-full h-full rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 relative ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -51,9 +51,13 @@ export default function SideBarBox({
         />
       </div>
       <div className="w-full h-[10px] bg-sidebar-button-hr mt-5 mb-7" />
-      <div className="flex flex-col flex-1 justify-between h-auto">
-        <SidebarHistory />
-        <SidebarSetting />
+      <div className="flex flex-col h-0 flex-grow">
+        <div className="flex-1 overflow-y-auto custom-scrollbar">
+          <SidebarHistory />
+        </div>
+        <div className="justify-end">
+          <SidebarSetting />
+        </div>
       </div>
     </div>
   );
