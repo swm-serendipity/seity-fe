@@ -61,6 +61,10 @@ module.exports = {
           hr: "#3D3D3D",
           divider: "#808284",
         },
+        prompt: {
+          "ai-select-bg": "#F5F5F5",
+          "ai-select-button-bg": "#E6E6E6",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

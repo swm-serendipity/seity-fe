@@ -1,10 +1,12 @@
 type SidebarNotificationSvgProps = {
   color: string;
+  isAlert?: boolean;
   className?: any;
 };
 
 const SidebarNotificationSvg = ({
   color,
+  isAlert = false,
   ...props
 }: SidebarNotificationSvgProps) => (
   <svg
@@ -23,6 +25,7 @@ const SidebarNotificationSvg = ({
       d="M11.4999 19.75C12.1478 19.749 12.7756 19.5247 13.2774 19.1148C13.7793 18.705 14.1245 18.1347 14.2549 17.5H8.7439C8.87431 18.1347 9.21952 18.705 9.72136 19.1148C10.2232 19.5247 10.852 19.749 11.4999 19.75Z"
       fill={color}
     />
+    {isAlert && <circle cx="17.5" cy="3.5" r="1.5" fill="#FF5E5E" />}
   </svg>
 );
 
