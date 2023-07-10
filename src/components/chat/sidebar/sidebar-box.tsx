@@ -27,7 +27,7 @@ export default function SideBarBox({
   return (
     <animated.div
       style={sidebarStyle}
-      className={`flex flex-col bg-whitebg-default min-h-full h-full rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 overflow-hidden ${
+      className={`flex flex-col bg-whitebg-default rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 overflow-hidden ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
       }`}
     >
