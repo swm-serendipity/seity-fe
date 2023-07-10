@@ -7,7 +7,7 @@ type PromptChatBoxProps = {
 };
 
 export function PromptChatBox({ chatList }: PromptChatBoxProps) {
-  const bottomRef = useRef<HTMLDivElement>(document.createElement("div"));
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // 2. 새로운 메시지가 추가될 때마다 스크롤 이동
