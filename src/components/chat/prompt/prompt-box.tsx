@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PromptAiSelectBox from "./prompt-ai-select-box";
 import PromptInputBox from "./prompt-input-box";
 
