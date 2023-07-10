@@ -31,14 +31,12 @@ export default function PromptAIChatResponseMarkdownParser({
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
-            <PromptAIChatSyntaxHighlighter
-              match={match}
-              children={children}
-              props={props}
-            />
+            <PromptAIChatSyntaxHighlighter match={match} props={props}>
+              {children}
+            </PromptAIChatSyntaxHighlighter>
           ) : (
             <span className="font-bold" {...props}>
-              '{children}'
+              &apos;{children}&apos;
             </span>
           );
         },
