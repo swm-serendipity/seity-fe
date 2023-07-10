@@ -25,24 +25,19 @@ export default function ChatBox() {
     setShowSidebar(true);
   };
   return (
-    <div
-      className="h-screen relative grid"
-      style={{
-        gridTemplateColumns: showSidebar ? "260px auto" : "0 auto",
-      }}
-    >
+    <div className="h-screen relative flex">
       <SideBarBox showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
-      <div className="absolute top-6 left-5 z-0 items-center hidden sm:flex">
-        {!showSidebar && (
+      {!showSidebar && (
+        <div className="absolute top-6 left-5 z-0 items-center hidden sm:flex">
           <FoldIconButton color="white" onClick={handleFoldButton} />
-        )}
-        <div className="ml-3.5">
-          <NotificationIconButton isAlert={true} onClick={() => {}} />
+          <div className="ml-3.5">
+            <NotificationIconButton isAlert={true} onClick={() => {}} />
+          </div>
+          <div className="ml-2.5">
+            <PopularPromptButton onClick={() => {}} />
+          </div>
         </div>
-        <div className="ml-2.5">
-          <PopularPromptButton onClick={() => {}} />
-        </div>
-      </div>
+      )}
       <PromptBox />
     </div>
   );

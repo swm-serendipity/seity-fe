@@ -5,6 +5,7 @@ import { SidebarMenuButton } from "../../ui/sidebar-button";
 import { Dispatch, SetStateAction } from "react";
 import SidebarHistory from "./sidebar-history";
 import SidebarSetting from "./sidebar-setting";
+import { animated, useSpring } from "@react-spring/web";
 
 type SideBarBoxProps = {
   showSidebar: boolean;
@@ -15,12 +16,18 @@ export default function SideBarBox({
   showSidebar,
   setShowSidebar,
 }: SideBarBoxProps) {
+  const sidebarStyle = useSpring({
+    width: showSidebar ? "260px" : "0px",
+    config: { duration: 300 },
+  });
   const handleFoldButton = () => {
     setShowSidebar(false);
   };
+
   return (
-    <div
-      className={`flex flex-col bg-whitebg-default w-[260px] min-h-full h-full rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 relative ${
+    <animated.div
+      style={sidebarStyle}
+      className={`flex flex-col bg-whitebg-default min-h-full h-full rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 overflow-hidden ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -59,6 +66,6 @@ export default function SideBarBox({
           <SidebarSetting />
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }

@@ -3,7 +3,7 @@ import PromptInputBox from "./prompt-input-box";
 
 export default function PromptBox() {
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col flex-1">
       <div className="flex-grow flex text-center w-full justify-center pt-10">
         <PromptAiSelectBox />
       </div>
