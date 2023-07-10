@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
 
@@ -10,7 +10,6 @@ export function PromptChatBox({ chatList }: PromptChatBoxProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 2. 새로운 메시지가 추가될 때마다 스크롤 이동
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatList]);
   return (

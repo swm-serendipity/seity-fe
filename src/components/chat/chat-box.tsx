@@ -9,7 +9,7 @@ export default function ChatBox() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setShowSidebar(window.innerWidth > 640);
+      setShowSidebar(window.innerWidth > 1024);
     };
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);

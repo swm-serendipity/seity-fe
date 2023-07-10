@@ -66,6 +66,7 @@ module.exports = {
           "ai-select-button-bg": "#E6E6E6",
           "chat-ai-bg-color": "#F5F5F5",
           "chat-user-bg-color": "#363636",
+          "chat-ai-code-title-color": "#354B61",
         },
       },
       backgroundImage: {
