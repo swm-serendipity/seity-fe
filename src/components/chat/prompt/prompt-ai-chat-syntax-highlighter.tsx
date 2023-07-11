@@ -32,6 +32,8 @@ export default function PromptAIChatSyntaxHighlighter({
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
           paddingBottom: 30,
+          wordBreak: "break-all",
+          whiteSpace: "pre-wrap",
         }}
         {...props}
         style={oneDark}

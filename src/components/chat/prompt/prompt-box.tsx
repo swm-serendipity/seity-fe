@@ -21,10 +21,6 @@ export default function PromptBox() {
 
   const [turn, setTurn] = useState<"user" | "ai">("user");
 
-  useEffect(() => {
-    console.log(chatList);
-  }, [chatList]);
-
   return (
     <div className="flex flex-col flex-1 h-screen">
       <div className="flex flex-col flex-1 overflow-y-auto">

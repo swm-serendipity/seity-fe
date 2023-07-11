@@ -17,7 +17,7 @@ export default function PromptAiSelectButton({
 
   return (
     <button
-      className={`flex justify-center items-center w-[40px] h-[40px] lg:w-[140px] lg:h-[40px] rounded-md
+      className={`flex justify-center items-center w-[40px] h-[40px] lg:w-[140px] rounded-md
       ${isActive ? "bg-blackbg-default" : "bg-prompt-ai-select-button-bg"}`}
       onClick={handleButton}
     >

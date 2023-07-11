@@ -39,6 +39,9 @@ module.exports = {
         "body-medium": "regular",
         "body-small": "regular",
       },
+      screens: {
+        "2md": "900px",
+      },
       colors: {
         whitebg: {
           default: "#232527",
