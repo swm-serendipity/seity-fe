@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import SidebarHistory from "./sidebar-history";
 import SidebarSetting from "./sidebar-setting";
 import { animated, useSpring } from "@react-spring/web";
+import { useStore } from "@/store/store";
 
 type SideBarBoxProps = {
   showSidebar: boolean;
@@ -16,6 +17,8 @@ export default function SideBarBox({
   showSidebar,
   setShowSidebar,
 }: SideBarBoxProps) {
+  const isPopupOpen = useStore((state) => state.isPopupOpen);
+
   const sidebarStyle = useSpring({
     width: showSidebar ? "260px" : "0px",
     config: { duration: 300 },
@@ -29,7 +32,7 @@ export default function SideBarBox({
       style={sidebarStyle}
       className={`flex flex-col bg-whitebg-default rounded-tr-4xl transform transition-transform duration-300 ease-in-out z-50 overflow-hidden ${
         showSidebar ? "translate-x-0" : "-translate-x-full"
-      }`}
+      } ${isPopupOpen ? "opacity-50 pointer-events-none" : ""}`}
     >
       <div className="flex items-center ml-7 mt-7 mr-5 gap-18">
         <Image

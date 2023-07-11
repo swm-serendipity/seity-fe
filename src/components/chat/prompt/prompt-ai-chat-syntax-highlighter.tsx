@@ -19,7 +19,7 @@ export default function PromptAIChatSyntaxHighlighter({
   return (
     <div className="my-4 overflow-auto">
       <div className="bg-prompt-chat-ai-code-title-color w-full h-10 rounded-tl-md rounded-tr-md flex px-6 justify-between items-center">
-        <span className="font-bold text-blackbg-default">Python</span>
+        <span className="font-bold text-blackbg-default">{match[1]}</span>
         <button className="text-blackbg-default" onClick={handleCopy}>
           <p className="text-body-medium underline">copy code</p>
         </button>

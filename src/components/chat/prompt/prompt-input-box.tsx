@@ -1,3 +1,4 @@
+import { useStore } from "@/store/store";
 import Image from "next/image";
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
@@ -14,6 +15,9 @@ export default function PromptInputBox({
   setTurn,
 }: PromptInputBoxProps) {
   const [text, setText] = useState("");
+  const togglePopup = useStore(
+    (state: { togglePopup: any }) => state.togglePopup
+  );
 
   const handleSend = () => {
     setChatList((prevChatList) => [
@@ -48,13 +52,15 @@ export default function PromptInputBox({
         className="w-full resize-none px-5 focus:border-transparent outline-none my-4"
         onKeyPress={handleOnKeyPress}
       />
-      <Image
-        src="/chat-file.svg"
-        width="32"
-        height="32"
-        alt="파일 첨부"
-        className="mr-2"
-      />
+      <button onClick={togglePopup}>
+        <Image
+          src="/chat-file.svg"
+          width="32"
+          height="32"
+          alt="파일 첨부"
+          className="mr-2"
+        />
+      </button>
       <button
         className={`mx-3 w-[76px] h-[38px] rounded-md ${
           text.length > 0

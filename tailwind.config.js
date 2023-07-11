@@ -70,6 +70,9 @@ module.exports = {
           "chat-ai-bg-color": "#F5F5F5",
           "chat-user-bg-color": "#363636",
           "chat-ai-code-title-color": "#354B61",
+          "de-identification-divider-color": "#EBEBEB",
+          "de-identification-red-point-color": "#FF5E5E",
+          "de-identification-green-point-color": "#05DCA8",
         },
       },
       backgroundImage: {
@@ -92,6 +95,52 @@ module.exports = {
         ".custom-scrollbar::-webkit-scrollbar-thumb": {
           "background-color": "rgba(255, 255, 255, 0.3)",
           "border-radius": "40px",
+        },
+        ".underline-red": {
+          "text-decoration": "underline",
+          "text-decoration-color": "#FF5E5E",
+          "text-underline-offset": "2px",
+        },
+        ".underline-green": {
+          "text-decoration": "underline",
+          "text-decoration-color": "#6DF1D1",
+          "text-underline-offset": "2px",
+        },
+        ".highlight-red": {
+          "background-color": "rgba(255, 94, 94, 0.2)",
+          "text-decoration": "underline",
+          "text-decoration-color": "#FF5E5E",
+          "text-underline-offset": "2px",
+        },
+        ".highlight-green": {
+          "background-color": "rgba(109, 241, 209, 0.2)",
+          "text-decoration": "underline",
+          "text-decoration-color": "#6DF1D1",
+          "text-underline-offset": "2px",
+        },
+        ".de-identification-card": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+          "border-radius": "10px",
+        },
+        ".de-identification-card-focus-red": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+          "border-radius": "10px",
+          border: "1px solid #FF8F8F",
+        },
+        ".de-identification-card-focus-green": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+          "border-radius": "10px",
+          border: "1px solid #6DF1D1",
+        },
+        ".de-identification-change-button-red": {
+          "background-color": "#FFD9D9",
+          color: "#FF3434",
+          "border-radius": "6px",
+        },
+        ".de-identification-change-button-green": {
+          "background-color": "#D0FFF4",
+          color: "#12A480",
+          "border-radius": "6px",
         },
       };
       addUtilities(newUtilities);

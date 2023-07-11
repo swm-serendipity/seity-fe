@@ -3,9 +3,12 @@ import { useEffect, useState } from "react";
 import SideBarBox from "./sidebar/sidebar-box";
 import PromptBox from "./prompt/prompt-box";
 import SidebarHiddenButton from "./sidebar/sidbar-hidden-button";
+import { useStore } from "@/store/store";
+import DeIdentificationPopupBox from "./de-identification-popup/de-identification-popup.box";
 
 export default function ChatBox() {
   const [showSidebar, setShowSidebar] = useState(true);
+  const isPopupOpen = useStore((state) => state.isPopupOpen);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -27,6 +30,7 @@ export default function ChatBox() {
         />
       )}
       <PromptBox />
+      {isPopupOpen && <DeIdentificationPopupBox />}
     </div>
   );
 }
