@@ -12,7 +12,7 @@ export default function LoginInput() {
     setPassword("");
   };
   return (
-    <>
+    <div>
       <div className="mt-12 flex-col flex">
         <HintTextInputBox
           hintText="이메일 계정 입력"
@@ -40,6 +40,6 @@ export default function LoginInput() {
           textColor="white"
         />
       </div>
-    </>
+    </div>
   );
 }

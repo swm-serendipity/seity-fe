@@ -2,7 +2,7 @@ import Link from "next/link";
 import LoginLineBreak from "./login-line-break";
 import LoginInput from "./login-input.client";
 import LoginSocialButtonBoxs from "./login-social-buttons-box";
-import LoginRegisterSection from "./Login-register-section";
+import LoginRegisterSection from "./login-register-section";
 import LoginUnderTextSection from "./login-undertext-section";
 
 export default function LoginBox() {
