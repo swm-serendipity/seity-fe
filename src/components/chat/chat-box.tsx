@@ -5,22 +5,31 @@ import PromptBox from "./prompt/prompt-box";
 import SidebarHiddenButton from "./sidebar/sidbar-hidden-button";
 import DeIdentificationPopupBox from "./de-identification-popup/de-identification-popup.box";
 import useSidebarWindowResize from "@/hooks/useSidebarWindowResize";
+import NotificationBox from "./notification/notification-box";
+import { useState } from "react";
 
 export default function ChatBox() {
-  const [showSidebar, setShowSidebar] = useSidebarWindowResize(true);
+  const [showSidebar, setShowSidebar, showHiddenButton, setShowHiddenButton] =
+    useSidebarWindowResize(true);
   const isPopupOpen = useStore((state) => state.isPopupOpen);
+  const isNotificationOpen = useStore((state) => state.isNotificationOpen);
 
   return (
     <div className="h-screen relative flex">
-      <SideBarBox showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+      <SideBarBox
+        showSidebar={showSidebar}
+        setShowSidebar={setShowSidebar}
+        setShowHiddenButton={setShowHiddenButton}
+      />
       <PromptBox />
-      {!showSidebar && (
+      {showHiddenButton && (
         <SidebarHiddenButton
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
         />
       )}
       {isPopupOpen && <DeIdentificationPopupBox />}
+      {isNotificationOpen && <NotificationBox />}
     </div>
   );
 }

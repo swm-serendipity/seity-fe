@@ -22,7 +22,7 @@ export default function PromptBox() {
   const [turn, setTurn] = useState<"user" | "ai">("user");
 
   return (
-    <div className="flex flex-col flex-1 h-screen">
+    <div className="flex flex-col flex-1 h-screen bg-white z-10">
       <div className="flex flex-col flex-1 overflow-y-auto">
         <div className="flex text-center w-full justify-center pt-10">
           <PromptAiSelectBox />
