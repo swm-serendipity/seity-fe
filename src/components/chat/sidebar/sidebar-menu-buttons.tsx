@@ -1,7 +1,8 @@
-import Image from "next/image";
-import SidebarNotificationSvg from "../assets/sidebar-notification";
+import SidebarNotificationSvg from "@/components/assets/sidebar-notification";
+import SidebarPopularPromptSvg from "@/components/assets/sidebar-popular-prompt";
 import { colors } from "@/styles/color-guide";
-import SidebarPopularPromptSvg from "../assets/sidebar-popular-prompt";
+
+import Image from "next/image";
 
 type FoldButtonProps = {
   color: "black" | "white";
@@ -13,7 +14,7 @@ export const FoldIconButton = ({ color, onClick }: FoldButtonProps) => {
     <button
       className={`${
         color == "black" ? "bg-whitebg-default" : "bg-blackbg-default"
-      } w-[36px] h-[36px] justify-center items-center border rounded-md flex`}
+      } w-[36px] h-[36px] justify-center items-center border rounded-md hidden 2md:flex`}
       onClick={onClick}
       style={{
         borderColor: color == "black" ? "#6F6F6F" : "#EBEBEb",
@@ -43,7 +44,7 @@ export const NotificationIconButton = ({
   onClick,
 }: NotificationButtonProps) => {
   return (
-    <button className={`w-[22px] h-[22px]`} onClick={onClick}>
+    <button className="w-[22px] h-[22px] ml-3.5" onClick={onClick}>
       <SidebarNotificationSvg isAlert={isAlert} color={colors.whitebg.info} />
     </button>
   );
@@ -55,7 +56,7 @@ type PopularPromptButtonProps = {
 
 export const PopularPromptButton = ({ onClick }: PopularPromptButtonProps) => {
   return (
-    <button className={`w-[22px] h-[22px]`} onClick={onClick}>
+    <button className="w-[22px] h-[22px] ml-2.5" onClick={onClick}>
       <SidebarPopularPromptSvg color={colors.whitebg.info} />
     </button>
   );
