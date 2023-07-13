@@ -96,6 +96,7 @@ module.exports = {
           "background-color": "rgba(255, 255, 255, 0.3)",
           "border-radius": "40px",
         },
+
         ".underline-red": {
           "text-decoration": "underline",
           "text-decoration-color": "#FF5E5E",
@@ -118,6 +119,7 @@ module.exports = {
           "text-decoration-color": "#6DF1D1",
           "text-underline-offset": "2px",
         },
+
         ".de-identification-card": {
           "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
           "border-radius": "10px",
@@ -141,6 +143,14 @@ module.exports = {
           "background-color": "#D0FFF4",
           color: "#12A480",
           "border-radius": "6px",
+        },
+
+        ".login-box": {
+          boxShadow: "0px 8px 20px rgba(207, 207, 207, 0.25)",
+          backdropFilter: "blur(9px)",
+          background:
+            "linear-gradient(147.52deg, rgba(255, 255, 255, 0) 0.47%, #FFFFFF 0.48%, rgba(255, 255, 255, 0.6) 90.85%)",
+          opacity: 0.98,
         },
       };
       addUtilities(newUtilities);
