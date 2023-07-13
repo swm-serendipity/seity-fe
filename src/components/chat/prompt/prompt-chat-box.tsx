@@ -13,7 +13,7 @@ export function PromptChatBox({ chatList }: PromptChatBoxProps) {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatList]);
   return (
-    <div className="mx-4 md:mx-7 lg:mx-10 xl:mx-20 2xl:mx-60">
+    <div className="mx-4 md:mx-7 lg:mx-10 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatList.map((chat) => {
         if (chat.user === "user") {
           return <PromptUserChat key={chat.id} text={chat.message} />;

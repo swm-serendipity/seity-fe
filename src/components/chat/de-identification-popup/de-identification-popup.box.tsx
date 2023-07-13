@@ -41,7 +41,7 @@ export default function DeIdentificationPopupBox() {
       onClick={togglePopup}
     >
       <div
-        className="flex bg-white rounded-2xl w-[1280px] h-[70%] lg:h-[800px] mx-8 my-8 py-8 lg:py-12 pl-4 pr-8"
+        className="flex bg-white rounded-2xl w-[1280px] h-[70%] lg:h-[90%] mx-8 my-8 py-8 lg:py-12 pl-4 pr-8"
         onClick={stopPropagation}
       >
         <DeIdentificationMainTextBox

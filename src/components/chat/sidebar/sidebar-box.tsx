@@ -19,7 +19,7 @@ export default function SideBarBox({
   setShowSidebar,
   setShowHiddenButton,
 }: SideBarBoxProps) {
-  const isHistory = false;
+  const isHistory = true;
   const isNotificationOpen = useStore((state) => state.isNotificationOpen);
   const isPopupOpen = useStore((state) => state.isPopupOpen);
 

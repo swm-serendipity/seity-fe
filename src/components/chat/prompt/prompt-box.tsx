@@ -24,20 +24,10 @@ export default function PromptBox() {
   return (
     <div className="flex flex-col flex-1 h-screen bg-white z-10">
       <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="flex text-center w-full justify-center pt-10">
-          <PromptAiSelectBox />
-        </div>
-        <div className="mt-14 mb-8">
-          <PromptChatBox chatList={chatList} />
-        </div>
+        <PromptAiSelectBox />
+        <PromptChatBox chatList={chatList} />
       </div>
-      <div className="w-full min-h-[100px] flex justify-center items-center bg-prompt-ai-select-bg">
-        <PromptInputBox
-          setChatList={setChatList}
-          turn={turn}
-          setTurn={setTurn}
-        />
-      </div>
+      <PromptInputBox setChatList={setChatList} turn={turn} setTurn={setTurn} />
     </div>
   );
 }
