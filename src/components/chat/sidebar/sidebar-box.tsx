@@ -20,6 +20,7 @@ export default function SideBarBox({
   setShowHiddenButton,
 }: SideBarBoxProps) {
   const isHistory = false;
+  const isNotificationOpen = useStore((state) => state.isNotificationOpen);
   const isPopupOpen = useStore((state) => state.isPopupOpen);
 
   const [visibility, setVisibility] = useState<"visible" | "hidden">(
@@ -44,9 +45,12 @@ export default function SideBarBox({
   });
 
   return (
-    <animated.div style={{ ...sidebarStyle, visibility }} className="z-0">
+    <animated.div
+      style={{ ...sidebarStyle, visibility }}
+      className={`${isNotificationOpen ? "z-30" : "z-0"}`}
+    >
       <div
-        className={`flex flex-col bg-whitebg-default rounded-tr-4xl z-50 w-[260px] h-full
+        className={`flex flex-col bg-whitebg-default rounded-tr-4xl w-[260px] h-full
         ${isPopupOpen ? "opacity-50 pointer-events-none" : ""}`}
       >
         <SidebarHeader setShowSidebar={setShowSidebar} />

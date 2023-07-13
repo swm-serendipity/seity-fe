@@ -1,4 +1,5 @@
 // useWindowResize.js
+import { useStore } from "@/store/store";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 const useSidebarWindowResize = (
@@ -11,6 +12,7 @@ const useSidebarWindowResize = (
 ] => {
   const [showSidebar, setShowSidebar] = useState(initialState);
   const [showHiddenbar, setShowHiddenbar] = useState(!initialState);
+  const disableNotification = useStore((state) => state.disableNotification);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -21,6 +23,12 @@ const useSidebarWindowResize = (
 
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  useEffect(() => {
+    if (!showSidebar) {
+      disableNotification();
+    }
+  }, [disableNotification, showSidebar]);
 
   return [showSidebar, setShowSidebar, showHiddenbar, setShowHiddenbar];
 };

@@ -15,6 +15,9 @@ module.exports = {
       gap: {
         18: "72px",
       },
+      padding: {
+        4.5: "18px",
+      },
       margin: {
         18.5: "75px",
       },
@@ -73,6 +76,9 @@ module.exports = {
           "de-identification-divider-color": "#EBEBEB",
           "de-identification-red-point-color": "#FF5E5E",
           "de-identification-green-point-color": "#05DCA8",
+        },
+        notification: {
+          hr: "E0E0E0",
         },
       },
       backgroundImage: {

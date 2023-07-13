@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { colors } from "@/styles/color-guide";
 import SidebarNotificationSvg from "../assets/sidebar-notification";
 import SidebarChatSvg from "../assets/sidebar-chat";
+import { NotificationCount } from "./notification-count-box";
 
 type SidebarMenuButtonProps = {
   type: "popular" | "notification";
@@ -35,7 +36,7 @@ export const SidebarMenuButton = ({
 
   const handleMouseDown = () => {
     setColor(colors.blackbg.point);
-    onClick;
+    onClick();
   };
 
   return (
@@ -53,9 +54,7 @@ export const SidebarMenuButton = ({
         {text}
       </p>
       {notificationCount ? (
-        <div className="bg-sidebar-button-alert w-[30px] h-[18px] ml-1 flex justify-center items-end rounded-3xl text-blackbg-default text-body-medium">
-          {notificationCount > 99 ? "99+" : notificationCount}
-        </div>
+        <NotificationCount notificationCount={notificationCount} />
       ) : (
         <></>
       )}

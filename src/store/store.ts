@@ -6,6 +6,7 @@ interface State {
 
   isNotificationOpen: boolean;
   toggleNotification: () => void;
+  disableNotification: () => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -15,4 +16,5 @@ export const useStore = create<State>((set) => ({
   isNotificationOpen: false,
   toggleNotification: () =>
     set((state) => ({ isNotificationOpen: !state.isNotificationOpen })),
+  disableNotification: () => set({ isNotificationOpen: false }),
 }));

@@ -6,7 +6,8 @@ import SidebarHiddenButton from "./sidebar/sidbar-hidden-button";
 import DeIdentificationPopupBox from "./de-identification-popup/de-identification-popup.box";
 import useSidebarWindowResize from "@/hooks/useSidebarWindowResize";
 import NotificationBox from "./notification/notification-box";
-import { useState } from "react";
+import NotificationBackground from "./notification/notification-background";
+import { Fragment } from "react";
 
 export default function ChatBox() {
   const [showSidebar, setShowSidebar, showHiddenButton, setShowHiddenButton] =
@@ -29,7 +30,12 @@ export default function ChatBox() {
         />
       )}
       {isPopupOpen && <DeIdentificationPopupBox />}
-      {isNotificationOpen && <NotificationBox />}
+      {isNotificationOpen && (
+        <Fragment>
+          <NotificationBackground />
+          <NotificationBox showSidebar={showSidebar} />
+        </Fragment>
+      )}
     </div>
   );
 }
