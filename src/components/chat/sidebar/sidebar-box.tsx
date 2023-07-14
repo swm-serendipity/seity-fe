@@ -21,7 +21,9 @@ export default function SideBarBox({
 }: SideBarBoxProps) {
   const isHistory = true;
   const isNotificationOpen = useStore((state) => state.isNotificationOpen);
-  const isPopupOpen = useStore((state) => state.isPopupOpen);
+  const isDeIdentificationPopupOpen = useStore(
+    (state) => state.isDeIdentificationPopupOpen
+  );
 
   const [visibility, setVisibility] = useState<"visible" | "hidden">(
     showSidebar ? "visible" : "hidden"
@@ -51,7 +53,7 @@ export default function SideBarBox({
     >
       <div
         className={`flex flex-col bg-whitebg-default rounded-tr-4xl w-[260px] h-full
-        ${isPopupOpen ? "opacity-50 pointer-events-none" : ""}`}
+        ${isDeIdentificationPopupOpen ? "opacity-50 pointer-events-none" : ""}`}
       >
         <SidebarHeader setShowSidebar={setShowSidebar} />
         <SideBarProfile />
