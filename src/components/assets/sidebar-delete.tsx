@@ -1,6 +1,6 @@
 type SidebarDelteSvgProps = {
   color: string;
-  className?: any;
+  className?: string;
 };
 
 const SidebarDelteSvg = ({ color, ...props }: SidebarDelteSvgProps) => (

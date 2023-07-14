@@ -1,6 +1,6 @@
 type SidebarShareSvgProps = {
   color: string;
-  className?: any;
+  className?: string;
 };
 
 const SidebarShareSvg = ({ color, ...props }: SidebarShareSvgProps) => (

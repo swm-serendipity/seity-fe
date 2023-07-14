@@ -1,6 +1,6 @@
 type SidebarChatSvgProps = {
   color: string;
-  className?: any;
+  className?: string;
 };
 
 const SidebarChatSvg = ({ color, ...props }: SidebarChatSvgProps) => (
