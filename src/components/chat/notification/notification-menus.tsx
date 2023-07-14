@@ -12,7 +12,7 @@ export default function NotificationMenus() {
     setMenuId(id);
   };
   return (
-    <div className="border-b border-notification-hr pl-5 flex gap-4 pb-0.5">
+    <div className="border-b border-notification-hr pl-5 flex gap-4 pb-0.5 flex-grow-0">
       {menus.map((menu) => {
         const isSelect = menuId === menu.id;
         return (

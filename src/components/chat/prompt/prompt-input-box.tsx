@@ -3,32 +3,19 @@ import Image from "next/image";
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
-type PromptInputBoxProps = {
-  setChatList: Dispatch<SetStateAction<Chat[]>>;
-  turn: "user" | "ai";
-  setTurn: Dispatch<SetStateAction<"user" | "ai">>;
-};
-
-export default function PromptInputBox({
-  setChatList,
-  turn,
-  setTurn,
-}: PromptInputBoxProps) {
+export default function PromptInputBox() {
   const [text, setText] = useState("");
-  const togglePopup = useStore(
-    (state: { togglePopup: any }) => state.togglePopup
-  );
+  const { toggleDeIdentificationPopup, addChatData } = useStore();
+
+  const [turn, setTurn] = useState<"user" | "ai">("user");
 
   const handleSend = () => {
-    setChatList((prevChatList) => [
-      ...prevChatList,
-      {
-        id: Date.now(),
-        user: turn,
-        message: text,
-        timestamp: new Date().toISOString(),
-      },
-    ]);
+    addChatData({
+      id: Date.now(),
+      user: turn,
+      message: text,
+      timestamp: new Date().toISOString(),
+    });
     setText("");
     setTurn(turn === "user" ? "ai" : "user");
   };
@@ -53,7 +40,7 @@ export default function PromptInputBox({
           className="w-full resize-none px-5 focus:border-transparent outline-none my-4"
           onKeyPress={handleOnKeyPress}
         />
-        <button onClick={togglePopup}>
+        <button onClick={toggleDeIdentificationPopup}>
           <Image
             src="/chat-file.svg"
             width="32"

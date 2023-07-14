@@ -9,7 +9,7 @@ export default function SidebarHistoryBox({
   isHistory,
 }: SidebarHistoryBoxProps) {
   return (
-    <div className="mx-5 flex-col flex overflow-y-auto custom-scrollbar flex-1">
+    <div className="mx-5 flex-col flex overflow-y-auto custom-history-scrollbar flex-1">
       {isHistory ? <SidebarHistoryFullBox /> : <SidebarHistoryEmptyBox />}
     </div>
   );

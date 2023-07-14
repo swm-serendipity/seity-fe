@@ -52,7 +52,7 @@ export default function NotificationList() {
     },
   ];
   return (
-    <div className="w-full h-full overflow-y-auto pb-40">
+    <div className="w-full flex-1 overflow-y-auto custom-scrollbar">
       <div className="text-body-medium mt-7 mb-2 mx-5">
         3개의 읽지않은 소명알림
       </div>

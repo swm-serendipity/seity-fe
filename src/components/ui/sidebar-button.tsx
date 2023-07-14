@@ -5,6 +5,12 @@ import { colors } from "@/styles/color-guide";
 import SidebarNotificationSvg from "../assets/sidebar-notification";
 import SidebarChatSvg from "../assets/sidebar-chat";
 import { NotificationCount } from "./notification-count-box";
+import SidebarShareSvg from "../assets/sidebar-share";
+import {
+  SidebarDeleteIconButton,
+  SidebarShareIconButton,
+} from "./icon-buttton";
+import { useStore } from "@/store/store";
 
 type SidebarMenuButtonProps = {
   type: "popular" | "notification";
@@ -80,6 +86,7 @@ export const SidebarHistoryButton = ({
   onClick,
 }: SidebarHistoryButtonProps) => {
   const [color, setColor] = useState(colors.blackbg.default);
+  const toggleSharePopup = useStore((state) => state.toggleSharePopup);
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -95,11 +102,15 @@ export const SidebarHistoryButton = ({
 
   const handleMouseDown = () => {
     setColor(colors.blackbg.point);
-    onClick;
+    onClick();
+  };
+
+  const handleDeleteButtonClick = () => {
+    console.log("delete");
   };
 
   return (
-    <button
+    <div
       className={`flex w-full h-[44px] hover:bg-sidebar-button-hover rounded-md relative
     active:bg-sidebar-button-click text-body-medium items-center mt-1
     ${select ? "bg-sidebar-button-hover" : "bg-sidebar-button-default"}`}
@@ -114,22 +125,10 @@ export const SidebarHistoryButton = ({
       </p>
       {select && (
         <div className="flex">
-          <Image
-            src="/sidebar-share.svg"
-            alt="프롬프트 공유"
-            width={18}
-            height={18}
-            className="mr-2"
-          />
-          <Image
-            src="/sidebar-delete.svg"
-            alt="프롬프트 삭젠"
-            width={18}
-            height={18}
-            className="mr-3"
-          />
+          <SidebarShareIconButton onClick={toggleSharePopup} />
+          <SidebarDeleteIconButton onClick={handleDeleteButtonClick} />
         </div>
       )}
-    </button>
+    </div>
   );
 };

@@ -29,7 +29,9 @@ export default function DeIdentificationPopupBox() {
     },
   ]);
   const [id, setId] = useState("0");
-  const togglePopup = useStore((state) => state.togglePopup);
+  const toggleDeIdentificationPopup = useStore(
+    (state) => state.toggleDeIdentificationPopup
+  );
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
@@ -38,7 +40,7 @@ export default function DeIdentificationPopupBox() {
   return (
     <div
       className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-auto"
-      onClick={togglePopup}
+      onClick={toggleDeIdentificationPopup}
     >
       <div
         className="flex bg-white rounded-2xl w-[1280px] h-[70%] lg:h-[90%] mx-8 my-8 py-8 lg:py-12 pl-4 pr-8"

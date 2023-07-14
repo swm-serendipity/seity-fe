@@ -18,6 +18,7 @@ export default function SidebarHeader({ setShowSidebar }: SidebarHeaderProps) {
         src="/logo.svg"
         alt="seity 로고"
         className="object-cover"
+        priority
       />
       <FoldIconButton color="black" onClick={handleFoldButton} />
     </div>

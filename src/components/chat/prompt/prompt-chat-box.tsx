@@ -1,20 +1,18 @@
 import { useEffect, useRef } from "react";
 import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
+import { useStore } from "@/store/store";
 
-type PromptChatBoxProps = {
-  chatList: Chat[];
-};
-
-export function PromptChatBox({ chatList }: PromptChatBoxProps) {
+export function PromptChatBox() {
   const bottomRef = useRef<HTMLDivElement>(null);
+  const { chatData } = useStore();
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatList]);
+  }, [chatData]);
   return (
-    <div className="mx-4 md:mx-7 lg:mx-10 xl:mx-40 2xl:mx-60 mt-14 mb-8">
-      {chatList.map((chat) => {
+    <div className="mx-4 md:mx-7 lg:mx-10 xl:mx-28 2xl:mx-52 mt-14 mb-8">
+      {chatData.map((chat) => {
         if (chat.user === "user") {
           return <PromptUserChat key={chat.id} text={chat.message} />;
         } else if (chat.user === "ai") {

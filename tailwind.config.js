@@ -17,6 +17,7 @@ module.exports = {
       },
       padding: {
         4.5: "18px",
+        7.5: "30px",
       },
       margin: {
         18.5: "75px",
@@ -43,6 +44,7 @@ module.exports = {
         "body-small": "regular",
       },
       screens: {
+        xs: "320px",
         "2md": "900px",
       },
       colors: {
@@ -77,8 +79,8 @@ module.exports = {
           "de-identification-red-point-color": "#FF5E5E",
           "de-identification-green-point-color": "#05DCA8",
         },
-        notification: {
-          hr: "E0E0E0",
+        share: {
+          "chat-bg": "#EEEEEE",
         },
       },
       backgroundImage: {
@@ -91,15 +93,29 @@ module.exports = {
   plugins: [
     function ({ addUtilities }) {
       const newUtilities = {
+        ".custom-history-scrollbar::-webkit-scrollbar": {
+          width: "8px",
+          background: "transparent",
+        },
+        ".custom-history-scrollbar": {
+          "scrollbar-width": "8px",
+        },
+        ".custom-history-scrollbar::-webkit-scrollbar-thumb": {
+          "background-color": "rgba(255, 255, 255, 0.3)",
+          "border-radius": "40px",
+        },
+
         ".custom-scrollbar::-webkit-scrollbar": {
           width: "8px",
           background: "transparent",
         },
         ".custom-scrollbar": {
           "scrollbar-width": "8px",
+          "margin-right": "8px",
+          "box-sizing": "content-box",
         },
         ".custom-scrollbar::-webkit-scrollbar-thumb": {
-          "background-color": "rgba(255, 255, 255, 0.3)",
+          "background-color": "rgba(217, 217, 217, 1)",
           "border-radius": "40px",
         },
 

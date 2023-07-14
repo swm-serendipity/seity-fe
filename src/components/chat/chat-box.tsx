@@ -8,12 +8,16 @@ import useSidebarWindowResize from "@/hooks/useSidebarWindowResize";
 import NotificationBox from "./notification/notification-box";
 import NotificationBackground from "./notification/notification-background";
 import { Fragment } from "react";
+import ShareBox from "./share/share-box";
 
 export default function ChatBox() {
   const [showSidebar, setShowSidebar, showHiddenButton, setShowHiddenButton] =
     useSidebarWindowResize(true);
-  const isPopupOpen = useStore((state) => state.isPopupOpen);
+  const isDeIdentificationPopupOpen = useStore(
+    (state) => state.isDeIdentificationPopupOpen
+  );
   const isNotificationOpen = useStore((state) => state.isNotificationOpen);
+  const isSharePopupOpen = useStore((state) => state.isSharePopupOpen);
 
   return (
     <div className="h-screen relative flex">
@@ -29,13 +33,14 @@ export default function ChatBox() {
           setShowSidebar={setShowSidebar}
         />
       )}
-      {isPopupOpen && <DeIdentificationPopupBox />}
+      {isDeIdentificationPopupOpen && <DeIdentificationPopupBox />}
       {isNotificationOpen && (
         <Fragment>
           <NotificationBackground />
           <NotificationBox showSidebar={showSidebar} />
         </Fragment>
       )}
+      {isSharePopupOpen && <ShareBox />}
     </div>
   );
 }

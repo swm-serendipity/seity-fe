@@ -1,17 +1,21 @@
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import PromptAIChatSyntaxHighlighter from "./prompt-ai-chat-syntax-highlighter";
+import PromptAIChatSyntaxHighlighter from "./chat-syntax-highlighter";
 
-type PromptAIChatResponseMarkdownParserProps = {
+type ChatResponseMarkdownParserProps = {
   text: string;
+  isSharePopup?: boolean;
 };
 
-export default function PromptAIChatResponseMarkdownParser({
+export default function ChatResponseMarkdownParser({
   text,
-}: PromptAIChatResponseMarkdownParserProps) {
+  isSharePopup = false,
+}: ChatResponseMarkdownParserProps) {
   return (
     <ReactMarkdown
-      className="list-decimal"
+      className={`list-decimal w-full relative ${
+        isSharePopup && "text-body-medium"
+      }`}
       remarkPlugins={[remarkGfm]}
       components={{
         ol: ({ node, children, ...props }) => {
@@ -23,7 +27,7 @@ export default function PromptAIChatResponseMarkdownParser({
         },
         p: ({ node, children, ...props }) => {
           return (
-            <p className="py-2" {...props}>
+            <p className={`${isSharePopup ? "py-0.5" : "py-2"}`} {...props}>
               {children}
             </p>
           );
@@ -31,7 +35,11 @@ export default function PromptAIChatResponseMarkdownParser({
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");
           return !inline && match ? (
-            <PromptAIChatSyntaxHighlighter match={match} props={props}>
+            <PromptAIChatSyntaxHighlighter
+              match={match}
+              props={props}
+              isSharePopup={isSharePopup}
+            >
               {children}
             </PromptAIChatSyntaxHighlighter>
           ) : (
