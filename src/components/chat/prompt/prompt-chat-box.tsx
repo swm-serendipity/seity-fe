@@ -11,7 +11,7 @@ export function PromptChatBox() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatData]);
   return (
-    <div className="mx-4 md:mx-7 lg:mx-10 xl:mx-28 2xl:mx-52 mt-14 mb-8">
+    <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
         if (chat.user === "user") {
           return <PromptUserChat key={chat.id} text={chat.message} />;
