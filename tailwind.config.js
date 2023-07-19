@@ -174,6 +174,14 @@ module.exports = {
             "linear-gradient(147.52deg, rgba(255, 255, 255, 0) 0.47%, #FFFFFF 0.48%, rgba(255, 255, 255, 0.6) 90.85%)",
           opacity: 0.98,
         },
+
+        ".signup-box": {
+          background:
+            "linear-gradient(130.01deg, rgba(255, 255, 255, 0) 0.37%, #FFFFFF 0.37%, rgba(255, 255, 255, 0.6) 76%)",
+          "box-shadow": "0px 8px 20px rgba(207, 207, 207, 0.25)",
+          "backdrop-filter": "blur(9px)",
+          opacity: 0.98,
+        },
       };
       addUtilities(newUtilities);
     },
