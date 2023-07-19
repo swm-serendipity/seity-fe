@@ -2,22 +2,36 @@
 import { useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
+import { useMutation } from "@tanstack/react-query";
+import postLogin from "@/apis/post-login";
 
 export default function LoginInput() {
-  const [email, setEmail] = useState("");
+  const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
 
+  const loginMutation = useMutation(postLogin, {
+    onSuccess: (data) => {
+      localStorage.setItem("accessToken", data.result.accessToken);
+      localStorage.setItem("refreshToken", data.result.refreshToken);
+      setLoginId("");
+      setPassword("");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   const handleLogin = () => {
-    setEmail("");
-    setPassword("");
+    loginMutation.mutate({ loginId, password });
   };
+
   return (
     <div>
       <div className="mt-12 flex-col flex">
         <HintTextInputBox
-          hintText="이메일 계정 입력"
-          text={email}
-          setText={setEmail}
+          hintText="아이디 입력"
+          text={loginId}
+          setText={setLoginId}
         />
         <HintTextInputBox
           hintText="비밀번호 입력"
