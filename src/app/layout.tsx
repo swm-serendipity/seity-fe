@@ -1,5 +1,6 @@
 import "@/styles/global-styles.css";
 import { Metadata } from "next";
+import ReactQueryProvider from "./react-query-provider";
 
 export const metadata: Metadata = {
   title: "Seity AI Chatbot",
@@ -17,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
