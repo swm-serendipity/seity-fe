@@ -35,25 +35,36 @@ export default function SignupInputs() {
         <SignupLoginInput
           label="아이디"
           idName="loginId"
+          placeholder="아이디를 입력해주세요"
           value={formValues.loginId}
           onChange={handleChange}
         />
         <SignupLoginInput
           label="비밀번호"
           idName="password"
+          placeholder="비밀번호를 입력해주세요."
+          type="password"
           value={formValues.password}
           onChange={handleChange}
         />
         <SignupPasswordCheckInput
           label="비밀번호 확인"
           idName="passwordCheck"
+          placeholder="비밀번호를 한번 더 입력해주세요."
           value={checkPassword}
           onChange={setCheckPassword}
         />
-
+        <SignupLoginInput
+          label="이메일"
+          idName="email"
+          placeholder="이메일을 입력해주세요."
+          value={formValues.email}
+          onChange={handleChange}
+        />
         <SignupLoginInput
           label="이름"
           idName="name"
+          placeholder="사용자 이름을 입력해주세요."
           value={formValues.name}
           onChange={handleChange}
         />
