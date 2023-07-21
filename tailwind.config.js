@@ -24,12 +24,14 @@ module.exports = {
       },
       fontFamily: {
         pretendard: [...defaultTheme.fontFamily.sans],
+        lexend: ["Lexend", ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         h1: ["32px", { lineHeight: "38px" }],
         h2: ["26px", { lineHeight: "32px" }],
-        h3: ["20px", { lineHeight: "24px" }],
-        h4: ["16px", { lineHeight: "20px" }],
+        h3: ["22px", { lineHeight: "32px" }],
+        h4: ["20px", { lineHeight: "24px" }],
+        h5: ["16px", { lineHeight: "20px" }],
         "body-large": ["16px", { lineHeight: "20px" }],
         "body-medium": ["14px", { lineHeight: "20px" }],
         "body-small": ["12px", { lineHeight: "16px" }],
@@ -81,6 +83,9 @@ module.exports = {
         },
         share: {
           "chat-bg": "#EEEEEE",
+        },
+        signup: {
+          "signup-border": "#E0E0E0",
         },
       },
       backgroundImage: {
