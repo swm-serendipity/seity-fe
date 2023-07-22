@@ -3,25 +3,31 @@ import { useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import postLogin from "@/apis/post-login";
 
 export default function LoginInput() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter();
   const loginMutation = useMutation(postLogin, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.result.accessToken);
       localStorage.setItem("refreshToken", data.result.refreshToken);
       setLoginId("");
       setPassword("");
+      router.push("/chat");
     },
     onError: (error) => {
-      alert(error);
+      alert("로그인 실패");
     },
   });
 
   const handleLogin = () => {
+    if (!loginId || !password) {
+      alert("아이디와 비밀번호를 입력해주세요");
+      return;
+    }
     loginMutation.mutate({ loginId, password });
   };
 

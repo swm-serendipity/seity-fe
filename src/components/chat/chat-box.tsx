@@ -1,4 +1,3 @@
-"use client";
 import { useStore } from "@/store/store";
 import SideBarBox from "./sidebar/sidebar-box";
 import PromptBox from "./prompt/prompt-box";

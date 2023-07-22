@@ -1,23 +1,72 @@
+import postPromptQuestion from "@/apis/post-prompt-question";
 import { useStore } from "@/store/store";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 
 export default function PromptInputBox() {
   const [text, setText] = useState("");
-  const { toggleDeIdentificationPopup, addChatData } = useStore();
+  const { toggleDeIdentificationPopup, addChatData, setChatData } = useStore();
 
-  const [turn, setTurn] = useState<"user" | "ai">("user");
+  const askQuestionMutation = useMutation(postPromptQuestion, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      alert("사용중 문제 발생");
+    },
+  });
 
-  const handleSend = () => {
-    addChatData({
-      id: Date.now(),
-      user: turn,
-      message: text,
-      timestamp: new Date().toISOString(),
+  const handleSend = async () => {
+    const chatId = Date.now();
+
+    // Add user's message to chat
+    setChatData((oldChatData) => [
+      ...oldChatData,
+      {
+        id: chatId,
+        user: "user",
+        message: text,
+        timestamp: new Date().toISOString(),
+      },
+    ]);
+
+    const response = await fetch("https://api.seity.co.kr/prompt/ask", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({
+        sessionId: "",
+        question: text,
+      }),
     });
-    setText("");
-    setTurn(turn === "user" ? "ai" : "user");
+
+    const reader = response.body!.getReader();
+    let aiRes = "";
+
+    const processStream = ({ done, value }: any) => {
+      if (done) {
+        setChatData((oldChatData) => [
+          ...oldChatData,
+          {
+            id: chatId,
+            user: "ai",
+            message: aiRes,
+            timestamp: new Date().toISOString(),
+          },
+        ]);
+        return;
+      }
+
+      aiRes += new TextDecoder("utf-8").decode(value);
+      console.log(aiRes);
+      reader.read().then(processStream);
+    };
+
+    reader.read().then(processStream);
   };
 
   const handleOnKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
