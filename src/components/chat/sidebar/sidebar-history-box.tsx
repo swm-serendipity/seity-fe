@@ -4,13 +4,12 @@ import SidebarHistoryFullBox from "./sidebar-history-full-box";
 import SidebarHistoryHeader from "./sidebar-history-header";
 
 export default function SidebarHistoryBox() {
-  const isHistory = true;
   const { data, hasData, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useChatHistory();
 
   return (
     <div className="flex flex-col h-0 flex-grow">
-      <SidebarHistoryHeader isHistory={isHistory} />
+      <SidebarHistoryHeader isHistory={hasData} />
 
       <div className="mx-5 flex-col flex overflow-y-auto custom-history-scrollbar flex-1">
         {hasData ? (

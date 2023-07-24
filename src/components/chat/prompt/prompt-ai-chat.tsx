@@ -21,6 +21,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
             <div className="flex">
               <button className="mx-1">
                 <Image
+                  priority
                   src="/prompt-copy.png"
                   width={32}
                   height={32}
@@ -30,6 +31,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
               </button>
               <button className="mx-1">
                 <Image
+                  priority
                   src="/prompt-favorite.png"
                   width={32}
                   height={32}
@@ -38,6 +40,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
               </button>
               <button className="mx-1">
                 <Image
+                  priority
                   src="/prompt-share.png"
                   width={32}
                   height={32}
