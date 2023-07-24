@@ -15,16 +15,17 @@ axiosInstance.interceptors.response.use(
 
       const refreshToken = localStorage.getItem("refreshToken");
       try {
-        const res = await axiosInstance.post("/auth/reissue", {
+        const res = await axios.get("https://api.seity.co.kr/auth/reissue", {
           headers: {
             Authorization: `Bearer ${refreshToken}`,
           },
         });
-        localStorage.setItem("accessToken", res.data.accessToken);
+        localStorage.setItem("accessToken", res.data.result.accessToken);
+        localStorage.setItem("refreshToken", res.data.result.refreshToken);
 
         originalRequest.headers[
           "Authorization"
-        ] = `Bearer ${res.data.accessToken}`;
+        ] = `Bearer ${res.data.result.accessToken}`;
         return axiosInstance(originalRequest);
       } catch (err) {
         console.error(err);

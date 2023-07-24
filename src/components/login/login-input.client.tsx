@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
 import { useMutation } from "@tanstack/react-query";
@@ -23,6 +23,16 @@ export default function LoginInput() {
     },
   });
 
+  const handleOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && e.shiftKey) return;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (loginId.length > 0 && password.length > 0) {
+        handleLogin();
+      }
+    }
+  };
+
   const handleLogin = () => {
     if (!loginId || !password) {
       alert("아이디와 비밀번호를 입력해주세요");
@@ -42,6 +52,7 @@ export default function LoginInput() {
         <HintTextInputBox
           hintText="비밀번호 입력"
           password
+          onKeyPress={handleOnEnter}
           text={password}
           setText={setPassword}
         />
