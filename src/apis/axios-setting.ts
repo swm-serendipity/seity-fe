@@ -31,6 +31,8 @@ axiosInstance.interceptors.response.use(
         console.error(err);
       }
     }
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
     return Promise.reject(error);
   }
 );

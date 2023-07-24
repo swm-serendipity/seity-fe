@@ -87,7 +87,7 @@ export function SignupDateInput({ onChange }: SignupDateInputProps) {
         },
       });
     }
-  }, [year, month, day, onChange]);
+  }, [year, month, day]);
 
   return (
     <div className="mb-4 w-[360px] relative">
