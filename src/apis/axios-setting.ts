@@ -20,7 +20,6 @@ axiosInstance.interceptors.response.use(
             Authorization: `Bearer ${refreshToken}`,
           },
         });
-
         localStorage.setItem("accessToken", res.data.accessToken);
 
         originalRequest.headers[
