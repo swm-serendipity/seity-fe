@@ -14,6 +14,9 @@ interface State {
   chatData: Chat[];
   setChatData: (fn: (data: Chat[]) => Chat[]) => void;
   addChatData: (data: Chat) => void;
+
+  chatSessionId: string;
+  setChatSessionId: (sessionId: string) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -38,4 +41,7 @@ export const useStore = create<State>((set) => ({
 
   addChatData: (data) =>
     set((state) => ({ chatData: [...state.chatData, data] })),
+
+  chatSessionId: "",
+  setChatSessionId: (sessionId) => set({ chatSessionId: sessionId }),
 }));

@@ -17,7 +17,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
         <div className="flex">
           <button className="mx-1">
             <Image
-              src="prompt-copy.svg"
+              src="/prompt-copy.png"
               width={32}
               height={32}
               alt="프롬프트 복사"
@@ -26,7 +26,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
           </button>
           <button className="mx-1">
             <Image
-              src="prompt-favorite.svg"
+              src="/prompt-favorite.png"
               width={32}
               height={32}
               alt="프롬프트 즐겨찾기"
@@ -34,7 +34,7 @@ export default function PromptAIChat({ text }: PromptAIChatProps) {
           </button>
           <button className="mx-1">
             <Image
-              src="prompt-share.svg"
+              src="/prompt-share.png"
               width={32}
               height={32}
               alt="프롬프트 공유"

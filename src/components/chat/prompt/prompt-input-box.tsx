@@ -5,7 +5,12 @@ import TextareaAutosize from "react-textarea-autosize";
 
 export default function PromptInputBox() {
   const [text, setText] = useState("");
-  const { toggleDeIdentificationPopup, addChatData, setChatData } = useStore();
+  const {
+    toggleDeIdentificationPopup,
+    addChatData,
+    setChatData,
+    chatSessionId,
+  } = useStore();
 
   const handleSend = async () => {
     const chatId = Date.now();
@@ -35,7 +40,7 @@ export default function PromptInputBox() {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({
-        sessionId: "",
+        sessionId: chatSessionId ? chatSessionId : undefined,
         question: text,
       }),
     });

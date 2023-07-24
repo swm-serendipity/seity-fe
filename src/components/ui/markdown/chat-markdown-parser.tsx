@@ -1,6 +1,7 @@
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import PromptAIChatSyntaxHighlighter from "./chat-syntax-highlighter";
+import "./markdown.css";
 
 type ChatResponseMarkdownParserProps = {
   text: string;
@@ -19,17 +20,11 @@ export default function ChatResponseMarkdownParser({
       remarkPlugins={[remarkGfm]}
       components={{
         ol: ({ node, children, ...props }) => {
-          return (
-            <ol className="list-decimal list-inside py-3" {...props}>
-              {children}
-            </ol>
-          );
+          return <ol className="list-decimal list-inside py-3">{children}</ol>;
         },
         p: ({ node, children, ...props }) => {
           return (
-            <p className={`${isSharePopup ? "py-0.5" : "py-2"}`} {...props}>
-              {children}
-            </p>
+            <p className={`${isSharePopup ? "py-0.5" : "py-2"}`}>{children}</p>
           );
         },
         code({ node, inline, className, children, ...props }) {

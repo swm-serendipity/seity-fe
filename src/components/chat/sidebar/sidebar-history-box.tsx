@@ -1,16 +1,29 @@
+import useChatHistory from "@/hooks/useChatHistory";
 import SidebarHistoryEmptyBox from "./sidebar-history-empty-box";
 import SidebarHistoryFullBox from "./sidebar-history-full-box";
+import SidebarHistoryHeader from "./sidebar-history-header";
 
-type SidebarHistoryBoxProps = {
-  isHistory: boolean;
-};
+export default function SidebarHistoryBox() {
+  const isHistory = true;
+  const { data, hasData, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useChatHistory();
 
-export default function SidebarHistoryBox({
-  isHistory,
-}: SidebarHistoryBoxProps) {
   return (
-    <div className="mx-5 flex-col flex overflow-y-auto custom-history-scrollbar flex-1">
-      {isHistory ? <SidebarHistoryFullBox /> : <SidebarHistoryEmptyBox />}
+    <div className="flex flex-col h-0 flex-grow">
+      <SidebarHistoryHeader isHistory={isHistory} />
+
+      <div className="mx-5 flex-col flex overflow-y-auto custom-history-scrollbar flex-1">
+        {hasData ? (
+          <SidebarHistoryFullBox
+            data={data}
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+          />
+        ) : (
+          <SidebarHistoryEmptyBox />
+        )}
+      </div>
     </div>
   );
 }

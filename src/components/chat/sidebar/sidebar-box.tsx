@@ -19,7 +19,6 @@ export default function SideBarBox({
   setShowSidebar,
   setShowHiddenButton,
 }: SideBarBoxProps) {
-  const isHistory = true;
   const isNotificationOpen = useStore((state) => state.isNotificationOpen);
   const isDeIdentificationPopupOpen = useStore(
     (state) => state.isDeIdentificationPopupOpen
@@ -59,11 +58,8 @@ export default function SideBarBox({
         <SideBarProfile />
         <SidebarMenu />
         <div className="w-full h-[10px] bg-sidebar-button-hr mt-5 mb-7" />
-        <div className="flex flex-col h-0 flex-grow">
-          <SidebarHistoryHeader isHistory={isHistory} />
-          <SidebarHistoryBox isHistory={isHistory} />
-          <SidebarSetting />
-        </div>
+        <SidebarHistoryBox />
+        <SidebarSetting />
       </div>
     </animated.div>
   );

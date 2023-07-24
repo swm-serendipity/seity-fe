@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SidebarNewChatButton from "./sidebar-new-chat-button";
 
 type SidebarHistoryHeaderProps = {
   isHistory: boolean;
@@ -27,6 +28,7 @@ export default function SidebarHistoryHeader({
           </button>
         </div>
       )}
+      <SidebarNewChatButton />
     </div>
   );
 }

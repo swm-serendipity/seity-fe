@@ -1,3 +1,4 @@
+import SidebarLayout from "@/components/chat/sidebar/sidebar-layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,5 +11,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>{children}</div>;
+  return <SidebarLayout>{children}</SidebarLayout>;
 }
