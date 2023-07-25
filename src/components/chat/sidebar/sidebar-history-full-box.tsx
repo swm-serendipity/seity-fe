@@ -1,9 +1,10 @@
 import { SidebarHistoryButton } from "@/components/ui/sidebar-button";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
+import { useStore } from "@/store/store";
 import { ChatHistoryData, PromptHistoryPage } from "@/type/history";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Key } from "react";
 
 type SidebarHistoryFullBoxProps = {
@@ -11,6 +12,7 @@ type SidebarHistoryFullBoxProps = {
   isFetchingNextPage: boolean;
   hasNextPage: boolean | undefined;
   fetchNextPage: () => void;
+  refetch: () => void;
 };
 
 export default function SidebarHistoryFullBox({
@@ -18,13 +20,17 @@ export default function SidebarHistoryFullBox({
   isFetchingNextPage,
   hasNextPage,
   fetchNextPage,
+  refetch,
 }: SidebarHistoryFullBoxProps) {
   const router = useRouter();
+  const pathName = usePathname();
   const observerRef = useIntersectionObserver(
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage
   );
+
+  const { chatData } = useStore();
 
   const groupByDate = (results: PromptHistoryPage["result"]) => {
     const groups = results.reduce(
@@ -49,11 +55,33 @@ export default function SidebarHistoryFullBox({
     return groupArrays;
   };
 
+  const handlePromptButton = (item: {
+    id: Key | null | undefined;
+    firstQuestion: string;
+  }) => {
+    if (pathName == "/chat") {
+      refetch();
+    }
+    router.push(`/chat/${item.id}`);
+  };
+
+  const isNewPrompt = pathName == "/chat" && chatData.length > 0;
+
   return (
     <div className="flex-1 overflow-auto custom-history-scrollbar">
       {data &&
         data.pages.map((group, i: number) => (
           <div key={i} className="flex-1">
+            {isNewPrompt && (
+              <>
+                <div className="text-blackbg-disable text-body-small">지금</div>
+                <SidebarHistoryButton
+                  text={chatData[0].message}
+                  onClick={() => {}}
+                  select
+                />
+              </>
+            )}
             {groupByDate(group.result).map(({ date, items }) => (
               <div key={date} className="mt-6">
                 <div className="text-blackbg-disable text-body-small">
@@ -71,10 +99,8 @@ export default function SidebarHistoryFullBox({
                       <SidebarHistoryButton
                         key={item.id}
                         text={item.firstQuestion}
-                        onClick={() => {
-                          router.push(`/chat/${item.id}`);
-                        }}
-                        select={false}
+                        onClick={() => handlePromptButton(item)}
+                        select={pathName == `/chat/${item.id}`}
                       />
                     )
                   )}

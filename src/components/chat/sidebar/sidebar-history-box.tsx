@@ -4,8 +4,14 @@ import SidebarHistoryFullBox from "./sidebar-history-full-box";
 import SidebarHistoryHeader from "./sidebar-history-header";
 
 export default function SidebarHistoryBox() {
-  const { data, hasData, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useChatHistory();
+  const {
+    data,
+    hasData,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch,
+  } = useChatHistory();
 
   return (
     <div className="flex flex-col h-0 flex-grow">
@@ -18,6 +24,7 @@ export default function SidebarHistoryBox() {
             fetchNextPage={fetchNextPage}
             hasNextPage={hasNextPage}
             isFetchingNextPage={isFetchingNextPage}
+            refetch={refetch}
           />
         ) : (
           <SidebarHistoryEmptyBox />
