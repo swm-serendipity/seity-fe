@@ -22,6 +22,10 @@ export default function SignupInputs() {
     part: "FRONT_END",
   });
 
+  const [errorMessages, setErrorMessages] = useState({
+    checkPasswordError: "",
+  });
+
   const [checkPassword, setCheckPassword] = useState("");
 
   const handleChange = (e: { target: { name: string; value: any } }) => {
@@ -62,12 +66,13 @@ export default function SignupInputs() {
       router.push("/login");
     },
     onError: (error) => {
-      console.error(error);
+      alert(error);
     },
   });
 
   return (
     <div className="flex-1 flex-col flex justify-center items-center">
+      <h1 className="block md:hidden mb-4">Seity에 회원가입</h1>
       <form onSubmit={handleSubmit}>
         <SignupLoginInput
           label="아이디"
@@ -89,6 +94,7 @@ export default function SignupInputs() {
           idName="passwordCheck"
           placeholder="비밀번호를 한번 더 입력해주세요."
           value={checkPassword}
+          error={errorMessages.checkPasswordError}
           onChange={setCheckPassword}
         />
         <SignupLoginInput

@@ -5,7 +5,7 @@ import { ChatHistoryData, PromptHistoryPage } from "@/type/history";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { ko } from "date-fns/locale";
 import { usePathname, useRouter } from "next/navigation";
-import { Key } from "react";
+import { Key, useEffect } from "react";
 
 type SidebarHistoryFullBoxProps = {
   data: ChatHistoryData | undefined;
@@ -30,7 +30,7 @@ export default function SidebarHistoryFullBox({
     fetchNextPage
   );
 
-  const { chatData } = useStore();
+  const { chatData, isAnswering } = useStore();
 
   const groupByDate = (results: PromptHistoryPage["result"]) => {
     const groups = results.reduce(
@@ -65,7 +65,14 @@ export default function SidebarHistoryFullBox({
     router.push(`/chat/${item.id}`);
   };
 
-  const isNewPrompt = pathName == "/chat" && chatData.length > 0;
+  const isNewPrompt =
+    pathName == "/chat" && chatData.length == 1 && !isAnswering;
+
+  useEffect(() => {
+    if (isNewPrompt) {
+      refetch();
+    }
+  }, [isNewPrompt]);
 
   return (
     <div className="flex-1 overflow-auto custom-history-scrollbar">

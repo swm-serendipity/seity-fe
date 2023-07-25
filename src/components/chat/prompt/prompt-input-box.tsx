@@ -10,6 +10,7 @@ export default function PromptInputBox() {
     addChatData,
     setChatData,
     chatSessionId,
+    toggleIsAnswering,
   } = useStore();
 
   const handleSend = async () => {
@@ -24,7 +25,7 @@ export default function PromptInputBox() {
     });
 
     setText("");
-
+    toggleIsAnswering();
     addChatData({
       id: "ai-" + chatId,
       user: "ai",
@@ -47,6 +48,7 @@ export default function PromptInputBox() {
 
     if (!response.ok) {
       console.log("Response is not OK");
+      toggleIsAnswering();
       return;
     }
 
@@ -89,6 +91,7 @@ export default function PromptInputBox() {
 
       return reader.read().then(processText);
     });
+    toggleIsAnswering();
   };
 
   const handleOnKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {

@@ -1,6 +1,6 @@
 export default function SignupLeftSection() {
   return (
-    <div className="w-[480px] bg-[url('/signup-bg.svg')] bg-[#363636] bg-no-repeat bg-center bg-contain rounded-l-2xl pl-[60px] pt-[97px]">
+    <div className="w-[480px] bg-[url('/signup-bg.svg')] bg-[#363636] bg-no-repeat bg-center bg-contain rounded-l-2xl pl-[60px] pt-[97px] hidden md:block">
       <div className="font-lexend font-light text-xl text-blackbg-point">
         Sign in
       </div>

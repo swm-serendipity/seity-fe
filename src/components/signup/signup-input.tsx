@@ -40,6 +40,7 @@ type SignupPasswordCheckInputProps = {
   idName: string;
   placeholder: string;
   value: string;
+  error: string;
   onChange: (value: string) => void;
 };
 
@@ -48,6 +49,7 @@ export function SignupPasswordCheckInput({
   idName,
   placeholder,
   value,
+  error,
   onChange,
 }: SignupPasswordCheckInputProps) {
   return (
@@ -64,6 +66,7 @@ export function SignupPasswordCheckInput({
         onChange={(e) => onChange(e.target.value)}
         className="w-full font-body-medium text-body-medium px-3.5 py-3 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default"
       />
+      <div>{error}</div>
     </div>
   );
 }

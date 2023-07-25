@@ -17,6 +17,9 @@ interface State {
 
   chatSessionId: string;
   setChatSessionId: (sessionId: string) => void;
+
+  isAnswering: boolean;
+  toggleIsAnswering: () => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -41,6 +44,10 @@ export const useStore = create<State>((set) => ({
 
   addChatData: (data) =>
     set((state) => ({ chatData: [...state.chatData, data] })),
+
+  isAnswering: false,
+  toggleIsAnswering: () =>
+    set((state) => ({ isAnswering: !state.isAnswering })),
 
   chatSessionId: "",
   setChatSessionId: (sessionId) => set({ chatSessionId: sessionId }),
