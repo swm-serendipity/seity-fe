@@ -16,7 +16,9 @@ export function PromptChatBox() {
         if (chat.user === "user") {
           return <PromptUserChat key={chat.id} text={chat.message} />;
         } else if (chat.user === "ai") {
-          return <PromptAIChat key={chat.id} text={chat.message} />;
+          return (
+            <PromptAIChat key={chat.id} id={chat.id} text={chat.message} />
+          );
         }
       })}
       <div ref={bottomRef} />

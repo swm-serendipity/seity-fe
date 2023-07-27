@@ -1,10 +1,18 @@
-import { useRouter } from "next/navigation";
+import { useStore } from "@/store/store";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SidebarNewChatButton() {
   const router = useRouter();
+  const pathName = usePathname();
+
+  const { setChatData } = useStore();
 
   const handleClick = () => {
-    router.push("/chat");
+    if (pathName === "/chat") {
+      setChatData(() => []);
+    } else {
+      router.push("/chat");
+    }
   };
   return (
     <button

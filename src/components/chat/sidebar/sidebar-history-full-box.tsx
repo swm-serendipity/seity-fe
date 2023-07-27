@@ -66,7 +66,7 @@ export default function SidebarHistoryFullBox({
   };
 
   const isNewPrompt =
-    pathName == "/chat" && chatData.length == 1 && !isAnswering;
+    pathName == "/chat" && chatData.length == 2 && !isAnswering;
 
   useEffect(() => {
     if (isNewPrompt) {
@@ -79,7 +79,7 @@ export default function SidebarHistoryFullBox({
       {data &&
         data.pages.map((group, i: number) => (
           <div key={i} className="flex-1">
-            {isNewPrompt && (
+            {/* {isNewPrompt && (
               <>
                 <div className="text-blackbg-disable text-body-small">지금</div>
                 <SidebarHistoryButton
@@ -88,7 +88,7 @@ export default function SidebarHistoryFullBox({
                   select
                 />
               </>
-            )}
+            )} */}
             {groupByDate(group.result).map(({ date, items }) => (
               <div key={date} className="mt-6">
                 <div className="text-blackbg-disable text-body-small">

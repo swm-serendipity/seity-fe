@@ -10,13 +10,14 @@ export default function PromptInputBox() {
     addChatData,
     setChatData,
     chatSessionId,
-    toggleIsAnswering,
+    setChatSessionId,
+    isAnswering,
+    setIsAnswering,
   } = useStore();
 
   const handleSend = async () => {
     const chatId = Date.now();
 
-    // 유저 채팅 추가
     addChatData({
       id: "user-" + chatId,
       user: "user",
@@ -25,7 +26,7 @@ export default function PromptInputBox() {
     });
 
     setText("");
-    toggleIsAnswering();
+    setIsAnswering(true);
     addChatData({
       id: "ai-" + chatId,
       user: "ai",
@@ -45,10 +46,16 @@ export default function PromptInputBox() {
         question: text,
       }),
     });
+    console.log(
+      JSON.stringify({
+        sessionId: chatSessionId ? chatSessionId : undefined,
+        question: text,
+      })
+    );
 
     if (!response.ok) {
       console.log("Response is not OK");
-      toggleIsAnswering();
+      setIsAnswering(false);
       return;
     }
 
@@ -61,6 +68,7 @@ export default function PromptInputBox() {
     reader.read().then(function processText({ done, value }): any {
       if (done) {
         console.log("Stream complete");
+        setIsAnswering(false);
         return;
       }
 
@@ -71,9 +79,10 @@ export default function PromptInputBox() {
 
         const data = buffer.slice(0, boundary);
         buffer = buffer.slice(boundary + 2);
-
         const parsedData = JSON.parse(data.slice(5)); // 'data:' 뒤의 문자열만 추출하여 JSON 파싱
-
+        if (parsedData.sessionId && !chatSessionId) {
+          setChatSessionId(parsedData.sessionId);
+        }
         if (parsedData.answer) {
           aiRes += parsedData.answer;
 
@@ -85,24 +94,26 @@ export default function PromptInputBox() {
             )
           );
         } else if (parsedData == "[DONE]") {
+          setIsAnswering(false);
           return;
         }
       }
 
       return reader.read().then(processText);
     });
-    toggleIsAnswering();
   };
+  const isDisabled = text.length > 0 && !isAnswering;
 
   const handleOnKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && e.shiftKey) return;
     if (e.key === "Enter") {
       e.preventDefault();
-      if (text.length > 0) {
+      if (isDisabled) {
         handleSend();
       }
     }
   };
+
   return (
     <div className="w-full min-h-[100px] flex justify-center items-center bg-prompt-ai-select-bg">
       <div className="flex items-center bg-blackbg-default w-full xl:w-[768px] md:mx-7 min-h-[58px] rounded-xl my-5">
@@ -125,11 +136,12 @@ export default function PromptInputBox() {
         </button>
         <button
           className={`mx-3 w-[76px] h-[38px] rounded-md ${
-            text.length > 0
+            isDisabled
               ? "bg-blackbg-point text-whitebg-default"
               : "bg-blackbg-serve text-whitebg-disable"
           }`}
           onClick={handleSend}
+          disabled={!isDisabled}
         >
           send
         </button>

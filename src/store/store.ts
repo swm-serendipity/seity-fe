@@ -1,3 +1,4 @@
+import { set } from "date-fns";
 import { create } from "zustand";
 
 interface State {
@@ -19,7 +20,7 @@ interface State {
   setChatSessionId: (sessionId: string) => void;
 
   isAnswering: boolean;
-  toggleIsAnswering: () => void;
+  setIsAnswering: (isAnswering: boolean) => void;
 }
 
 export const useStore = create<State>((set) => ({
@@ -46,8 +47,8 @@ export const useStore = create<State>((set) => ({
     set((state) => ({ chatData: [...state.chatData, data] })),
 
   isAnswering: false,
-  toggleIsAnswering: () =>
-    set((state) => ({ isAnswering: !state.isAnswering })),
+
+  setIsAnswering: (isAnswering) => set({ isAnswering: isAnswering }),
 
   chatSessionId: "",
   setChatSessionId: (sessionId) => set({ chatSessionId: sessionId }),
