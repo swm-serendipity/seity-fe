@@ -11,7 +11,12 @@ const useChatHistory = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(["chatHistory"], getPromptHistory, {
-    getNextPageParam: (lastPage) => lastPage.nextPage ?? false,
+    getNextPageParam: (lastPage, allPages) => {
+      if (lastPage.result.length === 0) {
+        return false;
+      }
+      return allPages.length + 1;
+    },
     refetchOnWindowFocus: false,
   });
 

@@ -8,24 +8,26 @@ function useIntersectionObserver(
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (isFetching || !canFetchMore) return;
+    const currentObserverRef = observerRef.current;
+
+    if (isFetching || !canFetchMore || !currentObserverRef) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         const firstEntry = entries[0];
         if (firstEntry.isIntersecting) {
           fetchMore();
+          console.log(1);
         }
       },
       { threshold: 1.0 }
     );
 
-    const currentObserverRef = observerRef.current! as Element;
     observer.observe(currentObserverRef);
 
     // Clean up function
     return () => observer.unobserve(currentObserverRef);
-  }, [observerRef, isFetching, canFetchMore]);
+  }, [observerRef.current, isFetching, canFetchMore]); // observerRef.current를 사용하도록 수정
 
   return observerRef;
 }

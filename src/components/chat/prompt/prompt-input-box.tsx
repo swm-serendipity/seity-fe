@@ -1,4 +1,5 @@
 import { useStore } from "@/store/store";
+import postPromptAsk from "@/utils/postPromptAsk";
 import Image from "next/image";
 import { KeyboardEvent, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
@@ -7,102 +8,27 @@ export default function PromptInputBox() {
   const [text, setText] = useState("");
   const {
     toggleDeIdentificationPopup,
+    isAnswering,
     addChatData,
     setChatData,
     chatSessionId,
     setChatSessionId,
-    isAnswering,
     setIsAnswering,
   } = useStore();
 
-  const handleSend = async () => {
-    const chatId = Date.now();
+  const isDisabled = text.length > 0 && !isAnswering;
 
-    addChatData({
-      id: "user-" + chatId,
-      user: "user",
-      message: text,
-      timestamp: new Date().toISOString(),
-    });
-
-    setText("");
-    setIsAnswering(true);
-    addChatData({
-      id: "ai-" + chatId,
-      user: "ai",
-      message: "",
-      timestamp: new Date().toISOString(),
-    });
-
-    // fetch를 사용하여 요청을 보냅니다.
-    const response = await fetch("https://api.seity.co.kr/prompt/ask", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify({
-        sessionId: chatSessionId ? chatSessionId : undefined,
-        question: text,
-      }),
-    });
-    console.log(
-      JSON.stringify({
-        sessionId: chatSessionId ? chatSessionId : undefined,
-        question: text,
-      })
-    );
-
-    if (!response.ok) {
-      console.log("Response is not OK");
-      setIsAnswering(false);
-      return;
-    }
-
-    let aiRes = "";
-    let buffer = "";
-
-    const reader = response.body!.getReader();
-    const decoder = new TextDecoder();
-
-    reader.read().then(function processText({ done, value }): any {
-      if (done) {
-        console.log("Stream complete");
-        setIsAnswering(false);
-        return;
-      }
-
-      buffer += decoder.decode(value);
-      while (true) {
-        const boundary = buffer.indexOf("\n\n");
-        if (boundary === -1) break;
-
-        const data = buffer.slice(0, boundary);
-        buffer = buffer.slice(boundary + 2);
-        const parsedData = JSON.parse(data.slice(5)); // 'data:' 뒤의 문자열만 추출하여 JSON 파싱
-        if (parsedData.sessionId && !chatSessionId) {
-          setChatSessionId(parsedData.sessionId);
-        }
-        if (parsedData.answer) {
-          aiRes += parsedData.answer;
-
-          setChatData((oldChatData: Chat[]) =>
-            oldChatData.map((chat: Chat) =>
-              chat.id === "ai-" + chatId && chat.user === "ai"
-                ? { ...chat, message: aiRes }
-                : chat
-            )
-          );
-        } else if (parsedData == "[DONE]") {
-          setIsAnswering(false);
-          return;
-        }
-      }
-
-      return reader.read().then(processText);
+  const handleSend = () => {
+    postPromptAsk({
+      text,
+      setText,
+      addChatData,
+      setChatData,
+      chatSessionId,
+      setChatSessionId,
+      setIsAnswering,
     });
   };
-  const isDisabled = text.length > 0 && !isAnswering;
 
   const handleOnKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && e.shiftKey) return;
