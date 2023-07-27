@@ -10,10 +10,10 @@ export default function PromptInputBox() {
     toggleDeIdentificationPopup,
     isAnswering,
     addChatData,
-    setChatData,
     chatSessionId,
     setChatSessionId,
     setIsAnswering,
+    setAnsweringData,
   } = useStore();
 
   const isDisabled = text.length > 0 && !isAnswering;
@@ -23,10 +23,10 @@ export default function PromptInputBox() {
       text,
       setText,
       addChatData,
-      setChatData,
       chatSessionId,
       setChatSessionId,
       setIsAnswering,
+      setAnsweringData,
     });
   };
 

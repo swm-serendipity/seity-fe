@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import getPromptData from "@/apis/get-prompt-data";
 import { useStore } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 export default function useFetchAndStoreChat(sessionId: string) {
   const { setChatData, setChatSessionId } = useStore();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,7 @@ export default function useFetchAndStoreChat(sessionId: string) {
         setChatSessionId(response.result.id);
         setChatData(() => chatData);
       } catch (error) {
+        router.push("/chat");
         Promise.reject(error);
       }
     };

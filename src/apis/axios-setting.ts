@@ -29,10 +29,11 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (err) {
         console.error(err);
+
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
       }
     }
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
     return Promise.reject(error);
   }
 );

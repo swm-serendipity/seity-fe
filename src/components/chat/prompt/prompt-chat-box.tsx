@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
 import { useStore } from "@/store/store";
@@ -10,14 +10,24 @@ export function PromptChatBox({
   containerRef: React.RefObject<HTMLDivElement>;
 }) {
   const bottomRef = useRef<HTMLDivElement>(null);
-  const { chatData } = useStore();
+  const { chatData, isAnswering, answeringData } = useStore();
   const isBottom = useBottomScrollListener(containerRef);
+  const [isInitialChat, setIsInitialChat] = useState(true);
+
+  useLayoutEffect(() => {
+    if (chatData.length > 1 && isInitialChat) {
+      setIsInitialChat(false);
+      setTimeout(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 800);
+    }
+  }, [chatData]);
 
   useEffect(() => {
     if (isBottom) {
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [chatData]);
+  }, [answeringData?.message, chatData, isBottom]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
@@ -29,6 +39,9 @@ export function PromptChatBox({
           );
         }
       })}
+      {isAnswering && (
+        <PromptAIChat id={answeringData!.id} text={answeringData!.message} />
+      )}
       <div ref={bottomRef} />
     </div>
   );

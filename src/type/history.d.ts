@@ -4,7 +4,7 @@ export type PromptHistory = {
   firstQuestion: string;
   createdAt: string;
   lastModifiedAt: string;
-  favorite: false;
+  favorite: boolean;
 };
 
 export type PromptHistoryPage = {

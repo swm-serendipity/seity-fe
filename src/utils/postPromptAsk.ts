@@ -5,21 +5,21 @@ type postPromptAskProps = {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   addChatData: (data: Chat) => void;
-  setChatData: (fn: (data: Chat[]) => Chat[]) => void;
   chatSessionId: string;
   setChatSessionId: (sessionId: string) => void;
   setIsAnswering: (isAnswering: boolean) => void;
+  setAnsweringData: (data: Chat) => void;
 };
 
 const postPromptAsk = async ({
   text,
   setText,
   addChatData,
-  setChatData,
   chatSessionId,
   setChatSessionId,
   setIsAnswering,
-}: any) => {
+  setAnsweringData,
+}: postPromptAskProps) => {
   const chatId = Date.now();
 
   addChatData({
@@ -29,9 +29,9 @@ const postPromptAsk = async ({
     timestamp: new Date().toISOString(),
   });
 
-  setText("");
-  setIsAnswering(true);
-  addChatData({
+  setText(""); //입력창 초기화
+  setIsAnswering(true); //답변중 상태로 변경
+  setAnsweringData({
     id: "ai-" + chatId,
     user: "ai",
     message: "",
@@ -82,15 +82,26 @@ const postPromptAsk = async ({
       if (parsedData.answer) {
         aiRes += parsedData.answer;
 
-        setChatData((oldChatData: Chat[]) =>
-          oldChatData.map((chat: Chat) =>
-            chat.id === "ai-" + chatId && chat.user === "ai"
-              ? { ...chat, message: aiRes }
-              : chat
-          )
-        );
+        setAnsweringData({
+          id: "ai-" + chatId,
+          user: "ai",
+          message: aiRes,
+          timestamp: new Date().toISOString(),
+        });
       } else if (parsedData == "[DONE]") {
         setIsAnswering(false);
+        addChatData({
+          id: "ai-" + chatId,
+          user: "ai",
+          message: aiRes,
+          timestamp: new Date().toISOString(),
+        });
+        setAnsweringData({
+          id: "",
+          user: "",
+          message: "",
+          timestamp: "",
+        });
         return;
       }
     }

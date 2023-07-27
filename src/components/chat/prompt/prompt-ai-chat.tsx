@@ -14,14 +14,12 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
     await navigator.clipboard.writeText(text);
   };
 
-  const { isAnswering, chatData } = useStore();
+  const { isAnswering } = useStore();
   return (
     <div className="flex mt-6 max-w-[100%]">
       <div className="mr-4 rounded-full bg-gray-300 w-11 h-11 min-w-11 justify-end items-end hidden lg:flex"></div>
       <div className="flex-col bg-prompt-chat-ai-bg-color px-6 pt-3 pb-3 rounded-br-3xl rounded-se-3xl rounded-bl-3xl w-auto max-w-[560px] 2xl:max-w-[640px]">
-        {text.length > 0 ||
-        !isAnswering ||
-        chatData[chatData.length - 1].id !== id ? (
+        {text.length > 0 || !isAnswering ? (
           <div>
             <ChatResponseMarkdownParser text={text} />
             <div className="flex">
@@ -35,7 +33,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
                   onClick={handleCopy}
                 />
               </button>
-              <button className="mx-1">
+              {/* <button className="mx-1">
                 <Image
                   priority
                   src="/prompt-favorite.png"
@@ -43,7 +41,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
                   height={32}
                   alt="프롬프트 즐겨찾기"
                 />
-              </button>
+              </button> */}
               <button className="mx-1">
                 <Image
                   priority

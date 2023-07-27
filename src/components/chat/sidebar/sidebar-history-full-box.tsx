@@ -46,7 +46,9 @@ export default function SidebarHistoryFullBox({
 
   useEffect(() => {
     if (isNewPrompt) {
-      refetch();
+      setTimeout(() => {
+        refetch();
+      }, 1000);
     }
   }, [isNewPrompt]);
 
