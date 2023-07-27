@@ -17,7 +17,6 @@ function useIntersectionObserver(
         const firstEntry = entries[0];
         if (firstEntry.isIntersecting) {
           fetchMore();
-          console.log(1);
         }
       },
       { threshold: 1.0 }
@@ -27,7 +26,7 @@ function useIntersectionObserver(
 
     // Clean up function
     return () => observer.unobserve(currentObserverRef);
-  }, [observerRef.current, isFetching, canFetchMore]); // observerRef.current를 사용하도록 수정
+  }, [observerRef.current, isFetching, canFetchMore]);
 
   return observerRef;
 }

@@ -1,24 +1,23 @@
 import { useEffect, useRef } from "react";
-import { debounce } from "lodash";
-
 import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
 import { useStore } from "@/store/store";
+import useBottomScrollListener from "@/hooks/useBottomScrollListener";
 
-export function PromptChatBox() {
+export function PromptChatBox({
+  containerRef,
+}: {
+  containerRef: React.RefObject<HTMLDivElement>;
+}) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { chatData } = useStore();
-
-  const debouncedScroll = debounce(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, 300);
+  const isBottom = useBottomScrollListener(containerRef);
 
   useEffect(() => {
-    debouncedScroll();
-    return () => {
-      debouncedScroll.cancel();
-    };
-  }, [chatData, debouncedScroll]);
+    if (isBottom) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatData]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
