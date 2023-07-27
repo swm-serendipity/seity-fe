@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { debounce } from "lodash";
+
 import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
 import { useStore } from "@/store/store";
@@ -7,9 +9,16 @@ export function PromptChatBox() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { chatData } = useStore();
 
-  useEffect(() => {
+  const debouncedScroll = debounce(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chatData]);
+  }, 300);
+
+  useEffect(() => {
+    debouncedScroll();
+    return () => {
+      debouncedScroll.cancel();
+    };
+  }, [chatData, debouncedScroll]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
