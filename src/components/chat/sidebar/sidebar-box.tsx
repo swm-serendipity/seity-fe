@@ -4,7 +4,6 @@ import SidebarSetting from "./sidebar-setting";
 import { animated, useSpring } from "@react-spring/web";
 import { useStore } from "@/store/store";
 import SidebarHistoryBox from "./sidebar-history-box";
-import SidebarHistoryHeader from "./sidebar-history-header";
 import SidebarHeader from "./sidebar-header";
 import SidebarMenu from "./sidebar-menu";
 
