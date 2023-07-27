@@ -1,8 +1,10 @@
+import deletePromptSession from "@/apis/delete-prompt-session";
 import { SidebarHistoryButton } from "@/components/ui/sidebar-button";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import { useStore } from "@/store/store";
 import { ChatHistoryData } from "@/type/history";
 import groupByDate from "@/utils/groupByDate";
+import { useMutation } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
 import { Key, useEffect } from "react";
 
@@ -31,6 +33,13 @@ export default function SidebarHistoryFullBox({
 
   const { chatData, isAnswering, chatSessionId } = useStore();
 
+  const { mutate } = useMutation(deletePromptSession, {
+    onSuccess: (data) => {},
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   const handlePromptButton = (item: {
     id: Key | null | undefined;
     firstQuestion: string;
@@ -39,6 +48,14 @@ export default function SidebarHistoryFullBox({
       refetch();
     }
     router.push(`/chat/${item.id}`);
+  };
+
+  const handleHistoryDeleteButtonClick = () => {
+    if (!chatSessionId) return;
+    mutate({ sessionId: chatSessionId });
+    setTimeout(() => {
+      refetch();
+    }, 1000);
   };
 
   const isNewPrompt =
@@ -67,6 +84,7 @@ export default function SidebarHistoryFullBox({
                 key={item.id}
                 text={item.firstQuestion}
                 onClick={() => handlePromptButton(item)}
+                onDeleteButtonClick={handleHistoryDeleteButtonClick}
                 select={
                   pathName == `/chat/${item.id}` || item.id == chatSessionId
                 }

@@ -5,12 +5,13 @@ import { colors } from "@/styles/color-guide";
 import SidebarNotificationSvg from "../assets/sidebar-notification";
 import SidebarChatSvg from "../assets/sidebar-chat";
 import { NotificationCount } from "./notification-count-box";
-import SidebarShareSvg from "../assets/sidebar-share";
 import {
   SidebarDeleteIconButton,
   SidebarShareIconButton,
 } from "./icon-buttton";
 import { useStore } from "@/store/store";
+import deletePromptSession from "@/apis/delete-prompt-session";
+import { useMutation } from "@tanstack/react-query";
 
 type SidebarMenuButtonProps = {
   type: "popular" | "notification";
@@ -79,14 +80,16 @@ type SidebarHistoryButtonProps = {
   select?: boolean;
   text: string;
   onClick: () => void;
+  onDeleteButtonClick: () => void;
 };
 export const SidebarHistoryButton = ({
   select = false,
   text,
   onClick,
+  onDeleteButtonClick,
 }: SidebarHistoryButtonProps) => {
   const [color, setColor] = useState(colors.blackbg.default);
-  const toggleSharePopup = useStore((state) => state.toggleSharePopup);
+  const { toggleSharePopup } = useStore();
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -106,7 +109,7 @@ export const SidebarHistoryButton = ({
   };
 
   const handleDeleteButtonClick = () => {
-    console.log("delete");
+    onDeleteButtonClick();
   };
 
   return (
