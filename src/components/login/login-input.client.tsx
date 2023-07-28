@@ -1,5 +1,5 @@
 "use client";
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
 import { useMutation } from "@tanstack/react-query";
@@ -10,6 +10,14 @@ export default function LoginInput() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      alert("이미 로그인 되어있습니다.");
+      router.back();
+    }
+  }, []);
+
   const loginMutation = useMutation(postLogin, {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.result.accessToken);

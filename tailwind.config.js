@@ -35,6 +35,7 @@ module.exports = {
         "body-large": ["16px", { lineHeight: "20px" }],
         "body-medium": ["14px", { lineHeight: "20px" }],
         "body-small": ["12px", { lineHeight: "16px" }],
+        "6xl": "4.5rem",
       },
       fontWeight: {
         h1: "bold",
