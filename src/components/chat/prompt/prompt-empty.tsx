@@ -8,7 +8,7 @@ export default function PromptEmpty() {
       bg-prompt-chat-ai-bg-color rounded-2xl "
       >
         <div className="flex flex-col">
-          <div className="flex flex-col justify-center items-center gap-3">
+          <div className="flex-col justify-center items-center gap-3 hidden md:flex">
             <Image
               src="/warning-sign.png"
               width={40}
@@ -17,10 +17,10 @@ export default function PromptEmpty() {
             />
             <div className="font-h4 text-h4">주의해주세요!</div>
           </div>
-          <div className="flex gap-3 pt-7">
+          <div className="flex gap-3 pt-7 flex-row">
             <div
-              className="flex flex-col w-[200px] h-[240px] justify-center items-center 
-            gap-6 bg-white rounded-xl px-8 pb-6 pt-10"
+              className="flex flex-col gap-2 w-[120px] h-[220px] md:w-[200px] md:h-[240px] md:gap-6 justify-center items-center 
+             bg-white rounded-xl px-8 pb-6 pt-10"
             >
               <Image
                 src="/chat-empty-1.png"
@@ -33,8 +33,8 @@ export default function PromptEmpty() {
               </p>
             </div>
             <div
-              className="flex flex-col w-[200px] h-[240px] justify-center items-center 
-            gap-6 bg-white rounded-xl px-4 pb-6 pt-10"
+              className="flex flex-col gap-2 w-[120px] h-[220px] md:w-[200px] md:h-[240px] md:gap-6 justify-center items-center 
+           bg-white rounded-xl px-4 pb-6 pt-10"
             >
               <Image
                 src="/chat-empty-2.png"
@@ -47,8 +47,8 @@ export default function PromptEmpty() {
               </p>
             </div>
             <div
-              className="flex flex-col w-[200px] h-[240px] justify-center items-center 
-            gap-6 bg-white rounded-xl px-4 pb-2 pt-10"
+              className="flex flex-col gap-2 w-[120px] h-[220px] md:w-[200px] md:h-[240px] md:gap-6 justify-center items-center 
+           bg-white rounded-xl px-4 pb-2 pt-10"
             >
               <Image
                 src="/chat-empty-3.png"

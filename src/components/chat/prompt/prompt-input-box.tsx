@@ -83,7 +83,8 @@ export default function PromptInputBox() {
           className="w-full resize-none px-5 focus:border-transparent outline-none my-4"
           onKeyPress={handleOnKeyPress}
         />
-        <button>
+        {/* todo */}
+        {/* <button>
           <Image
             src="/chat-file.svg"
             width="32"
@@ -91,7 +92,7 @@ export default function PromptInputBox() {
             alt="파일 첨부"
             className="mr-2"
           />
-        </button>
+        </button> */}
         <button
           className={`mx-3 w-[76px] h-[38px] rounded-md ${
             isDisabled
