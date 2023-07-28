@@ -42,7 +42,7 @@ export default function Hero() {
             <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
               안심하고 사용할 수 있는{" "}
               <p>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-orange-400">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-orange-600">
                   대화형 인공지능 보안 솔루션{" "}
                 </span>
               </p>

@@ -42,6 +42,17 @@ export default function SignupInputs() {
       alert("비밀번호를 입력해주세요.");
       return;
     }
+    if (
+      formValues.password.length < 8 ||
+      !formValues.password.match(
+        /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/
+      )
+    ) {
+      alert(
+        "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다."
+      );
+      return;
+    }
     if (!formValues.email) {
       alert("이메일을 입력해주세요.");
       return;
@@ -112,8 +123,11 @@ export default function SignupInputs() {
           onChange={handleChange}
         />
         <SignupDateInput value={formValues.birthDate} onChange={handleChange} />
-        <button type="submit" className="py-2 px-4">
-          테스트 회원가입
+        <button
+          type="submit"
+          className="py-2 px-4 w-full bg-whitebg-default text-white rounded-lg text-body-medium h-[54px]"
+        >
+          회원가입하기
         </button>
       </form>
     </div>
