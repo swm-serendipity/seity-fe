@@ -53,11 +53,10 @@ export default function NotificationList() {
   ];
   return (
     <div className="w-full flex-1 overflow-y-auto custom-scrollbar">
-      <div className="text-body-medium mt-7 mb-2 mx-5">
-        3개의 읽지않은 소명알림
-      </div>
-      {data.map((item) => (
-        <NotificationListCard key={item.id} data={item} />
+      <div className="text-body-medium mt-7 mb-2 mx-5">알림이 없습니다.</div>
+      {/* Todo */}
+      {[].map((item) => (
+        <NotificationListCard key={item} data={item} />
       ))}
     </div>
   );

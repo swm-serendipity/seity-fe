@@ -24,7 +24,18 @@ interface State {
 
   answeringData: Chat;
   setAnsweringData: (data: Chat) => void;
+
+  popupData: PopupData;
+  setPopupData: (data: PopupData) => void;
 }
+
+type PopupData = {
+  isVisible: boolean;
+  title: string;
+  content: string;
+  handleCancel: () => void;
+  handleOk: () => void;
+};
 
 export const useStore = create<State>((set) => ({
   //비식별화 팝업 상태
@@ -63,4 +74,15 @@ export const useStore = create<State>((set) => ({
   //채팅 세션 아이디
   chatSessionId: "",
   setChatSessionId: (sessionId) => set({ chatSessionId: sessionId }),
+
+  //팝업 데이터
+  popupData: {
+    isVisible: false,
+    title: "",
+    content: "",
+    handleCancel: () => {},
+    handleOk: () => {},
+  },
+
+  setPopupData: (data: PopupData) => set({ popupData: data }),
 }));

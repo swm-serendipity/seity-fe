@@ -44,7 +44,10 @@ export const NotificationIconButton = ({
   onClick,
 }: NotificationButtonProps) => {
   return (
-    <button className="w-[22px] h-[22px] ml-3.5" onClick={onClick}>
+    <button
+      className="w-[22px] h-[22px] ml-3.5 bg-white rounded-full"
+      onClick={onClick}
+    >
       <SidebarNotificationSvg isAlert={isAlert} color={colors.whitebg.info} />
     </button>
   );
@@ -56,7 +59,10 @@ type PopularPromptButtonProps = {
 
 export const PopularPromptButton = ({ onClick }: PopularPromptButtonProps) => {
   return (
-    <button className="w-[22px] h-[22px] ml-2.5" onClick={onClick}>
+    <button
+      className="w-[22px] h-[22px] ml-2.5 bg-white rounded-full"
+      onClick={onClick}
+    >
       <SidebarPopularPromptSvg color={colors.whitebg.info} />
     </button>
   );

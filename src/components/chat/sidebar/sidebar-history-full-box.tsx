@@ -31,14 +31,8 @@ export default function SidebarHistoryFullBox({
     fetchNextPage
   );
 
-  const { chatData, isAnswering, chatSessionId } = useStore();
-
-  const { mutate } = useMutation(deletePromptSession, {
-    onSuccess: (data) => {},
-    onError: (error) => {
-      alert(error);
-    },
-  });
+  const { chatData, isAnswering, chatSessionId, popupData, setPopupData } =
+    useStore();
 
   const handlePromptButton = (item: {
     id: Key | null | undefined;
@@ -50,12 +44,29 @@ export default function SidebarHistoryFullBox({
     router.push(`/chat/${item.id}`);
   };
 
+  const { mutate } = useMutation(deletePromptSession, {
+    onSuccess: (data) => {
+      setTimeout(() => {
+        refetch();
+        router.push("/chat");
+      }, 100);
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
   const handleHistoryDeleteButtonClick = () => {
     if (!chatSessionId) return;
-    mutate({ sessionId: chatSessionId });
-    setTimeout(() => {
-      refetch();
-    }, 1000);
+
+    setPopupData({
+      isVisible: true,
+      title: "삭제하시겠습니까?",
+      content: "삭제된 데이터는 복구할 수 없습니다. 삭제하시겠습니까?",
+      handleCancel: () => {},
+      handleOk: () => {
+        mutate({ sessionId: chatSessionId });
+      },
+    });
   };
 
   const isNewPrompt =

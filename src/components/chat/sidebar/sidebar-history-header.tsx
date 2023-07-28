@@ -13,7 +13,8 @@ export default function SidebarHistoryHeader({
       <div className="text-blackbg-default text-h4 font-h4 mb-2.5">History</div>
       {isHistory && (
         <div>
-          <div className="h-[40px] rounded-md bg-sidebar-button-hr flex items-center">
+          {/* Todo */}
+          {/* <div className="h-[40px] rounded-md bg-sidebar-button-hr flex items-center">
             <input
               className="bg-sidebar-button-hr ml-3 text-blackbg-default text-body-small outline-none w-[160px]"
               placeholder="프롬프트를 검색해보세요!"
@@ -27,7 +28,7 @@ export default function SidebarHistoryHeader({
                 alt="검색하기"
               />
             </button>
-          </div>
+          </div> */}
           <SidebarNewChatButton />
         </div>
       )}

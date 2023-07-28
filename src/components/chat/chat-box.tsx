@@ -5,17 +5,19 @@ import NotificationBox from "./notification/notification-box";
 import NotificationBackground from "./notification/notification-background";
 import { Fragment } from "react";
 import ShareBox from "./share/share-box";
+import TitleOkCancelPopup from "../ui/popup/title-ok-cancel-popup";
 
 export default function ChatBox() {
-  const isDeIdentificationPopupOpen = useStore(
-    (state) => state.isDeIdentificationPopupOpen
-  );
-  const isNotificationOpen = useStore((state) => state.isNotificationOpen);
-  const isSharePopupOpen = useStore((state) => state.isSharePopupOpen);
-
+  const {
+    isDeIdentificationPopupOpen,
+    isNotificationOpen,
+    isSharePopupOpen,
+    popupData,
+  } = useStore();
   return (
     <div className="relative flex w-full">
       <PromptBox />
+      {popupData.isVisible && <TitleOkCancelPopup />}
       {isDeIdentificationPopupOpen && <DeIdentificationPopupBox />}
       {isNotificationOpen && (
         <Fragment>
