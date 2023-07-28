@@ -1,10 +1,9 @@
-import { DeIdentificationData } from "./de-identification-popup.box";
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import Image from "next/image";
 
 type DeIdentificationCardProps = {
-  deidentificateData: DeIdentificationData;
+  deidentificateData: DeIdentification;
   isChange: boolean;
   isSelect: boolean;
   handleCard: () => void;
