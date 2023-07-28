@@ -116,8 +116,6 @@ module.exports = {
           background: "transparent",
         },
         ".custom-scrollbar": {
-          "scrollbar-width": "8px",
-          "margin-right": "8px",
           "box-sizing": "content-box",
         },
         ".custom-scrollbar::-webkit-scrollbar-thumb": {

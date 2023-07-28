@@ -5,6 +5,9 @@ interface State {
   isDeIdentificationPopupOpen: boolean;
   toggleDeIdentificationPopup: () => void;
 
+  deIdentificationData: DeIdentification[];
+  setDeIdentificationData: (data: DeIdentification[]) => void;
+
   isNotificationOpen: boolean;
   toggleNotification: () => void;
   disableNotification: () => void;
@@ -44,6 +47,10 @@ export const useStore = create<State>((set) => ({
     set((state) => ({
       isDeIdentificationPopupOpen: !state.isDeIdentificationPopupOpen,
     })),
+  //비식별화 데이터
+  deIdentificationData: [],
+  setDeIdentificationData: (data: DeIdentification[]) =>
+    set({ deIdentificationData: data }),
 
   //알림 팝업 상태
   isNotificationOpen: false,
@@ -83,6 +90,5 @@ export const useStore = create<State>((set) => ({
     handleCancel: () => {},
     handleOk: () => {},
   },
-
   setPopupData: (data: PopupData) => set({ popupData: data }),
 }));

@@ -3,7 +3,6 @@ import { Dispatch, SetStateAction } from "react";
 
 type postPromptAskProps = {
   text: string;
-  setText: Dispatch<SetStateAction<string>>;
   addChatData: (data: Chat) => void;
   chatSessionId: string;
   setChatSessionId: (sessionId: string) => void;
@@ -13,7 +12,6 @@ type postPromptAskProps = {
 
 const postPromptAsk = async ({
   text,
-  setText,
   addChatData,
   chatSessionId,
   setChatSessionId,
@@ -21,23 +19,6 @@ const postPromptAsk = async ({
   setAnsweringData,
 }: postPromptAskProps) => {
   const chatId = Date.now();
-
-  addChatData({
-    id: "user-" + chatId,
-    user: "user",
-    message: text,
-    timestamp: new Date().toISOString(),
-  });
-
-  setText(""); //입력창 초기화
-  setIsAnswering(true); //답변중 상태로 변경
-  setAnsweringData({
-    id: "ai-" + chatId,
-    user: "ai",
-    message: "",
-    timestamp: new Date().toISOString(),
-  });
-
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {
     method: "POST",
     headers: {
@@ -83,7 +64,7 @@ const postPromptAsk = async ({
         aiRes += parsedData.answer;
 
         setAnsweringData({
-          id: "ai-" + chatId,
+          id: "ai",
           user: "ai",
           message: aiRes,
           timestamp: new Date().toISOString(),

@@ -65,8 +65,10 @@ export default function DeIdentificationCard({
         </div>
       </div>
       <div className="mb-12">
-        <div className="text-body-medium inline-flex flex-wrap">
-          {deidentificateData.deIdentificateData}
+        <div className="text-body-medium flex flex-wrap overflow-hidden text-ellipsis break-words">
+          {isChange
+            ? deidentificateData.text
+            : deidentificateData.deIdentificateData}
           <Image
             className="mx-1"
             src="/deidentification-arrow.svg"
@@ -74,7 +76,9 @@ export default function DeIdentificationCard({
             height={12}
             alt="변환"
           />
-          {deidentificateData.text}
+          {isChange
+            ? deidentificateData.deIdentificateData
+            : deidentificateData.text}
         </div>
       </div>
       <div className="flex justify-end">
