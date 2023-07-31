@@ -15,20 +15,19 @@ export function PromptChatBox({
   const [isInitialChat, setIsInitialChat] = useState(true);
 
   useLayoutEffect(() => {
-    if (chatData.length > 1 && isInitialChat) {
+    if (chatData.length >= 1 && isInitialChat) {
       setIsInitialChat(false);
       bottomRef.current?.scrollIntoView({ behavior: "instant" });
-    }
-    if (chatData.length === 0 && !isInitialChat) {
+    } else if (chatData.length === 0 && !isInitialChat) {
       setIsInitialChat(true);
     }
   }, [chatData]);
 
   useEffect(() => {
-    if (isBottom && !isInitialChat) {
-      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (isBottom) {
+      bottomRef.current?.scrollIntoView({ behavior: "auto" });
     }
-  }, [answeringData?.message, chatData, isBottom]);
+  }, [answeringData, chatData, isBottom]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {

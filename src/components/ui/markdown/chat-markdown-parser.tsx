@@ -14,9 +14,7 @@ export default function ChatResponseMarkdownParser({
 }: ChatResponseMarkdownParserProps) {
   return (
     <ReactMarkdown
-      className={`list-decimal w-full relative ${
-        isSharePopup && "text-body-medium"
-      }`}
+      className={`w-full relative ${isSharePopup && "text-body-medium"}`}
       remarkPlugins={[remarkGfm]}
       components={{
         ol: ({ node, children, ...props }) => {
@@ -38,8 +36,8 @@ export default function ChatResponseMarkdownParser({
               {children}
             </PromptAIChatSyntaxHighlighter>
           ) : (
-            <span className="font-bold" {...props}>
-              &apos;{children}&apos;
+            <span className="font-bold overflow-auto" {...props}>
+              <span className="break-all whitespace-pre-wrap">{children}</span>
             </span>
           );
         },
