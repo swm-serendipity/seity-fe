@@ -1,4 +1,3 @@
-import { set } from "date-fns";
 import { create } from "zustand";
 
 interface State {
@@ -30,6 +29,9 @@ interface State {
 
   popupData: PopupData;
   setPopupData: (data: PopupData) => void;
+
+  isAnsweringPersist: boolean;
+  setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
 }
 
 type PopupData = {
@@ -91,4 +93,8 @@ export const useStore = create<State>((set) => ({
     handleOk: () => {},
   },
   setPopupData: (data: PopupData) => set({ popupData: data }),
+
+  //답변 지속 상태
+  isAnsweringPersist: false,
+  setIsAnsweringPersist: (isAnsweringPersist) => set({ isAnsweringPersist }),
 }));

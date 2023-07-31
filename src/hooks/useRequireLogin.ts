@@ -17,8 +17,8 @@ function useRequireLogin() {
       try {
         await getLoginTest();
       } catch (e) {
-        console.error(e);
-
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         router.replace("/login");
       }
     };

@@ -3,9 +3,9 @@ import { useStore } from "@/store/store";
 import changeDeIdentificationState from "@/utils/changeDeIdentificationState";
 import postPromptAsk from "@/utils/postPromptAsk";
 import { useMutation } from "@tanstack/react-query";
-import Image from "next/image";
 import { KeyboardEvent, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import PromptReAnsweringBox from "./prompt-re-answering-box";
 
 export default function PromptInputBox() {
   const [text, setText] = useState("");
@@ -19,6 +19,8 @@ export default function PromptInputBox() {
     setIsAnswering,
     setAnsweringData,
     setDeIdentificationData,
+    isAnsweringPersist,
+    setIsAnsweringPersist,
   } = useStore();
 
   const isDisabled = text.length > 0 && !isAnswering;
@@ -32,6 +34,8 @@ export default function PromptInputBox() {
           setChatSessionId,
           setIsAnswering,
           setAnsweringData,
+          isAnsweringPersist,
+          setIsAnsweringPersist,
         });
         setTempText("");
         return;
@@ -74,12 +78,13 @@ export default function PromptInputBox() {
 
   return (
     <div className="w-full min-h-[100px] flex justify-center items-center bg-prompt-ai-select-bg">
-      <div className="flex items-center bg-blackbg-default w-full xl:w-[768px] md:mx-7 min-h-[58px] rounded-xl my-5">
+      <div className="flex items-center bg-blackbg-default w-full xl:w-[768px] mx-4 md:mx-7 min-h-[58px] rounded-xl my-5 relative">
+        <PromptReAnsweringBox />
         <TextareaAutosize
           value={text}
           onChange={(text) => setText(text.target.value)}
           maxRows={7}
-          placeholder="Send a message"
+          placeholder="질문을 입력하세요..."
           className="w-full resize-none px-5 focus:border-transparent outline-none my-4"
           onKeyPress={handleOnKeyPress}
         />
@@ -102,7 +107,7 @@ export default function PromptInputBox() {
           onClick={handleSend}
           disabled={!isDisabled}
         >
-          send
+          보내기
         </button>
       </div>
     </div>

@@ -16,6 +16,8 @@ export default function DeIdentificationPopupBox() {
     setChatSessionId,
     setIsAnswering,
     setAnsweringData,
+    isAnsweringPersist,
+    setIsAnsweringPersist,
   } = useStore();
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
@@ -48,6 +50,8 @@ export default function DeIdentificationPopupBox() {
       setChatSessionId,
       setIsAnswering,
       setAnsweringData,
+      isAnsweringPersist,
+      setIsAnsweringPersist,
     });
     toggleDeIdentificationPopup();
   };

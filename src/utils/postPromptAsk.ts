@@ -1,4 +1,5 @@
 import { useStore } from "@/store/store";
+import { set } from "lodash";
 import { Dispatch, SetStateAction } from "react";
 
 type postPromptAskProps = {
@@ -8,6 +9,8 @@ type postPromptAskProps = {
   setChatSessionId: (sessionId: string) => void;
   setIsAnswering: (isAnswering: boolean) => void;
   setAnsweringData: (data: Chat) => void;
+  isAnsweringPersist: boolean;
+  setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
 };
 
 const postPromptAsk = async ({
@@ -17,6 +20,8 @@ const postPromptAsk = async ({
   setChatSessionId,
   setIsAnswering,
   setAnsweringData,
+  isAnsweringPersist,
+  setIsAnsweringPersist,
 }: postPromptAskProps) => {
   const chatId = Date.now();
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {
@@ -32,6 +37,7 @@ const postPromptAsk = async ({
   });
 
   if (!response.ok) {
+    alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
     setIsAnswering(false);
     return;
   }
@@ -41,10 +47,12 @@ const postPromptAsk = async ({
 
   const reader = response.body!.getReader();
   const decoder = new TextDecoder();
-
+  if (isAnsweringPersist) {
+    setIsAnsweringPersist(false);
+  }
   reader.read().then(function processText({ done, value }): any {
     if (done) {
-      console.log("Stream complete");
+      alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
       setIsAnswering(false);
       return;
     }
@@ -57,6 +65,12 @@ const postPromptAsk = async ({
       const data = buffer.slice(0, boundary);
       buffer = buffer.slice(boundary + 2);
       const parsedData = JSON.parse(data.slice(5));
+
+      // 계속 답변이 필요
+      if (parsedData.finishReason === "length") {
+        setIsAnsweringPersist(true);
+      }
+
       if (parsedData.sessionId && !chatSessionId) {
         setChatSessionId(parsedData.sessionId);
       }
