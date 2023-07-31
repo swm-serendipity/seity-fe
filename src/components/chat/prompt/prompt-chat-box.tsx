@@ -17,14 +17,15 @@ export function PromptChatBox({
   useLayoutEffect(() => {
     if (chatData.length > 1 && isInitialChat) {
       setIsInitialChat(false);
-      setTimeout(() => {
-        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 800);
+      bottomRef.current?.scrollIntoView({ behavior: "instant" });
+    }
+    if (chatData.length === 0 && !isInitialChat) {
+      setIsInitialChat(true);
     }
   }, [chatData]);
 
   useEffect(() => {
-    if (isBottom) {
+    if (isBottom && !isInitialChat) {
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [answeringData?.message, chatData, isBottom]);

@@ -9,7 +9,6 @@ function useRequireLogin() {
     const token = localStorage.getItem("accessToken");
 
     if (!token) {
-      console.log(1);
       router.replace("/login");
       return;
     }
@@ -19,7 +18,6 @@ function useRequireLogin() {
         await getLoginTest();
       } catch (e) {
         console.error(e);
-        console.log(2);
 
         router.replace("/login");
       }
