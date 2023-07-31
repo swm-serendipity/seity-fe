@@ -14,6 +14,7 @@ export default function PromptReAnsweringBox() {
 
   const handleReAnswering = async () => {
     setIsAnsweringPersist(false);
+    setIsAnswering(true);
 
     if (!chatSessionId) {
       return;
@@ -43,8 +44,6 @@ export default function PromptReAnsweringBox() {
       aiRes = newChatData.pop()!.message;
       return newChatData;
     });
-
-    setIsAnswering(true);
 
     setAnsweringData({
       id: "ai",
