@@ -13,9 +13,21 @@ export default function PromptReAnsweringBox() {
   } = useStore();
 
   const handleReAnswering = async () => {
+    let aiRes = "";
+    let buffer = "";
+    setChatData((prevChatData) => {
+      const newChatData = [...prevChatData];
+      aiRes = newChatData.pop()!.message;
+      return newChatData;
+    });
     setIsAnsweringPersist(false);
     setIsAnswering(true);
-
+    setAnsweringData({
+      id: "ai",
+      user: "ai",
+      message: aiRes,
+      timestamp: new Date().toISOString(),
+    });
     if (!chatSessionId) {
       return;
     }
@@ -35,22 +47,6 @@ export default function PromptReAnsweringBox() {
       alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
       return;
     }
-
-    let aiRes = "";
-    let buffer = "";
-
-    setChatData((prevChatData) => {
-      const newChatData = [...prevChatData];
-      aiRes = newChatData.pop()!.message;
-      return newChatData;
-    });
-
-    setAnsweringData({
-      id: "ai",
-      user: "ai",
-      message: aiRes,
-      timestamp: new Date().toISOString(),
-    });
 
     const reader = response.body!.getReader();
     const decoder = new TextDecoder();

@@ -39,7 +39,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
         />
       </div>
       <div className="flex-col bg-prompt-chat-ai-bg-color px-6 pt-3 pb-3 rounded-br-3xl rounded-se-3xl rounded-bl-3xl w-auto max-w-[560px] 2xl:max-w-[640px]">
-        {text.length > 0 || !isAnswering ? (
+        {text.length > 0 ? (
           <div>
             <ChatResponseMarkdownParser text={text} />
             <div className="flex">

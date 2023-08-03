@@ -33,7 +33,7 @@ export function PromptChatBox({
     if (isBottom) {
       bottomRef.current?.scrollIntoView({ behavior: "auto" });
     }
-  }, [answeringData.message, isBottom]);
+  }, [answeringData.message]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
