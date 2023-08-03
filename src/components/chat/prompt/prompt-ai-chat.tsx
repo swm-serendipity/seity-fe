@@ -10,14 +10,34 @@ type PromptAIChatProps = {
 };
 
 export default function PromptAIChat({ id, text }: PromptAIChatProps) {
+  const { isAnswering, setPopupData } = useStore();
+
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
   };
 
-  const { isAnswering } = useStore();
+  const handleShare = () => {
+    setPopupData({
+      type: "title-ok",
+      isVisible: true,
+      title: "아직 개발되지 않은 기능이에요!",
+      content: "추후 더 멋있는 모습으로 공개할게요!",
+      handleCancel: () => {},
+      handleOk: () => {},
+    });
+  };
+
   return (
     <div className="flex mt-6 max-w-[100%]">
-      <div className="mr-4 rounded-full bg-gray-300 w-11 h-11 min-w-11 justify-end items-end hidden lg:flex"></div>
+      <div className="mr-4 rounded-full bg-whitebg-default w-11 h-11 min-w-11 justify-center items-center hidden lg:flex">
+        <Image
+          priority
+          src="/chat-ai-profile.png"
+          width={24}
+          height={24}
+          alt="icon"
+        />
+      </div>
       <div className="flex-col bg-prompt-chat-ai-bg-color px-6 pt-3 pb-3 rounded-br-3xl rounded-se-3xl rounded-bl-3xl w-auto max-w-[560px] 2xl:max-w-[640px]">
         {text.length > 0 || !isAnswering ? (
           <div>
@@ -33,15 +53,6 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
                   onClick={handleCopy}
                 />
               </button>
-              {/* <button className="mx-1">
-                <Image
-                  priority
-                  src="/prompt-favorite.png"
-                  width={32}
-                  height={32}
-                  alt="프롬프트 즐겨찾기"
-                />
-              </button> */}
               <button className="mx-1">
                 <Image
                   priority
@@ -49,6 +60,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
                   width={32}
                   height={32}
                   alt="프롬프트 공유"
+                  onClick={handleShare}
                 />
               </button>
             </div>

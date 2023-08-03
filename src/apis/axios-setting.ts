@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
         ] = `Bearer ${res.data.result.accessToken}`;
         return axiosInstance(originalRequest);
       } catch (err) {
-        console.error(err);
+        console.error("문제 발생");
 
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");

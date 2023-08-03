@@ -10,7 +10,7 @@ export default function SignupLeftSection() {
       <div className="text-body-large font-body-large text-white mt-5">
         Seity에 오신 것을 환영합니다!
         <p />
-        간단한 서비스 설명글 노출하면 좋을 것 같아요.
+        대화형 인공지능 Chat Guard를 지금 바로 써보세요!
       </div>
     </div>
   );

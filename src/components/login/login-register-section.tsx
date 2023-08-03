@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function LoginRegisterSection() {
   return (
-    <div className="mt-5">
+    <div className="mt-2">
       <span className="text-body-medium text-stone-700">
         신규 사용자이신가요?{" "}
       </span>

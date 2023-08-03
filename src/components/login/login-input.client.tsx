@@ -1,22 +1,17 @@
 "use client";
-import { KeyboardEvent, useEffect, useState } from "react";
+import { KeyboardEvent, useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import postLogin from "@/apis/post-login";
+import { useStore } from "@/store/store";
 
 export default function LoginInput() {
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      alert("이미 로그인 되어있습니다.");
-      router.back();
-    }
-  }, []);
+  const { setPopupData } = useStore();
 
   const loginMutation = useMutation(postLogin, {
     onSuccess: (data) => {
@@ -49,9 +44,20 @@ export default function LoginInput() {
     loginMutation.mutate({ loginId, password });
   };
 
+  const handleDemoButton = () => {
+    setPopupData({
+      type: "title-ok",
+      title: "로그인이 필요해요!",
+      content: "시제품은 로그인 이후 사용가능합니다.",
+      handleCancel: () => {},
+      handleOk: () => {},
+      isVisible: true,
+    });
+  };
+
   return (
     <div>
-      <div className="mt-12 flex-col flex">
+      <div className="mt-16 flex-col flex">
         <HintTextInputBox
           hintText="아이디 입력"
           text={loginId}
@@ -77,6 +83,7 @@ export default function LoginInput() {
           color="default"
           buttonText="데모버전 사용"
           textColor="white"
+          onClick={handleDemoButton}
         />
       </div>
     </div>
