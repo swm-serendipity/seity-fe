@@ -25,9 +25,15 @@ export function PromptChatBox({
 
   useEffect(() => {
     if (isBottom) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chatData, isBottom]);
+
+  useEffect(() => {
+    if (isBottom) {
       bottomRef.current?.scrollIntoView({ behavior: "auto" });
     }
-  }, [answeringData, chatData, isBottom]);
+  }, [answeringData.message, isBottom]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {

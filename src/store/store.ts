@@ -1,3 +1,4 @@
+import { PopupData } from "@/type/popup";
 import { create } from "zustand";
 
 interface State {
@@ -33,15 +34,6 @@ interface State {
   isAnsweringPersist: boolean;
   setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
 }
-
-type PopupData = {
-  type: "" | "title-ok-cancel" | "title-ok";
-  isVisible: boolean;
-  title: string;
-  content: string;
-  handleCancel: () => void;
-  handleOk: () => void;
-};
 
 export const useStore = create<State>((set) => ({
   //비식별화 팝업 상태

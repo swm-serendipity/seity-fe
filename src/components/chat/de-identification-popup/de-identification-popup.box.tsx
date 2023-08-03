@@ -18,6 +18,7 @@ export default function DeIdentificationPopupBox() {
     setAnsweringData,
     isAnsweringPersist,
     setIsAnsweringPersist,
+    setPopupData,
   } = useStore();
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
@@ -52,6 +53,7 @@ export default function DeIdentificationPopupBox() {
       setAnsweringData,
       isAnsweringPersist,
       setIsAnsweringPersist,
+      setPopupData,
     });
     toggleDeIdentificationPopup();
   };

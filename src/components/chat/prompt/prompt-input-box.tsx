@@ -21,6 +21,7 @@ export default function PromptInputBox() {
     setDeIdentificationData,
     isAnsweringPersist,
     setIsAnsweringPersist,
+    setPopupData,
   } = useStore();
 
   const isDisabled = text.length > 0 && !isAnswering;
@@ -36,6 +37,7 @@ export default function PromptInputBox() {
           setAnsweringData,
           isAnsweringPersist,
           setIsAnsweringPersist,
+          setPopupData,
         });
         setTempText("");
         return;

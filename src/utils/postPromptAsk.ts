@@ -1,4 +1,5 @@
 import { useStore } from "@/store/store";
+import { PopupData } from "@/type/popup";
 import { set } from "lodash";
 import { Dispatch, SetStateAction } from "react";
 
@@ -11,6 +12,7 @@ type postPromptAskProps = {
   setAnsweringData: (data: Chat) => void;
   isAnsweringPersist: boolean;
   setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
+  setPopupData: (popupData: PopupData) => void;
 };
 
 const postPromptAsk = async ({
@@ -22,6 +24,7 @@ const postPromptAsk = async ({
   setAnsweringData,
   isAnsweringPersist,
   setIsAnsweringPersist,
+  setPopupData,
 }: postPromptAskProps) => {
   const chatId = Date.now();
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {
@@ -37,7 +40,14 @@ const postPromptAsk = async ({
   });
 
   if (!response.ok) {
-    alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
+    setPopupData({
+      type: "title-ok",
+      title: "실패",
+      content: "답변을 생성하는데 실패했습니다. 다시 시도해주세요.",
+      handleOk: () => {},
+      handleCancel: () => {},
+      isVisible: true,
+    });
     setIsAnswering(false);
     return;
   }
@@ -52,7 +62,14 @@ const postPromptAsk = async ({
   }
   reader.read().then(function processText({ done, value }): any {
     if (done) {
-      alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
+      setPopupData({
+        type: "title-ok",
+        title: "실패",
+        content: "답변을 생성하는데 실패했습니다. 다시 시도해주세요.",
+        handleOk: () => {},
+        handleCancel: () => {},
+        isVisible: true,
+      });
       setIsAnswering(false);
       return;
     }
