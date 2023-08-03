@@ -1,23 +1,11 @@
 import { useStore } from "@/store/store";
 import { ColoredButton } from "../color-button";
 
-export default function TitleOkCancelPopup() {
+export default function TitleOkPopup() {
   const { popupData, setPopupData } = useStore();
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
-  };
-
-  const handleCancelButton = () => {
-    popupData.handleCancel();
-    setPopupData({
-      type: "",
-      content: "",
-      isVisible: false,
-      title: "",
-      handleCancel: () => {},
-      handleOk: () => {},
-    });
   };
 
   const handleOkButton = () => {
@@ -35,7 +23,7 @@ export default function TitleOkCancelPopup() {
   return (
     <div
       className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-auto"
-      onClick={handleCancelButton}
+      onClick={handleOkButton}
     >
       <div
         className="flex-col flex bg-white rounded-2xl w-[400px] h-[260px] p-7.5"
@@ -49,15 +37,7 @@ export default function TitleOkCancelPopup() {
         </div>
         <div className="flex justify-center w-full gap-3 mt-10">
           <ColoredButton
-            width={160}
-            height={52}
-            buttonText="취소"
-            color="white"
-            onClick={handleCancelButton}
-            textColor="black"
-          />
-          <ColoredButton
-            width={160}
+            width={320}
             height={52}
             buttonText="확인"
             color="point"

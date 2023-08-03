@@ -31,8 +31,7 @@ export default function SidebarHistoryFullBox({
     fetchNextPage
   );
 
-  const { chatData, isAnswering, chatSessionId, popupData, setPopupData } =
-    useStore();
+  const { chatData, isAnswering, chatSessionId, setPopupData } = useStore();
 
   const handlePromptButton = (item: {
     id: Key | null | undefined;
@@ -59,6 +58,7 @@ export default function SidebarHistoryFullBox({
     if (!chatSessionId) return;
 
     setPopupData({
+      type: "title-ok-cancel",
       isVisible: true,
       title: "삭제하시겠습니까?",
       content: "삭제된 데이터는 복구할 수 없습니다. 삭제하시겠습니까?",

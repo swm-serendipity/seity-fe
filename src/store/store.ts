@@ -35,6 +35,7 @@ interface State {
 }
 
 type PopupData = {
+  type: "" | "title-ok-cancel" | "title-ok";
   isVisible: boolean;
   title: string;
   content: string;
@@ -86,6 +87,7 @@ export const useStore = create<State>((set) => ({
 
   //팝업 데이터
   popupData: {
+    type: "",
     isVisible: false,
     title: "",
     content: "",

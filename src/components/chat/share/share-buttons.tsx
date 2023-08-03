@@ -7,6 +7,7 @@ export default function ShareButtons() {
   const handleButton = () => {
     toggleSharePopup();
     setPopupData({
+      type: "title-ok",
       isVisible: true,
       title: "아직 개발되지 않은 기능이에요!",
       content: "추후 더 멋있는 모습으로 공개할게요!",

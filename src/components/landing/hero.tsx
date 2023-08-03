@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative">
-      {/* Illustration behind hero content */}
       <div
         className="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none z-0"
         aria-hidden="true"

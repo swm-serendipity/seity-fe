@@ -6,6 +6,7 @@ import NotificationBackground from "./notification/notification-background";
 import { Fragment } from "react";
 import ShareBox from "./share/share-box";
 import TitleOkCancelPopup from "../ui/popup/title-ok-cancel-popup";
+import Popup from "../ui/popup/popup";
 
 export default function ChatBox() {
   const {
@@ -17,7 +18,7 @@ export default function ChatBox() {
   return (
     <div className="relative flex w-full">
       <PromptBox />
-      {popupData.isVisible && <TitleOkCancelPopup />}
+      {popupData.isVisible && <Popup />}
       {isDeIdentificationPopupOpen && <DeIdentificationPopupBox />}
       {isNotificationOpen && (
         <Fragment>
