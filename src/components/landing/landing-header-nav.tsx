@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 
 export default function LandingHeaderNav() {
   const router = useRouter();
-  const isLogin = localStorage.getItem("accessToken") !== null;
+  const isLogin = true;
 
   const handleLogin = () => {
     router.push("/login");
