@@ -9,6 +9,7 @@ export default function PromptReAnsweringBox() {
     setAnsweringData,
     addChatData,
     setChatData,
+    setPopupData,
     setIsAnswering,
   } = useStore();
 
@@ -44,7 +45,14 @@ export default function PromptReAnsweringBox() {
     );
 
     if (!response.ok) {
-      alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
+      setPopupData({
+        type: "title-ok",
+        title: "실패",
+        content: "답변을 이어 생성하는데 실패했습니다. 다시 시도해주세요.",
+        handleOk: () => {},
+        handleCancel: () => {},
+        isVisible: true,
+      });
       return;
     }
 
@@ -55,7 +63,14 @@ export default function PromptReAnsweringBox() {
     }
     reader.read().then(function processText({ done, value }): any {
       if (done) {
-        alert("답변을 생성하는데 실패했습니다. 다시 시도해주세요.");
+        setPopupData({
+          type: "title-ok",
+          title: "실패",
+          content: "답변을 이어 생성하는데 실패했습니다. 다시 시도해주세요.",
+          handleOk: () => {},
+          handleCancel: () => {},
+          isVisible: true,
+        });
         return;
       }
 

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
 import Logo from "./logo";
+import LandingHeaderNav from "./landing-header-nav";
 
 export default function LandingHeader() {
   const [top, setTop] = useState<boolean>(true);
@@ -32,19 +33,8 @@ export default function LandingHeader() {
           </div>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex md:grow">
-            <ul className="flex grow justify-end flex-wrap items-center">
-              <li>
-                <Link
-                  href="/login"
-                  className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
-                >
-                  로그인
-                </Link>
-              </li>
-            </ul>
-          </nav>
 
+          <LandingHeaderNav />
           <MobileMenu />
         </div>
       </div>
