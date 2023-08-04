@@ -191,6 +191,10 @@ module.exports = {
           background:
             "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)",
         },
+
+        ".chat-bottom-button": {
+          boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
+        },
       };
       addUtilities(newUtilities);
     },

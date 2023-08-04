@@ -1,6 +1,7 @@
 import { ColoredButton } from "@/components/ui/color-button";
 import { PromptSharedChatBox } from "./prompt-shared-chat-box";
 import { useStore } from "@/store/store";
+import { useRef } from "react";
 
 export default function PromptSharedBox() {
   const { setPopupData } = useStore();
@@ -14,12 +15,13 @@ export default function PromptSharedBox() {
       handleOk: () => {},
     });
   };
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="flex flex-col flex-1 h-screen bg-white z-10">
-      <div className="flex flex-col flex-1 overflow-y-auto">
+      <div ref={containerRef} className="flex flex-col flex-1 overflow-y-auto">
         {/* <PromptAiSelectBox /> */}
-        <PromptSharedChatBox />
+        <PromptSharedChatBox containerRef={containerRef} />
       </div>
       <div className="absolute w-full min-h-[164px] bottom-0 share-chat-continue-button-bg flex items-center justify-center">
         <ColoredButton

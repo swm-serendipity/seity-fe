@@ -3,16 +3,21 @@ import PromptAIChat from "./prompt-ai-chat";
 import PromptUserChat from "./prompt-user-chat";
 import { useStore } from "@/store/store";
 import useBottomScrollListener from "@/hooks/useBottomScrollListener";
+import PromptBottomButton from "./prompt-bottom-button";
 
-export function PromptChatBox({
-  containerRef,
-}: {
+type PromptChatBoxProps = {
   containerRef: React.RefObject<HTMLDivElement>;
-}) {
+};
+
+export function PromptChatBox({ containerRef }: PromptChatBoxProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { chatData, isAnswering, answeringData } = useStore();
   const isBottom = useBottomScrollListener(containerRef);
   const [isInitialChat, setIsInitialChat] = useState(true);
+
+  const handleClickToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   useLayoutEffect(() => {
     if (chatData.length >= 1 && isInitialChat) {
@@ -36,6 +41,7 @@ export function PromptChatBox({
   }, [answeringData.message]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
+      {!isBottom && <PromptBottomButton onClick={handleClickToBottom} />}
       {chatData.map((chat) => {
         if (chat.user === "user") {
           return <PromptUserChat key={chat.id} text={chat.message} />;
