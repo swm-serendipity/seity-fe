@@ -1,4 +1,4 @@
-import SidebarLayout from "@/components/chat/sidebar/sidebar-layout";
+import SidebarLayout from "@/components/user/sidebar/sidebar-layout";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

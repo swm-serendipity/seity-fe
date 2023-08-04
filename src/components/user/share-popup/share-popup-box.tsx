@@ -1,14 +1,14 @@
 import { useStore } from "@/store/store";
-import ShareHeader from "./share-header";
-import ShareChatSection from "./share-chat-section";
-import ShareTitleSection from "./share-title-section";
-import ShareButtons from "./share-buttons";
+import ShareHeader from "./share-popup-header";
+import ShareChatSection from "./share-popup-chat-section";
+import ShareTitleSection from "./share-popup-title-section";
+import ShareButtons from "./share-popup-buttons";
 import { useMutation } from "@tanstack/react-query";
 import postSharePrompt from "@/apis/post-share-prompt";
 import Lottie from "lottie-react";
 import loadingLottie from "../../assets/loading-animation.json";
 
-export default function ShareBox() {
+export default function SharePopupBox() {
   const { toggleSharePopup, setPopupData } = useStore();
   const handleCopy = async (text: string) => {
     await navigator.clipboard.writeText(text);

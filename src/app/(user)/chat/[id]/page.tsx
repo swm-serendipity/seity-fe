@@ -1,6 +1,6 @@
 "use client";
 
-import ChatBox from "@/components/chat/chat-box";
+import ChatBox from "@/components/user/chat-box";
 import useFetchAndStoreChat from "@/hooks/usePromptFetchAndStoreChat";
 import { usePathname } from "next/navigation";
 

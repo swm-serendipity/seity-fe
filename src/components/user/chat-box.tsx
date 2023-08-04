@@ -4,8 +4,7 @@ import DeIdentificationPopupBox from "./de-identification-popup/de-identificatio
 import NotificationBox from "./notification/notification-box";
 import NotificationBackground from "./notification/notification-background";
 import { Fragment } from "react";
-import ShareBox from "./share/share-box";
-import TitleOkCancelPopup from "../ui/popup/title-ok-cancel-popup";
+import SharePopupBox from "./share-popup/share-popup-box";
 import Popup from "../ui/popup/popup";
 
 export default function ChatBox() {
@@ -26,7 +25,7 @@ export default function ChatBox() {
           <NotificationBox />
         </Fragment>
       )}
-      {isSharePopupOpen && <ShareBox />}
+      {isSharePopupOpen && <SharePopupBox />}
     </div>
   );
 }

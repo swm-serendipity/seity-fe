@@ -1,6 +1,6 @@
 import { useStore } from "@/store/store";
-import ShareUserChat from "./share-user-chat";
-import ShareAIChat from "./share-ai-chat";
+import ShareUserChat from "./share-popup-user-chat";
+import ShareAIChat from "./share-popup-ai-chat";
 
 export default function ShareChatSection() {
   const { chatData } = useStore();

@@ -186,6 +186,11 @@ module.exports = {
           "backdrop-filter": "blur(9px)",
           opacity: 0.98,
         },
+
+        ".share-chat-continue-button-bg": {
+          background:
+            "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)",
+        },
       };
       addUtilities(newUtilities);
     },
