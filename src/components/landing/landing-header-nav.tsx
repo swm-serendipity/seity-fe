@@ -1,11 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function LandingHeaderNav() {
   const router = useRouter();
-  const isLogin = true;
+  const [isLogin, setIsLogin] = useState(false);
 
+  useEffect(() => {
+    setIsLogin(localStorage.getItem("accessToken") !== null);
+  }, []);
   const handleLogin = () => {
     router.push("/login");
   };
