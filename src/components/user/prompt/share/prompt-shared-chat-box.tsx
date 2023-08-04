@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 import { useStore } from "@/store/store";
 import PromptAIChat from "../prompt-ai-chat";
@@ -7,16 +7,7 @@ import PromptUserChat from "../prompt-user-chat";
 export function PromptSharedChatBox() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { chatData } = useStore();
-  const [isInitialChat, setIsInitialChat] = useState(true);
 
-  useLayoutEffect(() => {
-    if (chatData.length >= 1 && isInitialChat) {
-      setIsInitialChat(false);
-      bottomRef.current?.scrollIntoView({ behavior: "instant" });
-    } else if (chatData.length === 0 && !isInitialChat) {
-      setIsInitialChat(true);
-    }
-  }, [chatData]);
   return (
     <div className="mx-4 md:mx-7 lg:mx-12 xl:mx-40 2xl:mx-60 mt-14 mb-8">
       {chatData.map((chat) => {
@@ -28,7 +19,7 @@ export function PromptSharedChatBox() {
           );
         }
       })}
-      <div ref={bottomRef} />
+      <div ref={bottomRef} className="pb-40" />
     </div>
   );
 }

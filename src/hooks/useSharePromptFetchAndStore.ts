@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import getSingleSharedPrompt from "@/apis/get-single-shared-prompt";
 
 export default function useSharePromptFetchAndStore(postId: string) {
-  const { setChatData, setChatSessionId } = useStore();
+  const { setChatData, setChatSessionId, setPopupData } = useStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -30,7 +30,16 @@ export default function useSharePromptFetchAndStore(postId: string) {
         setChatSessionId(response.result.id);
         setChatData(() => chatData);
       } catch (error) {
-        router.push("/chat");
+        setPopupData({
+          type: "title-ok",
+          isVisible: true,
+          title: "에러",
+          content: "해당 게시물이 존재하지 않습니다.",
+          handleCancel: () => {},
+          handleOk: () => {
+            router.push("/chat");
+          },
+        });
         Promise.reject(error);
       }
     };
