@@ -1,6 +1,6 @@
 import { colors } from "@/styles/color-guide";
-import Image from "next/image";
-
+import Lottie from "lottie-react";
+import loadingLottie from "../assets/white-loading-animation.json";
 type ColoredButtonProps = {
   buttonText: string;
   color: "point" | "default" | "white";
@@ -8,6 +8,7 @@ type ColoredButtonProps = {
   width?: number;
   height?: number;
   onClick?: () => void;
+  isLoading?: boolean;
 };
 
 export const ColoredButton = ({
@@ -17,6 +18,7 @@ export const ColoredButton = ({
   onClick,
   width = 320,
   height = 54,
+  isLoading = false,
 }: ColoredButtonProps) => {
   return (
     <button
@@ -24,7 +26,7 @@ export const ColoredButton = ({
         textColor == "black" ? "text-whitebg-default" : "text-blackbg-default"
       } ${
         color == "white" && "border border-whitebg-default"
-      } w-[${width}px] h-[${height}px] rounded-md mb-2 text-body-large`}
+      } w-[${width}px] h-[${height}px] rounded-md mb-2 text-body-large flex justify-center items-center`}
       onClick={onClick}
       style={{
         backgroundColor:
@@ -35,7 +37,11 @@ export const ColoredButton = ({
             : colors.whitebg.default,
       }}
     >
-      {buttonText}
+      {isLoading ? (
+        <Lottie animationData={loadingLottie} className="w-14 h-14" />
+      ) : (
+        <p>{buttonText}</p>
+      )}
     </button>
   );
 };

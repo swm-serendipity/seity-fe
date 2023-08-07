@@ -2,6 +2,8 @@ import useChatHistory from "@/hooks/useChatHistory";
 import SidebarHistoryEmptyBox from "./sidebar-history-empty-box";
 import SidebarHistoryFullBox from "./sidebar-history-full-box";
 import SidebarHistoryHeader from "./sidebar-history-header";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function SidebarHistoryBox() {
   const {
@@ -12,6 +14,13 @@ export default function SidebarHistoryBox() {
     isFetchingNextPage,
     refetch,
   } = useChatHistory();
+
+  const pathName = usePathname();
+  useEffect(() => {
+    if (pathName.includes("/chat/")) {
+      refetch();
+    }
+  }, [pathName]);
 
   return (
     <div className="flex flex-col h-0 flex-grow">

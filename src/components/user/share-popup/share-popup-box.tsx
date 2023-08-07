@@ -9,6 +9,8 @@ import Lottie from "lottie-react";
 import loadingLottie from "../../assets/loading-animation.json";
 
 export default function SharePopupBox() {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+
   const { toggleSharePopup, setPopupData } = useStore();
   const handleCopy = async (text: string) => {
     await navigator.clipboard.writeText(text);
@@ -16,7 +18,7 @@ export default function SharePopupBox() {
   const { mutate, isLoading } = useMutation(postSharePrompt, {
     onSuccess: (data) => {
       toggleSharePopup();
-      handleCopy(`https://seity.co.kr/share/${data.result.id}`);
+      handleCopy(`${baseURL}/share/${data.result.id}`);
       setPopupData({
         type: "title-ok",
         isVisible: true,
