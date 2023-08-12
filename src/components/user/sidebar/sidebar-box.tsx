@@ -18,10 +18,7 @@ export default function SideBarBox({
   setShowSidebar,
   setShowHiddenButton,
 }: SideBarBoxProps) {
-  const isNotificationOpen = useStore((state) => state.isNotificationOpen);
-  const isDeIdentificationPopupOpen = useStore(
-    (state) => state.isDeIdentificationPopupOpen
-  );
+  const { isNotificationOpen, isDeIdentificationPopupOpen } = useStore();
 
   const [visibility, setVisibility] = useState<"visible" | "hidden">(
     showSidebar ? "visible" : "hidden"

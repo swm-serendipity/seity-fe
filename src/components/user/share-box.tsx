@@ -8,17 +8,11 @@ import Popup from "../ui/popup/popup";
 import PromptSharedBox from "./prompt/share/prompt-shared-box";
 
 export default function ShareBox() {
-  const {
-    isDeIdentificationPopupOpen,
-    isNotificationOpen,
-    isSharePopupOpen,
-    popupData,
-  } = useStore();
+  const { isNotificationOpen, isSharePopupOpen, popupData } = useStore();
   return (
     <div className="relative flex w-full">
       <PromptSharedBox />
       {popupData.isVisible && <Popup />}
-      {isDeIdentificationPopupOpen && <DeIdentificationPopupBox />}
       {isNotificationOpen && (
         <Fragment>
           <NotificationBackground />

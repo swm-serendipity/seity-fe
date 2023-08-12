@@ -5,6 +5,7 @@ import {
   PopularPromptButton,
 } from "./sidebar-menu-buttons";
 import { useStore } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 type SidebarHiddenButtonProps = {
   showSidebar: boolean;
@@ -15,17 +16,11 @@ export default function SidebarHiddenButton({
   showSidebar,
   setShowSidebar,
 }: SidebarHiddenButtonProps) {
-  const { toggleNotification, setPopupData } = useStore();
+  const { toggleNotification } = useStore();
+  const router = useRouter();
 
   const handlePopularPromptButton = () => {
-    setPopupData({
-      type: "title-ok",
-      isVisible: true,
-      title: "아직 개발되지 않은 기능이에요!",
-      content: "추후 더 멋있는 모습으로 공개할게요!",
-      handleCancel: () => {},
-      handleOk: () => {},
-    });
+    router.push("/posts/popular");
   };
   const handleFoldButton = () => {
     setShowSidebar(true);

@@ -12,7 +12,7 @@ export default function ShareTitleSection() {
   return (
     <div className="flex flex-col gap-1.5">
       <div className="text-body-large line-clamp-2 mt-5">
-        {chatData[0].message}
+        {chatData[0]!.message}
       </div>
       <div>
         <span className="text-body-medium text-whitebg-info">
