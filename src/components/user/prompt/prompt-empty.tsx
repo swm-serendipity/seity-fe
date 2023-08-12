@@ -4,7 +4,7 @@ export default function PromptEmpty() {
   return (
     <div className="h-full w-full flex justify-center items-center">
       <div
-        className="px-12 py-10 flex justify-center items-center 
+        className="px-8 lg:px-12 py-10 flex justify-center items-center 
       bg-prompt-chat-ai-bg-color rounded-2xl "
       >
         <div className="flex flex-col">
@@ -24,8 +24,8 @@ export default function PromptEmpty() {
             >
               <Image
                 src="/chat-empty-1.png"
-                width={110}
-                height={110}
+                width={100}
+                height={100}
                 alt="보호 이미지"
               />
               <p className="text-[13px] font-body-medium text-center text-whitebg-serve">
@@ -38,8 +38,8 @@ export default function PromptEmpty() {
             >
               <Image
                 src="/chat-empty-2.png"
-                width={110}
-                height={110}
+                width={100}
+                height={100}
                 alt="보호 이미지"
               />
               <p className="text-[13px] font-body-medium text-center text-whitebg-serve">
@@ -52,8 +52,8 @@ export default function PromptEmpty() {
             >
               <Image
                 src="/chat-empty-3.png"
-                width={110}
-                height={110}
+                width={100}
+                height={100}
                 alt="보호 이미지"
               />
               <p className="text-[13px] font-body-medium text-center text-whitebg-serve">
