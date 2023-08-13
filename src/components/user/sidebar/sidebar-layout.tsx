@@ -12,7 +12,7 @@ export default function SidebarLayout({ children }: PropsWithChildren) {
   const { isLoading } = useRequireLogin();
 
   return (
-    <div className="flex z-50 h-screen w-full">
+    <div className="flex z-50 h-screen max-w-full">
       <SideBarBox
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}

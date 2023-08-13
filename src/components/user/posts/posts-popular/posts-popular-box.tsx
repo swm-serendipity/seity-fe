@@ -9,7 +9,7 @@ import PostsPopularLayout from "./posts-popular-layout";
 export default function PostPopularBox() {
   const { isNotificationOpen, isSharePopupOpen, popupData } = useStore();
   return (
-    <div className="relative flex w-full">
+    <div className="relative flex flex-grow w-full overflow-clip">
       <PostsPopularLayout />
       {popupData.isVisible && <Popup />}
       {isNotificationOpen && (

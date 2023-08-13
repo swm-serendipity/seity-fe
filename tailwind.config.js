@@ -113,6 +113,7 @@ module.exports = {
 
         ".custom-scrollbar::-webkit-scrollbar": {
           width: "8px",
+          height: "8px",
           background: "transparent",
         },
         ".custom-scrollbar": {
