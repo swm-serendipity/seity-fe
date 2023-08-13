@@ -29,7 +29,7 @@ export function SignupLoginInput({
         value={value}
         type={type}
         onChange={onChange}
-        className="w-full font-body-medium text-body-medium px-3.5 py-3 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default"
+        className="w-full font-body-medium text-body-medium px-3.5 py-3 border rounded-md border-borde outline-none focus:border-whitebg-default"
       />
     </div>
   );
@@ -64,7 +64,7 @@ export function SignupPasswordCheckInput({
         value={value}
         type="password"
         onChange={(e) => onChange(e.target.value)}
-        className="w-full font-body-medium text-body-medium px-3.5 py-3 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default"
+        className="w-full font-body-medium text-body-medium px-3.5 py-3 border rounded-md border-border-default outline-none focus:border-whitebg-default"
       />
       <div>{error}</div>
     </div>
@@ -107,7 +107,7 @@ export function SignupDateInput({ onChange }: SignupDateInputProps) {
             max={2099}
             min={1900}
             onChange={(e) => setYear(e.target.value)}
-            className="py-2 pl-8 pr-2 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default w-full"
+            className="py-2 pl-8 pr-2 border rounded-md border-border-default outline-none focus:border-whitebg-default w-full"
           />
         </div>
         <div className="relative w-[114px] flex items-center">
@@ -119,7 +119,7 @@ export function SignupDateInput({ onChange }: SignupDateInputProps) {
             maxLength={2}
             minLength={2}
             onChange={(e) => setMonth(e.target.value)}
-            className="py-2 pl-8 pr-2 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default w-full"
+            className="py-2 pl-8 pr-2 border rounded-md border-border-default outline-none focus:border-whitebg-default w-full"
           />
         </div>
         <div className="relative w-[114px] flex items-center">
@@ -131,7 +131,7 @@ export function SignupDateInput({ onChange }: SignupDateInputProps) {
             maxLength={2}
             minLength={2}
             onChange={(e) => setDay(e.target.value)}
-            className="py-2 pl-8 pr-2 border rounded-md border-signup-signup-border outline-none focus:border-whitebg-default w-full"
+            className="py-2 pl-8 pr-2 border rounded-md border-border-default outline-none focus:border-whitebg-default w-full"
           />
         </div>
       </div>

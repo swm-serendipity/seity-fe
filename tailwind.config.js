@@ -85,8 +85,8 @@ module.exports = {
         share: {
           "chat-bg": "#EEEEEE",
         },
-        signup: {
-          "signup-border": "#E0E0E0",
+        border: {
+          default: "#E0E0E0",
         },
       },
       backgroundImage: {

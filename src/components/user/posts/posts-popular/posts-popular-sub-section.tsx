@@ -1,16 +1,37 @@
-import { PostsPopularMainCard } from "./posts-popular-main-card";
+import { PostsPopularSubCard } from "./posts-popular-sub-card";
 
 export default function PostsPopularSubSection() {
   return (
-    <div className="flex flex-col mt-14 w-full">
-      <p className="font-h1 text-h3 px-12 mb-4">우리 부서 내 인기 프롬프트🔥</p>
-      <div
-        className="flex gap-5 flex-shrink-0 whitespace-nowrap overflow-x-auto custom-scrollbar
-      ml-12 last:mr-12 pb-1"
-      >
-        <PostsPopularMainCard />
-        <PostsPopularMainCard />
-        <PostsPopularMainCard />
+    <div className="flex mt-14 w-full">
+      <div className="ml-12 flex overflow-x-auto custom-scrollbar gap-5 pb-1 mb-4">
+        <div className="flex-col flex">
+          <p className="font-h1 text-h3 mb-4">최근 공유된 프롬프트✨</p>
+          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar">
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+          </div>
+        </div>
+
+        <div className="flex-col flex">
+          <p className="font-h1 text-h3 mb-4">명예의 전당🥇</p>
+          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar">
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+          </div>
+        </div>
+        <div className="flex-col flex mr-12">
+          <p className="font-h1 text-h3 mb-4">이번 주 인기 프롬프트🥇</p>
+          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar">
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+            <PostsPopularSubCard />
+          </div>
+        </div>
       </div>
     </div>
   );
