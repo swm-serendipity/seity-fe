@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import getPromptData from "@/apis/get-prompt-data";
 import { useStore } from "@/store/store";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function useFetchAndStoreChat(sessionId: string) {
-  const { setChatData, setChatSessionId } = useStore();
+  const { setChatData, setChatSessionId, setIsAnsweringPersist } = useStore();
   const router = useRouter();
 
   useEffect(() => {
@@ -30,6 +31,12 @@ export default function useFetchAndStoreChat(sessionId: string) {
         setChatSessionId(response.result.id);
         setChatData(() => chatData);
       } catch (error) {
+        if (axios.isAxiosError(error) && error.response!.status === 403) {
+          localStorage.removeItem("accessToken");
+          localStorage.removeItem("refreshToken");
+          router.push("/login");
+        }
+
         router.push("/chat");
         Promise.reject(error);
       }
@@ -39,6 +46,7 @@ export default function useFetchAndStoreChat(sessionId: string) {
     return () => {
       setChatData(() => []);
       setChatSessionId("");
+      setIsAnsweringPersist(false);
     };
   }, [sessionId]);
 }
