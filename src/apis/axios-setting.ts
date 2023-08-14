@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
   baseURL: "https://api.seity.co.kr",
+  timeout: 5000,
 });
 
 axiosInstance.interceptors.response.use(
@@ -10,6 +11,12 @@ axiosInstance.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
+    if (
+      error.code === "ECONNABORTED" &&
+      error.message.indexOf("timeout") !== -1
+    ) {
+      console.log("Request has timed out.");
+    }
     if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
 
