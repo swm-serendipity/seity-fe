@@ -9,7 +9,7 @@ export default function PostsAIChat({ text }: PostsAIChatProps) {
     <div className="flex mt-6">
       <div className="mr-1.5 rounded-full bg-whitebg-default w-[30px] h-[30px] flex justify-center items-center text-body-medium">
         <Image
-          src="/chat-ai-profile.png"
+          src="/chat/chat-ai-profile.png"
           width={17}
           height={17}
           alt="ai 프로필 아이콘"

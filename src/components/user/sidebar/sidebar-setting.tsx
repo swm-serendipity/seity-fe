@@ -7,7 +7,12 @@ export default function SidebarSetting() {
       onClick={() => {}}
     >
       <button className="flex items-center text-body-medium text-blackbg-default w-full h-full">
-        <Image src="/sidebar-setting.svg" width={16} height={16} alt="설정" />
+        <Image
+          src="/sidebar/sidebar-setting.svg"
+          width={16}
+          height={16}
+          alt="설정"
+        />
         <div className="ml-2">챗 설정</div>
       </button>
     </div>

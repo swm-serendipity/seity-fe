@@ -23,8 +23,8 @@ export const FoldIconButton = ({ color, onClick }: FoldButtonProps) => {
       <Image
         src={
           color == "black"
-            ? "/sidebar-fold-white.svg"
-            : "/sidebar-fold-black.svg"
+            ? "/sidebar/sidebar-fold-white.svg"
+            : "/sidebar/sidebar-fold-black.svg"
         }
         width={16}
         height={16}

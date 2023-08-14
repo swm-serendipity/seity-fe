@@ -137,7 +137,7 @@ export default function Features() {
                     <div className="relative inline-flex flex-col">
                       <Image
                         className="md:max-w-none mx-auto rounded"
-                        src={"/landing-feature1.png"}
+                        src={"/landing/landing-feature1.png"}
                         width={600}
                         height="462"
                         alt="Features bg"
@@ -161,7 +161,7 @@ export default function Features() {
                     <div className="relative inline-flex flex-col">
                       <Image
                         className="md:max-w-none mx-auto rounded"
-                        src={"/landing-feature2.png"}
+                        src={"/landing/landing-feature2.png"}
                         width={600}
                         height="462"
                         alt="Features bg"

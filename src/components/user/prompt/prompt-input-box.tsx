@@ -93,7 +93,7 @@ export default function PromptInputBox() {
         {/* todo */}
         {/* <button>
           <Image
-            src="/chat-file.svg"
+            src="/chat/chat-file.svg"
             width="32"
             height="32"
             alt="파일 첨부"

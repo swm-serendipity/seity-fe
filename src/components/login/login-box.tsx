@@ -12,7 +12,7 @@ export default function LoginBox() {
   return (
     <div
       className="flex justify-center items-center
-   bg-[url('/login-bg.svg')] bg-no-repeat bg-center bg-contain my-12"
+   bg-[url('/login/login-bg.svg')] bg-no-repeat bg-center bg-contain my-12"
     >
       {popupData.isVisible && <Popup />}
 

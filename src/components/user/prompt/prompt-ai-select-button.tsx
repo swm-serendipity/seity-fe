@@ -31,7 +31,7 @@ export default function PromptAiSelectButton({
     >
       <div className="flex gap-1.5">
         <Image
-          src={"/chat-gpt-3.5.svg"}
+          src={"/chat/chat-gpt-3.5.svg"}
           alt="chatgpt 3.5"
           width={20}
           height={20}

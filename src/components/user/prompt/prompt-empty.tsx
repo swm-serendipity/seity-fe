@@ -10,7 +10,7 @@ export default function PromptEmpty() {
         <div className="flex flex-col">
           <div className="flex-col justify-center items-center gap-3 hidden md:flex">
             <Image
-              src="/warning-sign.png"
+              src="/chat/warning-sign.png"
               width={40}
               height={40}
               alt="주의 표시"
@@ -23,7 +23,7 @@ export default function PromptEmpty() {
              bg-white rounded-xl px-8 pb-6 pt-10"
             >
               <Image
-                src="/chat-empty-1.png"
+                src="/chat/chat-empty-1.png"
                 width={100}
                 height={100}
                 alt="보호 이미지"
@@ -37,7 +37,7 @@ export default function PromptEmpty() {
            bg-white rounded-xl px-4 pb-6 pt-10"
             >
               <Image
-                src="/chat-empty-2.png"
+                src="/chat/chat-empty-2.png"
                 width={100}
                 height={100}
                 alt="보호 이미지"
@@ -51,7 +51,7 @@ export default function PromptEmpty() {
            bg-white rounded-xl px-4 pb-2 pt-10"
             >
               <Image
-                src="/chat-empty-3.png"
+                src="/chat/chat-empty-3.png"
                 width={100}
                 height={100}
                 alt="보호 이미지"

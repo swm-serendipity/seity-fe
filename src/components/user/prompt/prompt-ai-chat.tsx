@@ -32,7 +32,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
       <div className="mr-4 rounded-full bg-whitebg-default w-11 h-11 min-w-11 justify-center items-center hidden lg:flex">
         <Image
           priority
-          src="/chat-ai-profile.png"
+          src="/chat/chat-ai-profile.png"
           width={24}
           height={24}
           alt="icon"
@@ -46,7 +46,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
               <button className="mx-1">
                 <Image
                   priority
-                  src="/prompt-copy.png"
+                  src="/chat/prompt-copy.png"
                   width={32}
                   height={32}
                   alt="프롬프트 복사"
@@ -56,7 +56,7 @@ export default function PromptAIChat({ id, text }: PromptAIChatProps) {
               <button className="mx-1">
                 <Image
                   priority
-                  src="/prompt-share.png"
+                  src="/chat/prompt-share.png"
                   width={32}
                   height={32}
                   alt="프롬프트 공유"

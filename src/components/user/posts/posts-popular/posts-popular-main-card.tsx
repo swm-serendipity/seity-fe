@@ -20,7 +20,7 @@ export function PostsPopularMainCard() {
         <ProfileIcon name="김민수" />
         <div className="border-border-default border py-1.5 flex px-3.5 rounded-full">
           <Image
-            src="/popular-prompt-like.png"
+            src="/posts/popular-prompt-like.png"
             width={16}
             height={16}
             alt="좋아요"

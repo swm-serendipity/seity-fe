@@ -8,7 +8,7 @@ export default function ShareHeader() {
     <div className="flex justify-between pb-10">
       <div className="text-h2 font-h2">공유하기</div>
       <button onClick={toggleSharePopup}>
-        <Image src="/share-close.png" alt="close" width="20" height="20" />
+        <Image src="/chat/share-close.png" alt="close" width="20" height="20" />
       </button>
     </div>
   );

@@ -22,7 +22,7 @@ export default function SidebarHistoryHeader({
 
             <button className="ml-4">
               <Image
-                src="/sidebar-search.svg"
+                src="/sidebar/sidebar-search.svg"
                 width={16}
                 height={16}
                 alt="검색하기"

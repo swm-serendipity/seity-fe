@@ -70,7 +70,7 @@ export default function DeIdentificationCard({
             : deidentificateData.deIdentificateData}
           <Image
             className="mx-1"
-            src="/deidentification-arrow.svg"
+            src="/de-identification/deidentification-arrow.svg"
             width={12}
             height={12}
             alt="변환"

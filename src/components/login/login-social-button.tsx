@@ -41,7 +41,7 @@ const SocialButtonImage = ({
   if (socialLogin == "naver") {
     return (
       <Image
-        src="/login-naver.svg"
+        src="/login/login-naver.svg"
         width={26}
         height={26}
         alt="naver-logo"
@@ -50,7 +50,7 @@ const SocialButtonImage = ({
   } else if (socialLogin == "google") {
     return (
       <Image
-        src="/login-google.svg"
+        src="/login/login-google.svg"
         width={26}
         height={26}
         alt="naver-logo"
@@ -59,7 +59,7 @@ const SocialButtonImage = ({
   } else if (socialLogin == "kakao") {
     return (
       <Image
-        src="/login-kakao.svg"
+        src="/login/login-kakao.svg"
         width={26}
         height={26}
         alt="naver-logo"

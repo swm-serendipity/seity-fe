@@ -22,7 +22,7 @@ type SidebarMenuButtonProps = {
 };
 export const SidebarMenuButton = ({
   type,
-  righticon = "/sidebar-open.svg",
+  righticon = "/sidebar/sidebar-open.svg",
   text,
   notificationCount = 0,
   onClick,

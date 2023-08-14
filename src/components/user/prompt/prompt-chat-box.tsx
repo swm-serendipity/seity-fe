@@ -29,8 +29,6 @@ export function PromptChatBox({ containerRef }: PromptChatBoxProps) {
   }, [chatData]);
 
   useEffect(() => {
-    console.log(isBottom);
-
     if (isBottom) {
       bottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }

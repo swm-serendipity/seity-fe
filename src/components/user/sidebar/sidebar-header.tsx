@@ -21,7 +21,7 @@ export default function SidebarHeader({ setShowSidebar }: SidebarHeaderProps) {
       <Image
         width={95}
         height={24}
-        src="/logo.svg"
+        src="/common/logo.svg"
         alt="seity 로고"
         className="object-cover"
         priority
