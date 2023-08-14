@@ -5,7 +5,6 @@ import { useRef } from "react";
 import PromptEmpty from "./prompt-empty";
 import { usePathname } from "next/navigation";
 import { useStore } from "@/store/store";
-import PostsPopularLayout from "../posts/posts-popular/posts-popular-layout";
 
 export default function PromptBox() {
   const containerRef = useRef<HTMLDivElement>(null);

@@ -15,7 +15,7 @@ export default function PostsPopularMainSection({
       ml-12 pb-1 last:pr-6"
       >
         {posts.slice(0, 3).map((post) => {
-          return <PostsPopularMainCard post={post} />;
+          return <PostsPopularMainCard post={post} key={post.id} />;
         })}
 
         <div className="flex flex-col justify-center items-center ml-7 gap-2">
