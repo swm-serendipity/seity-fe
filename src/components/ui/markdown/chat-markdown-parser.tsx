@@ -17,6 +17,28 @@ export default function ChatResponseMarkdownParser({
       className={`w-full relative ${isSharePopup && "text-body-medium"}`}
       remarkPlugins={[remarkGfm]}
       components={{
+        table: ({ node, children, ...props }) => {
+          return (
+            <table className="min-w-full border-collapse border">
+              {children}
+            </table>
+          );
+        },
+        thead: ({ node, children, ...props }) => {
+          return <thead className="bg-gray-200">{children}</thead>;
+        },
+        tbody: ({ node, children, ...props }) => {
+          return <tbody>{children}</tbody>;
+        },
+        tr: ({ node, children, ...props }) => {
+          return <tr>{children}</tr>;
+        },
+        td: ({ node, children, ...props }) => {
+          return <td className="border px-2 py-1">{children}</td>;
+        },
+        th: ({ node, children, ...props }) => {
+          return <th className="border px-2 py-1">{children}</th>;
+        },
         ol: ({ node, children, ...props }) => {
           return <ol className="list-decimal list-inside py-3">{children}</ol>;
         },
