@@ -196,6 +196,13 @@ module.exports = {
         ".chat-bottom-button": {
           boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.2)",
         },
+
+        ".posts-main-card": {
+          boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)",
+        },
+        ".posts-sub-card": {
+          boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
+        },
       };
       addUtilities(newUtilities);
     },

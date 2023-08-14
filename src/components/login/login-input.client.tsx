@@ -23,7 +23,7 @@ export default function LoginInput() {
       router.push("/chat");
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) alert(error.message);
+      if (axios.isAxiosError(error)) alert(error.response?.data.message);
       else alert("로그인에 실패했습니다.");
     },
   });
