@@ -1,3 +1,5 @@
+"use client";
+
 import { useStore } from "@/store/store";
 import NotificationBox from "../../notification/notification-box";
 import NotificationBackground from "../../notification/notification-background";
@@ -10,6 +12,8 @@ import { useQueries } from "@tanstack/react-query";
 import getRecentSharedPrompt from "@/apis/get-recent-shared-prompt";
 import getRecentHotPrompt from "@/apis/get-recent-hot-prompt";
 import getAllHotPrompt from "@/apis/get-all-hot-prompt";
+import Lottie from "lottie-react";
+import loadingLottie from "../../../assets/loading-animation.json";
 
 export default function PostPopularBox() {
   const { isNotificationOpen, isSharePopupOpen, popupData } = useStore();
@@ -30,9 +34,25 @@ export default function PostPopularBox() {
     ],
   });
 
+  const handleLoading = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+  };
+
   const allQueriesLoaded = results.every((result) => !result.isLoading);
 
-  if (!allQueriesLoaded) return <div>loading</div>;
+  if (!allQueriesLoaded)
+    return (
+      <>
+        <div
+          className="fixed w-full h-full bg-black opacity-20 rounded-3xl"
+          onClick={handleLoading}
+        />
+        <Lottie
+          animationData={loadingLottie}
+          className="fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+        />
+      </>
+    );
 
   return (
     <div className="relative flex flex-grow w-full overflow-clip">
