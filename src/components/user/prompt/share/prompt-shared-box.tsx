@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import postSharePromptImport from "@/apis/post-share-prompt-import";
 import { usePathname, useRouter } from "next/navigation";
+import PromptSharedPostsData from "./prompt-shared-posts-data";
 
 export default function PromptSharedBox() {
   const pathName = usePathname();
@@ -37,10 +38,12 @@ export default function PromptSharedBox() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="flex flex-col flex-1 h-screen bg-white z-10">
-      <div ref={containerRef} className="flex flex-col flex-1 overflow-y-auto">
-        {/* <PromptAiSelectBox /> */}
-
+    <div
+      className="flex flex-col flex-1 h-screen bg-white z-10 overflow-y-auto"
+      ref={containerRef}
+    >
+      <PromptSharedPostsData />
+      <div className="flex flex-col flex-1">
         <PromptSharedChatBox containerRef={containerRef} />
       </div>
       <div className="absolute w-full min-h-[164px] bottom-0 share-chat-continue-button-bg flex items-center justify-center">

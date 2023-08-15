@@ -58,8 +58,8 @@ export default function PromptInputBox() {
       timestamp: new Date().toISOString(),
     });
     setTempText(text);
-    setText(""); //입력창 초기화
-    setIsAnswering(true); //답변중 상태로 변경
+    setText("");
+    setIsAnswering(true);
     setAnsweringData({
       id: "ai",
       user: "ai",

@@ -1,7 +1,5 @@
 import getLoginInfo from "@/apis/get-login-info";
-import { useStore } from "@/store/store";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 
 type PromptUserChatProps = {
   text: string;

@@ -16,16 +16,24 @@ export default function ProfileIcon({
       {size === "lg" ? (
         <div
           className={`w-[26px] 
-        h-[26px] rounded-full bg-[${bgColor}] 
-        flex justify-center items-center text-[${textColor}] text-body-small`}
+        h-[26px] rounded-full 
+        flex justify-center items-center text-body-small`}
+          style={{
+            background: bgColor,
+            color: textColor,
+          }}
         >
           {name[0]!}
         </div>
       ) : (
         <div
           className={`w-[24px] 
-        h-[24px] rounded-full bg-[${bgColor}] 
-        flex justify-center items-center text-[${textColor}] text-body-small`}
+        h-[24px] rounded-full 
+        flex justify-center items-center text-body-small`}
+          style={{
+            background: bgColor,
+            color: textColor,
+          }}
         >
           {name[0]!}
         </div>

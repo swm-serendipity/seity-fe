@@ -1,44 +1,9 @@
 import { PopupData } from "@/type/popup";
 import { create } from "zustand";
+import { GlobalState } from "./interface";
+import { SharePostData } from "@/type/share-post";
 
-interface State {
-  isDeIdentificationPopupOpen: boolean;
-  toggleDeIdentificationPopup: () => void;
-
-  deIdentificationData: DeIdentification[];
-  setDeIdentificationData: (data: DeIdentification[]) => void;
-
-  isNotificationOpen: boolean;
-  toggleNotification: () => void;
-  disableNotification: () => void;
-
-  isSharePopupOpen: boolean;
-  toggleSharePopup: () => void;
-
-  shareTitle: string;
-  setShareTitle: (title: string) => void;
-
-  chatData: Chat[];
-  setChatData: (fn: (data: Chat[]) => Chat[]) => void;
-  addChatData: (data: Chat) => void;
-
-  chatSessionId: string;
-  setChatSessionId: (sessionId: string) => void;
-
-  isAnswering: boolean;
-  setIsAnswering: (isAnswering: boolean) => void;
-
-  answeringData: Chat;
-  setAnsweringData: (data: Chat) => void;
-
-  popupData: PopupData;
-  setPopupData: (data: PopupData) => void;
-
-  isAnsweringPersist: boolean;
-  setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
-}
-
-export const useStore = create<State>((set) => ({
+export const useStore = create<GlobalState>((set) => ({
   //비식별화 팝업 상태
   isDeIdentificationPopupOpen: false,
   toggleDeIdentificationPopup: () =>
@@ -83,6 +48,23 @@ export const useStore = create<State>((set) => ({
   //채팅 세션 아이디
   chatSessionId: "",
   setChatSessionId: (sessionId) => set({ chatSessionId: sessionId }),
+
+  //공유 게시물 데이터
+  sharePostData: {
+    title: "",
+    llm: "",
+    id: "",
+    createdAt: "",
+    lastModifiedAt: "",
+    like: false,
+    likeNumber: 0,
+    memberName: "",
+    memberPart: "",
+    memberProfileBackgroundHex: "",
+    memberProfileTextHex: "",
+    views: 0,
+  },
+  setSharePostData: (data: SharePostData) => set({ sharePostData: data }),
 
   //팝업 데이터
   popupData: {

@@ -4,13 +4,29 @@ import { useRouter } from "next/navigation";
 import getSingleSharedPrompt from "@/apis/get-single-shared-prompt";
 
 export default function useSharePromptFetchAndStore(postId: string) {
-  const { setChatData, setChatSessionId, setPopupData } = useStore();
+  const { setChatData, setChatSessionId, setPopupData, setSharePostData } =
+    useStore();
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getSingleSharedPrompt({ postId });
+        setSharePostData({
+          title: response.result.title,
+          llm: response.result.llm,
+          id: response.result.id,
+          createdAt: response.result.createdAt,
+          lastModifiedAt: response.result.lastModifiedAt,
+          like: response.result.like,
+          likeNumber: response.result.likeNumber,
+          memberName: response.result.memberName,
+          memberPart: response.result.memberPart,
+          memberProfileBackgroundHex:
+            response.result.memberProfileBackgroundHex,
+          memberProfileTextHex: response.result.memberProfileTextHex,
+          views: response.result.views,
+        });
         const chatData = response.result.qnaList.flatMap(
           (qna: { question: any; answer: any }, index: number) => [
             {
@@ -48,6 +64,20 @@ export default function useSharePromptFetchAndStore(postId: string) {
     return () => {
       setChatData(() => []);
       setChatSessionId("");
+      setSharePostData({
+        title: "",
+        llm: "",
+        id: "",
+        createdAt: "",
+        lastModifiedAt: "",
+        like: false,
+        likeNumber: 0,
+        memberName: "",
+        memberPart: "",
+        memberProfileBackgroundHex: "",
+        memberProfileTextHex: "",
+        views: 0,
+      });
     };
   }, [postId]);
 }
