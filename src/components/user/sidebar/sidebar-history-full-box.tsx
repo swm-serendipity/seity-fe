@@ -31,7 +31,7 @@ export default function SidebarHistoryFullBox({
     fetchNextPage
   );
 
-  const { chatData, isAnswering, chatSessionId, setPopupData } = useStore();
+  const { chatSessionId, setPopupData } = useStore();
 
   const handlePromptButton = (item: {
     id: Key | null | undefined;
@@ -68,17 +68,6 @@ export default function SidebarHistoryFullBox({
       },
     });
   };
-
-  const isNewPrompt =
-    pathName == "/chat" && chatData.length == 2 && !isAnswering;
-
-  useEffect(() => {
-    if (isNewPrompt) {
-      setTimeout(() => {
-        refetch();
-      }, 1000);
-    }
-  }, [isNewPrompt]);
 
   const allData = data?.pages.flatMap((page) => page.result) || [];
 

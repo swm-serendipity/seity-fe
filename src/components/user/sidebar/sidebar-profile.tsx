@@ -2,7 +2,9 @@ import getLoginInfo from "@/apis/get-login-info";
 import { useQuery } from "@tanstack/react-query";
 
 export default function SideBarProfile() {
-  const { data, isFetched } = useQuery(["user-info"], () => getLoginInfo());
+  const { data, isFetched, isLoading } = useQuery(["user-info"], () =>
+    getLoginInfo()
+  );
 
   return (
     <div className="flex gap-2.5 ml-5 mt-16">

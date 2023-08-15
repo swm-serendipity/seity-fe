@@ -10,8 +10,6 @@ import {
   SidebarShareIconButton,
 } from "./icon-buttton";
 import { useStore } from "@/store/store";
-import deletePromptSession from "@/apis/delete-prompt-session";
-import { useMutation } from "@tanstack/react-query";
 
 type SidebarMenuButtonProps = {
   type: "popular" | "notification";
@@ -89,7 +87,7 @@ export const SidebarHistoryButton = ({
   onDeleteButtonClick,
 }: SidebarHistoryButtonProps) => {
   const [color, setColor] = useState(colors.blackbg.default);
-  const { toggleSharePopup } = useStore();
+  const { toggleSharePopup, isAnswering, setPopupData } = useStore();
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -112,6 +110,21 @@ export const SidebarHistoryButton = ({
     onDeleteButtonClick();
   };
 
+  const handleShareButtonClick = () => {
+    if (isAnswering) {
+      setPopupData({
+        type: "title-ok",
+        title: "공유하기",
+        content: "진행중인 채팅이 있습니다. 답변을 마친 후에 공유해주세요!",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+      });
+      return;
+    }
+    toggleSharePopup();
+  };
+
   return (
     <div
       className={`flex w-full h-[44px] hover:bg-sidebar-button-hover rounded-md relative
@@ -128,7 +141,7 @@ export const SidebarHistoryButton = ({
       </p>
       {select && (
         <div className="flex">
-          <SidebarShareIconButton onClick={toggleSharePopup} />
+          <SidebarShareIconButton onClick={handleShareButtonClick} />
           <SidebarDeleteIconButton onClick={handleDeleteButtonClick} />
         </div>
       )}

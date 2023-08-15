@@ -4,6 +4,7 @@ import SidebarHistoryFullBox from "./sidebar-history-full-box";
 import SidebarHistoryHeader from "./sidebar-history-header";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useStore } from "@/store/store";
 
 export default function SidebarHistoryBox() {
   const {
@@ -15,6 +16,8 @@ export default function SidebarHistoryBox() {
     refetch,
   } = useChatHistory();
 
+  const { chatData, isAnswering } = useStore();
+
   const pathName = usePathname();
   useEffect(() => {
     if (pathName.includes("/chat/")) {
@@ -22,10 +25,20 @@ export default function SidebarHistoryBox() {
     }
   }, [pathName]);
 
+  const isNewPrompt =
+    pathName == "/chat" && chatData.length == 2 && !isAnswering;
+
+  useEffect(() => {
+    if (isNewPrompt) {
+      setTimeout(() => {
+        refetch();
+      }, 1000);
+    }
+  }, [isNewPrompt]);
+
   return (
     <div className="flex flex-col h-0 flex-grow">
       <SidebarHistoryHeader isHistory={hasData} />
-
       <div className="mx-5 flex-col flex overflow-y-auto custom-history-scrollbar flex-1">
         {hasData ? (
           <SidebarHistoryFullBox
