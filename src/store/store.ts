@@ -15,6 +15,9 @@ interface State {
   isSharePopupOpen: boolean;
   toggleSharePopup: () => void;
 
+  shareTitle: string;
+  setShareTitle: (title: string) => void;
+
   chatData: Chat[];
   setChatData: (fn: (data: Chat[]) => Chat[]) => void;
   addChatData: (data: Chat) => void;
@@ -57,6 +60,10 @@ export const useStore = create<State>((set) => ({
   isSharePopupOpen: false,
   toggleSharePopup: () =>
     set((state) => ({ isSharePopupOpen: !state.isSharePopupOpen })),
+
+  //공유 팝업 타이틀
+  shareTitle: "",
+  setShareTitle: (title) => set({ shareTitle: title }),
 
   //전체 채팅 데이터
   chatData: [],

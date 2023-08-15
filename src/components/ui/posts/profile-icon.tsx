@@ -1,24 +1,31 @@
 type ProfileIconProps = {
   name: string;
   size?: "sm" | "lg";
+  bgColor: string;
+  textColor: string;
 };
 
-export default function ProfileIcon({ name, size = "lg" }: ProfileIconProps) {
+export default function ProfileIcon({
+  name,
+  size = "lg",
+  bgColor = "#E77C7C",
+  textColor = "#ffffff",
+}: ProfileIconProps) {
   return (
     <div className="flex items-center">
       {size === "lg" ? (
         <div
           className={`w-[26px] 
-        h-[26px] rounded-full bg-[#E77C7C] 
-        flex justify-center items-center text-white text-body-small`}
+        h-[26px] rounded-full bg-[${bgColor}] 
+        flex justify-center items-center text-[${textColor}] text-body-small`}
         >
           {name[0]!}
         </div>
       ) : (
         <div
           className={`w-[24px] 
-        h-[24px] rounded-full bg-[#E77C7C] 
-        flex justify-center items-center text-white text-body-small`}
+        h-[24px] rounded-full bg-[${bgColor}] 
+        flex justify-center items-center text-[${textColor}] text-body-small`}
         >
           {name[0]!}
         </div>

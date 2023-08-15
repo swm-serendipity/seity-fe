@@ -19,14 +19,19 @@ export function PostsPopularSubCard({ post }: PostsPopularSubCardProps) {
     >
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <ProfileIcon name="김민수" size="sm" />
-          <p className="text-[13px] text-whitebg-info">서비스개발팀</p>
+          <ProfileIcon
+            name={post.memberName}
+            size="sm"
+            textColor={post.memberProfileTextHex}
+            bgColor={post.memberProfileBackgroundHex}
+          />
+          <p className="text-[13px] text-whitebg-info">{post.memberPart}</p>
         </div>
         <div className="text-[13px] text-whitebg-info">
           {formatDate(post.lastModifiedAt)}
         </div>
       </div>
-      <div className="text-[17px] line-clamp-1">{post.firstQna.question}</div>
+      <div className="text-[17px] line-clamp-1">{post.title}</div>
       <div className="flex">
         <Image
           src="/posts/popular-prompt-like.png"

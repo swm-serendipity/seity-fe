@@ -20,3 +20,13 @@ body {
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
+
+input.w-full__input {
+  outline: 0;
+  color: #3e74ff;
+}
+
+div.w-full__suggestions {
+  max-height: 200px;
+  overflow-y: auto;
+}

@@ -2,19 +2,18 @@ import { useStore } from "@/store/store";
 import ShareHeader from "./share-popup-header";
 import ShareChatSection from "./share-popup-chat-section";
 import ShareTitleSection from "./share-popup-title-section";
-import ShareButtons from "./share-popup-buttons";
 import { useMutation } from "@tanstack/react-query";
 import postSharePrompt from "@/apis/post-share-prompt";
 import Lottie from "lottie-react";
 import loadingLottie from "../../assets/loading-animation.json";
+import { useState } from "react";
+import SharePopupUnderSection from "./share-popup-under-section";
 
 export default function SharePopupBox() {
   const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  const { toggleSharePopup, setPopupData } = useStore();
-  const handleCopy = async (text: string) => {
-    await navigator.clipboard.writeText(text);
-  };
+  const { toggleSharePopup, setPopupData, chatSessionId } = useStore();
+
   const { mutate, isLoading } = useMutation(postSharePrompt, {
     onSuccess: (data) => {
       toggleSharePopup();
@@ -45,6 +44,11 @@ export default function SharePopupBox() {
   const handleBox = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
   };
+
+  const handleCopy = async (text: string) => {
+    await navigator.clipboard.writeText(text);
+  };
+
   const handleOutside = () => {
     if (isLoading) return;
     toggleSharePopup();
@@ -56,27 +60,26 @@ export default function SharePopupBox() {
       onClick={handleOutside}
     >
       <div
-        className="bg-white w-[550px] h-[664px] rounded-3xl flex flex-col relative"
+        className="bg-white w-[550px] h-[719px] rounded-3xl flex flex-col relative"
         onClick={handleBox}
       >
         {isLoading && (
-          <>
+          <div className="z-50">
             <div
-              className="fixed w-[550px] h-[664px] bg-black opacity-20 rounded-3xl"
+              className="fixed w-[550px] h-[719px] bg-black opacity-20 rounded-3xl"
               onClick={handleBox}
             />
             <Lottie
               animationData={loadingLottie}
               className="fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
             />
-          </>
+          </div>
         )}
 
         <div className="pt-6 pb-7.5 px-7.5">
           <ShareHeader />
           <ShareChatSection />
-          <ShareTitleSection />
-          <ShareButtons mutate={mutate} />
+          <SharePopupUnderSection mutate={mutate} />
         </div>
       </div>
     </div>
