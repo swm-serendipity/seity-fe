@@ -26,9 +26,11 @@ export const ColoredButton = ({
         textColor == "black" ? "text-whitebg-default" : "text-blackbg-default"
       } ${
         color == "white" && "border border-whitebg-default"
-      } w-[${width}px] h-[${height}px] rounded-md mb-2 text-body-large flex justify-center items-center`}
+      }  rounded-md mb-2 text-body-medium flex justify-center items-center`}
       onClick={onClick}
       style={{
+        width: `${width}px`,
+        height: `${height}px`,
         backgroundColor:
           color == "point"
             ? colors.blackbg.point

@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { PostsPopularMainCard } from "./posts-popular-main-card";
 
 type PostsPopularMainSectionProps = {
@@ -7,6 +8,11 @@ type PostsPopularMainSectionProps = {
 export default function PostsPopularMainSection({
   posts,
 }: PostsPopularMainSectionProps) {
+  const router = useRouter();
+  const handleOtherPosts = () => {
+    router.push("/posts/all");
+  };
+
   return (
     <div className="flex flex-col mt-14 w-full">
       <p className="font-h1 text-h3 px-12 mb-4">우리 부서 내 인기 프롬프트🔥</p>
@@ -19,7 +25,10 @@ export default function PostsPopularMainSection({
           {posts.slice(0, 3).map((post) => {
             return <PostsPopularMainCard post={post} key={post.id} />;
           })}
-          <div className="flex flex-col justify-center items-center ml-7 gap-2">
+          <div
+            className="flex flex-col justify-center items-center ml-7 gap-2"
+            onClick={handleOtherPosts}
+          >
             <div
               className="box-border w-11 h-11 border border-gray-300 
           rounded-full flex flex-col justify-center items-center relative"
