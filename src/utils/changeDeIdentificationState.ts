@@ -24,13 +24,15 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
       });
     }
 
+    console.log(
+      data.originalQuestion.substr(item.index, item.length),
+      item.index,
+      item.length
+    );
     result.push({
       id: uuidv4(),
       text: data.originalQuestion.substr(item.index, item.length),
-      deIdentificateData: data.convertedQuestion.substr(
-        item.index,
-        item.length
-      ),
+      deIdentificateData: "<" + item.entity + ">",
       type: "개인정보",
       changed: false,
     });

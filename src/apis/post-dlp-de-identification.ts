@@ -1,14 +1,14 @@
-import { axiosInstance } from "./axios-setting";
+import axios from "axios";
 
 type DeIendificationData = {
   question: string;
 };
 
 const postDlpDeIendification = async ({ question }: DeIendificationData) => {
-  const { data } = await axiosInstance.post("/dlp/de-identification", {
+  const { data } = await axios.post("https://dlp.seity.co.kr/anonymize", {
     question,
   });
-  return data.result;
+  return data;
 };
 
 export default postDlpDeIendification;
