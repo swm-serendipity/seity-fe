@@ -17,8 +17,8 @@ export default function PostsPopularSubSection({
         <div className="flex-col flex">
           <p className="font-h1 text-h3 mb-4">최근 공유된 프롬프트✨</p>
           <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar pb-4">
-            {recentHotPosts.length > 0 ? (
-              recentHotPosts
+            {recentSharedPosts.length > 0 ? (
+              recentSharedPosts
                 .slice(0, 4)
                 .map((post) => (
                   <PostsPopularSubCard post={post} key={post.id} />
@@ -51,7 +51,7 @@ export default function PostsPopularSubSection({
           <p className="font-h1 text-h3 mb-4">이번 주 인기 프롬프트🥇</p>
           <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar pb-4">
             {recentHotPosts.length > 0 ? (
-              recentSharedPosts
+              recentHotPosts
                 .slice(0, 4)
                 .map((post) => (
                   <PostsPopularSubCard post={post} key={post.id} />
