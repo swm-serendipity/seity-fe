@@ -37,7 +37,12 @@ export default function DeIdentificationMainTextBox({
               </span>
             );
           } else {
-            return <span key={item.id}>{item.text}</span>;
+            // \n가 포함된 경우 br로 치환
+            return (
+              <span key={item.id} className="whitespace-pre-wrap">
+                {item.text}
+              </span>
+            );
           }
         })}
       </div>
