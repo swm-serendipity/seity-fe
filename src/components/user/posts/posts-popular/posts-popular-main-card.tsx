@@ -15,7 +15,7 @@ export function PostsPopularMainCard({ post }: PostsPopularMainCardProps) {
   };
   return (
     <div
-      className="bg-white min-w-[410px] w-[410px] h-[304px] rounded-2xl flex flex-col px-5 posts-main-card"
+      className="bg-white min-w-[410px] w-[410px] h-[304px] rounded-2xl flex flex-col px-5 posts-main-card cursor-pointer"
       onClick={handleCardClick}
     >
       <div className="bg-[#EEEEEE] mt-5 h-[180px] rounded-lg px-5 overflow-hidden">

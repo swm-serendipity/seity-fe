@@ -66,7 +66,7 @@ export default function DeIdentificationCard({
       <div className="mb-12">
         <div className="text-body-medium flex flex-wrap overflow-hidden text-ellipsis break-words">
           {isChange
-            ? deidentificateData.text
+            ? deidentificateData.originalData
             : deidentificateData.deIdentificateData}
           <Image
             className="mx-1"
@@ -77,7 +77,7 @@ export default function DeIdentificationCard({
           />
           {isChange
             ? deidentificateData.deIdentificateData
-            : deidentificateData.text}
+            : deidentificateData.originalData}
         </div>
       </div>
       <div className="flex justify-end">

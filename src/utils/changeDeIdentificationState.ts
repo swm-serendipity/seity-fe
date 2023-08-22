@@ -6,6 +6,9 @@ type DeIdentificationData = {
   result: {
     index: number;
     length: number;
+    entity: string;
+    original_data: string;
+    converted_data: string;
   }[];
 };
 
@@ -19,8 +22,9 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
       if (item.index > currentIndex) {
         result.push({
           id: uuidv4(),
-          text: data.originalQuestion.substring(currentIndex, item.index),
+          text: data.convertedQuestion.substring(currentIndex, item.index),
           deIdentificateData: "",
+          originalData: "",
           type: "일반텍스트",
           changed: false,
         });
@@ -28,8 +32,9 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
 
       result.push({
         id: uuidv4(),
-        text: data.originalQuestion.substr(item.index, item.length),
-        deIdentificateData: "<" + item.entity + ">",
+        text: data.convertedQuestion.substr(item.index, item.length),
+        originalData: item.original_data,
+        deIdentificateData: item.converted_data,
         type: "개인정보",
         changed: false,
       });
@@ -39,11 +44,12 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
       return result;
     });
 
-  if (currentIndex < data.originalQuestion.length) {
+  if (currentIndex < data.convertedQuestion.length) {
     newData.push({
       id: uuidv4(),
-      text: data.originalQuestion.substring(currentIndex),
+      text: data.convertedQuestion.substring(currentIndex),
       deIdentificateData: "",
+      originalData: "",
       type: "일반텍스트",
       changed: false,
     });
