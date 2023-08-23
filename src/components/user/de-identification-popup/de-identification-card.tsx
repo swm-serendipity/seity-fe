@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import Image from "next/image";
+import changeNamdeEntityToKorean from "@/utils/changeNamedEntityToKorean";
 
 type DeIdentificationCardProps = {
   deidentificateData: DeIdentification;
@@ -60,7 +61,8 @@ export default function DeIdentificationCard({
           } rounded-full mr-1`}
         />
         <div className="text-whitebg-info text-body-small">
-          {deidentificateData.type} 내용 탐지
+          {deidentificateData.type} 내용 탐지 (
+          {changeNamdeEntityToKorean(deidentificateData.entity)})
         </div>
       </div>
       <div className="mb-12">

@@ -27,6 +27,7 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
           originalData: "",
           type: "일반텍스트",
           changed: false,
+          entity: "",
         });
       }
 
@@ -37,6 +38,7 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
         deIdentificateData: item.converted_data,
         type: "개인정보",
         changed: false,
+        entity: item.entity,
       });
 
       currentIndex = item.index + item.length;
@@ -52,6 +54,7 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
       originalData: "",
       type: "일반텍스트",
       changed: false,
+      entity: "",
     });
   }
   return newData;

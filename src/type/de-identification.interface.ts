@@ -5,4 +5,5 @@ interface DeIdentification {
   id: string;
   text: string;
   type: string;
+  entity: string;
 }

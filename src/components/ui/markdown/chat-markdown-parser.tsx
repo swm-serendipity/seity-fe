@@ -19,9 +19,11 @@ export default function ChatResponseMarkdownParser({
       components={{
         table: ({ node, children, ...props }) => {
           return (
-            <table className="min-w-full border-collapse border">
-              {children}
-            </table>
+            <div className="w-full overflow-x-auto">
+              <table className="min-w-full border-collapse border">
+                {children}
+              </table>
+            </div>
           );
         },
         thead: ({ node, children, ...props }) => {
