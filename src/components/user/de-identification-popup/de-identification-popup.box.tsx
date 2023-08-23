@@ -30,7 +30,7 @@ export default function DeIdentificationPopupBox() {
       .map((data) => {
         if (data.deIdentificateData.length > 0) {
           if (data.changed) {
-            return data.text;
+            return data.originalData;
           }
           return data.deIdentificateData;
         } else {
