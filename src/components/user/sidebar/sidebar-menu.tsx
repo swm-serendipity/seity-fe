@@ -9,12 +9,26 @@ export default function SidebarMenu() {
     router.push("/posts/popular");
   };
 
+  const handleScrapPromptButton = () => {
+    router.push("/posts/all");
+  };
+
   return (
     <div className="mt-7 flex flex-col items-center gap-2">
       <SidebarMenuButton
-        text="스크랩한 프롬프트"
+        text="인기 프롬프트"
         onClick={handlePopularPromptButton}
         type="popular"
+      />
+      <SidebarMenuButton
+        text="스크랩한 프롬프트"
+        onClick={handleScrapPromptButton}
+        type="scrap"
+      />
+      <SidebarMenuButton
+        text="공유한 프롬프트"
+        onClick={handleScrapPromptButton}
+        type="share"
       />
       <SidebarMenuButton
         text="알림"

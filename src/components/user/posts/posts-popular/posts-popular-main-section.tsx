@@ -41,21 +41,36 @@ export default function PostsPopularMainSection({
           </div>
         </div>
       ) : (
-        <div
-          className="ml-12 w-[1268px] h-[304px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
+        <div className="flex gap-12">
+          <div
+            className="ml-12 w-[1268px] h-[304px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
          text-body-medium"
-        >
-          <Image
-            src="/posts/popular-prompt-none.png"
-            width={38}
-            height={38}
-            alt="빈 아이콘"
-          />
-          <div className="mt-3 text-whitebg-disable">
-            부서 공유 페이지가 비어있어요.
+          >
+            <Image
+              src="/posts/popular-prompt-none.png"
+              width={38}
+              height={38}
+              alt="빈 아이콘"
+            />
+            <div className="mt-3 text-whitebg-disable">
+              부서 공유 페이지가 비어있어요.
+            </div>
+            <div className="text-whitebg-disable">
+              당신의 프롬프트를 먼저 공유해보세요.
+            </div>
           </div>
-          <div className="text-whitebg-disable">
-            당신의 프롬프트를 먼저 공유해보세요.
+          <div
+            className="flex flex-col justify-center items-center ml-7 gap-2 cursor-pointer"
+            onClick={handleOtherPosts}
+          >
+            <div
+              className="box-border w-11 h-11 border border-gray-300 
+          rounded-full flex flex-col justify-center items-center relative"
+            >
+              <div className="absolute w-4 h-px border border-whitebg-info" />
+              <div className="absolute w-4 h-px border border-whitebg-info -rotate-90" />
+            </div>
+            <div className="text-body-medium text-whitebg-info">더보기</div>
           </div>
         </div>
       )}

@@ -10,9 +10,11 @@ import {
   SidebarShareIconButton,
 } from "./icon-buttton";
 import { useStore } from "@/store/store";
+import SidebarScrapPromptSvg from "../assets/sidebar-scrap-prompt";
+import SidebarSharePromptSvg from "../assets/sidebar-share-prompt";
 
 type SidebarMenuButtonProps = {
-  type: "popular" | "notification";
+  type: "popular" | "notification" | "scrap" | "share";
   righticon?: string;
   text: string;
   notificationCount?: number;
@@ -52,6 +54,13 @@ export const SidebarMenuButton = ({
     >
       {type == "popular" ? (
         <SidebarPopularPromptSvg color={color} className="ml-2.5" />
+      ) : type == "scrap" ? (
+        <SidebarScrapPromptSvg color={color} className="ml-2.5" />
+      ) : type == "share" ? (
+        <SidebarSharePromptSvg
+          color={color}
+          className="ml-2.5 w-[22px] h-[22px] p-0.5"
+        />
       ) : (
         <SidebarNotificationSvg color={color} className="ml-2.5" />
       )}
