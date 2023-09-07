@@ -17,7 +17,7 @@ export default function LandingHeaderNav() {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    router.push("/");
+    setIsLogin(false);
   };
   return (
     <nav className="hidden md:flex md:grow">
