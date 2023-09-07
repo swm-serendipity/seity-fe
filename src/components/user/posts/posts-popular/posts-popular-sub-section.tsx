@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PostsPopularSubCard } from "./posts-popular-sub-card";
 
 type PostsPopularSubSectionProps = {
@@ -24,8 +25,22 @@ export default function PostsPopularSubSection({
                   <PostsPopularSubCard post={post} key={post.id} />
                 ))
             ) : (
-              <div className="w-[410px] h-[125px] rounded-2xl">
-                등록된 게시글이 없습니다.
+              <div
+                className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
+           text-body-medium"
+              >
+                <Image
+                  src="/posts/popular-prompt-none.png"
+                  width={38}
+                  height={38}
+                  alt="빈 아이콘"
+                />
+                <div className="mt-3 text-whitebg-disable">
+                  최근 공유 페이지가 비어있어요.
+                </div>
+                <div className="text-whitebg-disable">
+                  당신의 프롬프트를 먼저 공유해보세요.
+                </div>
               </div>
             )}
           </div>
@@ -41,8 +56,22 @@ export default function PostsPopularSubSection({
                   <PostsPopularSubCard post={post} key={post.id} />
                 ))
             ) : (
-              <div className="w-[410px] h-[125px] rounded-2xl">
-                등록된 게시글이 없습니다.
+              <div
+                className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
+             text-body-medium"
+              >
+                <Image
+                  src="/posts/popular-prompt-none.png"
+                  width={38}
+                  height={38}
+                  alt="빈 아이콘"
+                />
+                <div className="mt-3 text-whitebg-disable">
+                  명예의 전당 페이지가 비어있어요.
+                </div>
+                <div className="text-whitebg-disable">
+                  당신의 프롬프트를 먼저 공유해보세요.
+                </div>
               </div>
             )}
           </div>
@@ -57,8 +86,22 @@ export default function PostsPopularSubSection({
                   <PostsPopularSubCard post={post} key={post.id} />
                 ))
             ) : (
-              <div className="w-[410px] h-[125px] rounded-2xl">
-                등록된 게시글이 없습니다.
+              <div
+                className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
+           text-body-medium"
+              >
+                <Image
+                  src="/posts/popular-prompt-none.png"
+                  width={38}
+                  height={38}
+                  alt="빈 아이콘"
+                />
+                <div className="mt-3 text-whitebg-disable">
+                  이번주 인기 프롬프트가 비어있어요.
+                </div>
+                <div className="text-whitebg-disable">
+                  당신의 프롬프트를 먼저 공유해보세요.
+                </div>
               </div>
             )}
           </div>
