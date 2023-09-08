@@ -5,10 +5,13 @@ import PostsAllAIChat from "./posts-ai-chat";
 import ProfileIcon from "@/components/ui/posts/profile-icon";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/ui/posts/pagination";
+import { useState } from "react";
+import timeAgo from "@/utils/timeAgo";
 
 export default function PostsMainSection() {
+  const [currentPage, setCurrentPage] = useState(1);
   const { data, isLoading } = useQuery(
-    ["recent-shared-prompt", { pageNumber: 0, pageSize: 4 }],
+    ["recent-shared-prompt", { pageNumber: currentPage - 1, pageSize: 4 }],
     getRecentSharedPrompt
   );
   const router = useRouter();
@@ -23,7 +26,7 @@ export default function PostsMainSection() {
     <div className="w-[1000px] mt-3 mx-12">
       <div className="border border-black w-full"></div>
       <div className="mb-10">
-        {data.result?.map((post: Post) => (
+        {data.result?.posts.map((post: Post) => (
           <div
             className="h-[260px] border-b border-[#E2E2E2] px-7.5 py-6 bg-white cursor-pointer"
             key={post.id}
@@ -52,14 +55,20 @@ export default function PostsMainSection() {
                   </div>
                 </div>
                 <div className="text-body-small text-whitebg-info">
-                  2분 전 · 좋아요 2,020
+                  {`${timeAgo(post.lastModifiedAt)} · 좋아요 ${
+                    post.likeNumber
+                  }`}
                 </div>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <Pagination />
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={data!.result.totalPages}
+      />
     </div>
   );
 }

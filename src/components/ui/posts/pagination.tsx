@@ -1,32 +1,41 @@
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-export default function Pagination() {
-  const [page, setPage] = useState(1);
+type Props = {
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  totalPages: number;
+};
+
+export default function Pagination({
+  currentPage,
+  setCurrentPage,
+  totalPages,
+}: Props) {
   const maxPage = 100; // 예시로 100페이지까지 있다고 가정
 
   const getDisplayPages = () => {
-    const start = page - 4 < 1 ? 1 : page - 4;
-    const end = start + 9 > maxPage ? maxPage : start + 9;
+    const start = currentPage - 4 < 1 ? 1 : currentPage - 4;
+    const end = start + 9 > totalPages ? totalPages : start + 9;
 
     return Array.from({ length: end - start + 1 }, (_, index) => start + index);
   };
 
   const increasePage = () => {
-    if (page < maxPage) setPage((prev) => prev + 1);
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
   };
 
   const decreasePage = () => {
-    if (page > 1) setPage((prev) => prev - 1);
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   const increasePageBy10 = () => {
-    if (page + 10 <= maxPage) setPage((prev) => prev + 10);
+    if (currentPage + 10 <= totalPages) setCurrentPage((prev) => prev + 10);
   };
 
   const decreasePageBy10 = () => {
-    if (page - 10 >= 1) setPage((prev) => prev - 10);
-    else setPage(1);
+    if (currentPage - 10 >= 1) setCurrentPage((prev) => prev - 10);
+    else setCurrentPage(1);
   };
 
   const pages = getDisplayPages();
@@ -54,9 +63,11 @@ export default function Pagination() {
         <button
           key={number}
           className={`${
-            number === page ? "text-white bg-whitebg-default rounded-full" : ""
+            number === currentPage
+              ? "text-white bg-whitebg-default rounded-full"
+              : ""
           } text-body-medium w-9 h-9`}
-          onClick={() => setPage(number)}
+          onClick={() => setCurrentPage(number)}
         >
           {number}
         </button>
