@@ -13,6 +13,13 @@ type postPromptAskProps = {
   isAnsweringPersist: boolean;
   setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
   setPopupData: (popupData: PopupData) => void;
+  detectionData?:
+    | ({
+        index: number;
+        length: number;
+        entity: string;
+      } | null)[]
+    | null;
 };
 
 const postPromptAsk = async ({
@@ -25,18 +32,28 @@ const postPromptAsk = async ({
   isAnsweringPersist,
   setIsAnsweringPersist,
   setPopupData,
+  detectionData = null,
 }: postPromptAskProps) => {
   const chatId = Date.now();
+
+  const bodyData =
+    detectionData != null
+      ? JSON.stringify({
+          sessionId: chatSessionId ?? chatSessionId,
+          detectionData: detectionData,
+          question: text,
+        })
+      : JSON.stringify({
+          sessionId: chatSessionId ?? chatSessionId,
+          question: text,
+        });
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
-    body: JSON.stringify({
-      sessionId: chatSessionId ? chatSessionId : undefined,
-      question: text,
-    }),
+    body: bodyData,
   });
 
   if (!response.ok) {
@@ -83,7 +100,6 @@ const postPromptAsk = async ({
       buffer = buffer.slice(boundary + 2);
       const parsedData = JSON.parse(data.slice(5));
 
-      // 계속 답변이 필요
       if (parsedData.finishReason === "length") {
         setIsAnsweringPersist(true);
       }

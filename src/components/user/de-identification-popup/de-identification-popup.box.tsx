@@ -26,6 +26,7 @@ export default function DeIdentificationPopupBox() {
   };
 
   const handleSendButton = () => {
+    console.log(deIdentificationData);
     const deIdentificationText = deIdentificationData
       .map((data) => {
         if (data.deIdentificateData.length > 0) {
@@ -38,6 +39,34 @@ export default function DeIdentificationPopupBox() {
         }
       })
       .join("");
+
+    const detectionData = deIdentificationData
+      ? deIdentificationData
+          .map((data) => {
+            let indexCounter = 0;
+            if (data.entity.length == 0) {
+            } else if (!data.changed && data.entity.length > 0) {
+              return {
+                index: data.startIndex - indexCounter,
+                length: data.deIdentificateData.length,
+                entity: "PRIVACY",
+              };
+            } else if (data.changed && data.entity.length > 0) {
+              const tempData = {
+                index: data.startIndex - indexCounter,
+                length: data.originalData.length,
+                entity: "PRIVACY",
+              };
+              indexCounter +=
+                data.originalData.length - data.deIdentificateData.length;
+              return tempData;
+            }
+            return null;
+          })
+          .filter((item) => {
+            if (item != null) return item;
+          })
+      : null;
     setChatData((prev) => {
       const newData = [...prev];
       newData[newData.length - 1].message = deIdentificationText;
@@ -54,6 +83,7 @@ export default function DeIdentificationPopupBox() {
       isAnsweringPersist,
       setIsAnsweringPersist,
       setPopupData,
+      detectionData,
     });
     toggleDeIdentificationPopup();
   };

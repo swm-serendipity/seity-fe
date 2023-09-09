@@ -6,4 +6,5 @@ interface DeIdentification {
   text: string;
   type: string;
   entity: string;
+  startIndex: number;
 }
