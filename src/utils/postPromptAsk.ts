@@ -18,6 +18,7 @@ type postPromptAskProps = {
         index: number;
         length: number;
         entity: string;
+        isDeidentified: boolean;
       } | null)[]
     | null;
 };
@@ -40,13 +41,16 @@ const postPromptAsk = async ({
     detectionData != null
       ? JSON.stringify({
           sessionId: chatSessionId ?? chatSessionId,
-          detectionData: detectionData,
+          detections: detectionData,
           question: text,
         })
       : JSON.stringify({
           sessionId: chatSessionId ?? chatSessionId,
+          detections: null,
           question: text,
         });
+
+  console.log(bodyData);
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {
     method: "POST",
     headers: {
@@ -79,15 +83,19 @@ const postPromptAsk = async ({
   }
   reader.read().then(function processText({ done, value }): any {
     if (done) {
-      setPopupData({
-        type: "title-ok",
-        title: "실패",
-        content: "답변을 생성하는데 실패했습니다. 다시 시도해주세요.",
-        handleOk: () => {},
-        handleCancel: () => {},
-        isVisible: true,
-      });
       setIsAnswering(false);
+      addChatData({
+        id: "ai-" + chatId,
+        user: "ai",
+        message: aiRes,
+        timestamp: new Date().toISOString(),
+      });
+      setAnsweringData({
+        id: "",
+        user: "",
+        message: "",
+        timestamp: "",
+      });
       return;
     }
 
