@@ -1,26 +1,31 @@
-import getRecentSharedPrompt from "@/apis/get-recent-shared-prompt";
-import { useQuery } from "@tanstack/react-query";
 import PostsAllUserChat from "./posts-user-chat";
 import PostsAllAIChat from "./posts-ai-chat";
 import ProfileIcon from "@/components/ui/posts/profile-icon";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/ui/posts/pagination";
-import { useState } from "react";
 import timeAgo from "@/utils/timeAgo";
+import Image from "next/image";
 
-export default function PostsMainSection() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data, isLoading } = useQuery(
-    ["recent-shared-prompt", { pageNumber: currentPage - 1, pageSize: 4 }],
-    getRecentSharedPrompt
-  );
+type Props = {
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  data: any;
+};
+
+export default function PostsMainSection({
+  currentPage,
+  setCurrentPage,
+  data,
+}: Props) {
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
     router.push(`/share/${id}`);
   };
 
-  if (isLoading) return <div></div>;
+  const handleScrapClick = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+  };
 
   return (
     <div className="w-[1000px] mt-3 mx-12">
@@ -34,8 +39,18 @@ export default function PostsMainSection() {
           >
             <div className="flex flex-col">
               <div className="h-[190px]">
-                <div className="line-clamp-1 mr-10 text-body-large font-bold">
-                  {post.title}
+                <div className="flex justify-between">
+                  <div className="line-clamp-1 mr-10 text-body-large font-bold">
+                    {post.title}
+                  </div>
+                  <button onClick={handleScrapClick}>
+                    <Image
+                      src="/share/share-scrap-on-black.png"
+                      width={16}
+                      height={16}
+                      alt="스크랩"
+                    />
+                  </button>
                 </div>
                 <PostsAllUserChat
                   text={post.firstQna.question}

@@ -10,7 +10,7 @@ export default function SidebarMenu() {
   };
 
   const handleScrapPromptButton = () => {
-    router.push("/posts/all");
+    router.push("/posts/mypage/scrap");
   };
 
   return (

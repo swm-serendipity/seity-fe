@@ -43,21 +43,20 @@ export default function DeIdentificationPopupBox() {
       ? deIdentificationData
           .map((data) => {
             let indexCounter = 0;
-            console.log(data);
             if (data.entity.length == 0) {
             } else if (!data.changed && data.entity.length > 0) {
               return {
                 index: data.startIndex - indexCounter,
                 length: data.deIdentificateData.length,
                 entity: "PRIVACY",
-                isDeidentified: false,
+                isDeIdentified: false,
               };
             } else if (data.changed && data.entity.length > 0) {
               const tempData = {
                 index: data.startIndex - indexCounter,
                 length: data.originalData.length,
                 entity: "PRIVACY",
-                isDeidentified: true,
+                isDeIdentified: true,
               };
               indexCounter +=
                 data.originalData.length - data.deIdentificateData.length;

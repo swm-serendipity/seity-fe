@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import { useStore } from "@/store/store";
 import PromptAIChat from "../prompt-ai-chat";
@@ -10,6 +10,8 @@ import PromptScrapButton from "./prompt-scrap-button";
 import { useMutation } from "@tanstack/react-query";
 import postShareLike from "@/apis/post-share-like";
 import deleteShareLike from "@/apis/delete-share-like";
+import postShareScrap from "@/apis/post-share-scrap";
+import deleteShareScrap from "@/apis/delete-share-scrap";
 
 type PromptSharedChatBoxProps = {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -20,13 +22,14 @@ export function PromptSharedChatBox({
 }: PromptSharedChatBoxProps) {
   const { chatData, setPopupData, sharePostData, setSharePostData } =
     useStore();
+  const [isScraped, setIsScraped] = useState<boolean>(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const isBottom = useBottomScrollListener(containerRef);
 
   const handleClickToBottom = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  const { mutate } = useMutation(
+  const { mutate: mutateLike } = useMutation(
     sharePostData.like ? postShareLike : deleteShareLike,
     {
       onMutate: () => {
@@ -42,20 +45,27 @@ export function PromptSharedChatBox({
       },
     }
   );
+  //To-Do scrap api response 업데이트 되었을때 기능 추가
+  const { mutate: mutateScrap } = useMutation(
+    sharePostData.like ? postShareScrap : deleteShareScrap,
+    {
+      onMutate: () => {
+        const previousData = isScraped;
+        setIsScraped(!isScraped);
+        return previousData;
+      },
+      onError: (error, variables, previousData) => {
+        setIsScraped(previousData!);
+      },
+    }
+  );
 
   const handleScrapButton = () => {
-    setPopupData({
-      type: "title-ok",
-      title: "아직 사용할 수 없는 기능이에요!",
-      content: "스크랩 기능은 곧 사용하실 수 있도록 준비할게요!",
-      handleCancel: () => {},
-      handleOk: () => {},
-      isVisible: true,
-    });
+    mutateScrap({ postId: sharePostData.id });
   };
 
   const handleLikeButton = () => {
-    mutate({ postId: sharePostData.id });
+    mutateLike({ postId: sharePostData.id });
   };
 
   return (
@@ -65,7 +75,7 @@ export function PromptSharedChatBox({
         onClick={handleLikeButton}
         isLiked={sharePostData.like}
       />
-      <PromptScrapButton onClick={handleScrapButton} />
+      <PromptScrapButton onClick={handleScrapButton} isScraped={isScraped} />
 
       {chatData.map((chat) => {
         if (chat.user === "user") {
