@@ -12,9 +12,16 @@ import {
 import { useStore } from "@/store/store";
 import SidebarScrapPromptSvg from "../assets/sidebar-scrap-prompt";
 import SidebarSharePromptSvg from "../assets/sidebar-share-prompt";
+import { SidebarButtonType } from "@/type/sidebar-button";
+import SidebarDashboardSvg from "../assets/sidebar-dashboard";
+import SidebarUserManagementSvg from "../assets/sidebar-user-management";
+import SidebarStatsticsSvg from "../assets/sidebar-statstics";
+import SidebarMessageManagementSvg from "../assets/sidebar-message-management";
+import SidebarForbiddenWordManagementSvg from "../assets/sidebar-forbidden-word-management";
+import SidebarSettingSvg from "../assets/sidebar-setting";
 
 type SidebarMenuButtonProps = {
-  type: "popular" | "notification" | "scrap" | "share";
+  type: SidebarButtonType;
   righticon?: string;
   text: string;
   notificationCount?: number;
@@ -52,18 +59,7 @@ export const SidebarMenuButton = ({
     active:bg-sidebar-button-click text-body-medium items-center"
       onMouseDown={handleMouseDown}
     >
-      {type == "popular" ? (
-        <SidebarPopularPromptSvg color={color} className="ml-2.5" />
-      ) : type == "scrap" ? (
-        <SidebarScrapPromptSvg color={color} className="ml-2.5" />
-      ) : type == "share" ? (
-        <SidebarSharePromptSvg
-          color={color}
-          className="ml-2.5 w-[22px] h-[22px] p-0.5"
-        />
-      ) : (
-        <SidebarNotificationSvg color={color} className="ml-2.5" />
-      )}
+      <SidebarButtonIcon type={type} color={color} />
       <p className="ml-1.5" style={{ color: color }}>
         {text}
       </p>
@@ -81,6 +77,61 @@ export const SidebarMenuButton = ({
       />
     </button>
   );
+};
+
+type SideBarButtonProps = {
+  type: SidebarButtonType;
+  color: string;
+};
+
+const SidebarButtonIcon = ({ type, color }: SideBarButtonProps) => {
+  if (type == "notification") {
+    return <SidebarNotificationSvg color={color} className="ml-2.5" />;
+  } else if (type == "popular") {
+    return <SidebarPopularPromptSvg color={color} className="ml-2.5" />;
+  } else if (type == "scrap") {
+    return <SidebarScrapPromptSvg color={color} className="ml-2.5" />;
+  } else if (type == "share") {
+    return (
+      <SidebarSharePromptSvg
+        color={color}
+        className="ml-2.5 w-[22px] h-[22px] p-0.5"
+      />
+    );
+  } else if (type == "dashboard") {
+    return <SidebarDashboardSvg color={color} className="ml-2.5" />;
+  } else if (type == "user-management") {
+    return (
+      <SidebarUserManagementSvg
+        color={color}
+        className="ml-2.5 w-[22px] h-[22px]"
+      />
+    );
+  } else if (type == "statistics") {
+    return (
+      <SidebarStatsticsSvg color={color} className="ml-2.5 w-[22px] h-[22px]" />
+    );
+  } else if (type == "forbidden-word-management") {
+    return (
+      <SidebarForbiddenWordManagementSvg
+        color={color}
+        className="ml-2.5 w-[22px] h-[22px]"
+      />
+    );
+  } else if (type == "message-management") {
+    return (
+      <SidebarMessageManagementSvg
+        color={color}
+        className="ml-2.5 w-[22px] h-[22px]"
+      />
+    );
+  } else if (type == "setting") {
+    return (
+      <SidebarSettingSvg color={color} className="ml-2.5 w-[22px] h-[22px]" />
+    );
+  } else {
+    return <> </>;
+  }
 };
 
 type SidebarHistoryButtonProps = {

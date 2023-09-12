@@ -10,6 +10,7 @@ import PostsAllHeader from "./posts-all-header";
 import PostsMainSection from "./posts-main-section";
 import { useQuery } from "@tanstack/react-query";
 import getRecentSharedPrompt from "@/apis/get-recent-shared-prompt";
+import getScrapedSharedPrompt from "@/apis/get-scraped-shared-prompt";
 
 type Props = {
   type: "all" | "scrap" | "share";
@@ -27,7 +28,7 @@ export default function PostAllBox({ type }: Props) {
 
   const getQueryFunction = () => {
     if (type === "all") return getRecentSharedPrompt;
-    else if (type === "scrap") return getRecentSharedPrompt;
+    else if (type === "scrap") return getScrapedSharedPrompt;
     else return getRecentSharedPrompt;
   };
 
@@ -42,6 +43,7 @@ export default function PostAllBox({ type }: Props) {
       <div className="flex flex-col flex-1 h-screen bg-[#FAFBFD] z-10 w-full overflow-auto">
         <PostsAllHeader type={type} />
         <PostsMainSection
+          type={type}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           data={data}

@@ -5,16 +5,19 @@ import { useRouter } from "next/navigation";
 import Pagination from "@/components/ui/posts/pagination";
 import timeAgo from "@/utils/timeAgo";
 import Image from "next/image";
+import PostsTypeButton from "./posts-type-button";
 
 type Props = {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  type: "all" | "scrap" | "share";
   data: any;
 };
 
 export default function PostsMainSection({
   currentPage,
   setCurrentPage,
+  type,
   data,
 }: Props) {
   const router = useRouter();
@@ -39,19 +42,7 @@ export default function PostsMainSection({
           >
             <div className="flex flex-col">
               <div className="h-[190px]">
-                <div className="flex justify-between">
-                  <div className="line-clamp-1 mr-10 text-body-large font-bold">
-                    {post.title}
-                  </div>
-                  <button onClick={handleScrapClick}>
-                    <Image
-                      src="/share/share-scrap-on-black.png"
-                      width={16}
-                      height={16}
-                      alt="스크랩"
-                    />
-                  </button>
-                </div>
+                <PostsTypeButton title={post.title} type={type} />
                 <PostsAllUserChat
                   text={post.firstQna.question}
                   user={post.memberName}
