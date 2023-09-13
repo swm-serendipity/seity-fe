@@ -18,8 +18,13 @@ export default function LoginInput() {
     onSuccess: (data) => {
       localStorage.setItem("accessToken", data.result.accessToken);
       localStorage.setItem("refreshToken", data.result.refreshToken);
+      const role: string[] = data.result.role;
       setLoginId("");
       setPassword("");
+      if (role.includes("ADMIN")) {
+        router.push("/dashboard");
+        return;
+      }
       router.push("/chat");
     },
     onError: (error) => {
