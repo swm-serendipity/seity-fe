@@ -17,6 +17,7 @@ module.exports = {
       },
       padding: {
         4.5: "18px",
+        5.5: "22px",
         7.5: "30px",
       },
       margin: {
@@ -202,6 +203,11 @@ module.exports = {
         },
         ".posts-sub-card": {
           boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)",
+        },
+
+        ".dashboard-card": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.1)",
+          "border-radius": "10px",
         },
       };
       addUtilities(newUtilities);

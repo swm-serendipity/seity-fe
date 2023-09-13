@@ -1,7 +1,7 @@
 "use client";
 
-import ChatBox from "@/components/user/chat-box";
+import DashboardBox from "@/components/admin/dashboard/dashboard-box";
 
-export default function ChatPage() {
-  return <ChatBox />;
+export default function DashboardPage() {
+  return <DashboardBox />;
 }

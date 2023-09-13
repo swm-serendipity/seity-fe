@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import loadingLottie from "../assets/white-loading-animation.json";
 type ColoredButtonProps = {
   buttonText: string;
-  color: "point" | "default" | "white";
+  color: "point" | "default" | "white" | "gray";
   textColor: "black" | "white";
   width?: number;
   height?: number;
@@ -36,7 +36,9 @@ export const ColoredButton = ({
             ? colors.blackbg.point
             : color == "white"
             ? colors.blackbg.default
-            : colors.whitebg.default,
+            : color == "default"
+            ? colors.whitebg.default
+            : "#E7E7E7",
       }}
     >
       {isLoading ? (

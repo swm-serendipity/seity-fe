@@ -1,8 +1,8 @@
 import { useStore } from "@/store/store";
 import PromptBox from "./prompt/prompt-box";
 import DeIdentificationPopupBox from "./de-identification-popup/de-identification-popup.box";
-import NotificationBox from "./notification/notification-box";
-import NotificationBackground from "./notification/notification-background";
+import NotificationBox from "../common/notification/notification-box";
+import NotificationBackground from "../common/notification/notification-background";
 import { Fragment } from "react";
 import SharePopupBox from "./share-popup/share-popup-box";
 import Popup from "../ui/popup/popup";

@@ -17,7 +17,7 @@ export default function SidebarMenu() {
   };
 
   const handleDashboardButton = () => {
-    // router.push("/posts/mypage/scrap");
+    router.push("/dashboard");
   };
 
   return (
@@ -30,7 +30,7 @@ export default function SidebarMenu() {
       />
       <SidebarMenuButton
         text="대시보드"
-        onClick={handleDisabledButton}
+        onClick={handleDashboardButton}
         type="dashboard"
       />
       <SidebarMenuButton

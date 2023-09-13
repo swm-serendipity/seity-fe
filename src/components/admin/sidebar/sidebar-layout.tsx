@@ -12,7 +12,7 @@ export default function AdminSidebarLayout({ children }: PropsWithChildren) {
   const { isLoading } = useRequireLogin();
 
   return (
-    <div className="flex z-50 h-screen max-w-full">
+    <div className="flex z-50 h-screen max-w-full bg-[#FAFAFA]">
       <SideBarBox
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}
