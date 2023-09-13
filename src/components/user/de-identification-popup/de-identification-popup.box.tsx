@@ -49,14 +49,14 @@ export default function DeIdentificationPopupBox() {
                 index: data.startIndex - indexCounter,
                 length: data.deIdentificateData.length,
                 entity: "PRIVACY",
-                isDeIdentified: false,
+                isDeIdentified: true,
               };
             } else if (data.changed && data.entity.length > 0) {
               const tempData = {
                 index: data.startIndex - indexCounter,
                 length: data.originalData.length,
                 entity: "PRIVACY",
-                isDeIdentified: true,
+                isDeIdentified: false,
               };
               indexCounter +=
                 data.originalData.length - data.deIdentificateData.length;
