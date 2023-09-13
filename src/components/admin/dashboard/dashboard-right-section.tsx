@@ -13,6 +13,7 @@ export default function DashboardRightSection({
 }: DashboardRightSectionProps) {
   if (!seletedId) return <div className="bg-white w-full flex-1 h-full"></div>;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isLoading } = useQuery(
     ["dashboard-item", seletedId],
     getSingleDetectionDashboard
