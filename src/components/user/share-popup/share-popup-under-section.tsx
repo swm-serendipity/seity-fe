@@ -12,7 +12,7 @@ type SharePopupUnderSectionProps = {
 export default function SharePopupUnderSection({
   mutate,
 }: SharePopupUnderSectionProps) {
-  const { toggleSharePopup, setPopupData, chatSessionId } = useStore();
+  const { chatSessionId } = useStore();
   const [titleText, setTitleText] = useState("");
   const [mentionUsers, setMentionUsers] = useState<
     {

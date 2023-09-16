@@ -70,17 +70,16 @@ export default function SharePopupMentionInput({
           @{user.name},&nbsp;
         </div>
       ))}
-      {!isLoading && (
+      {!isLoading ? (
         <MentionsInput
           value={mentionText}
           onChange={handleMentionChange}
           onKeyDown={pressMentionInput}
           className="w-full bg-[#FAFAFA]"
-          placeholder="닉네임을 입력하여 언급하기"
+          placeholder="'@'를 입력해 멤버를 언급하세요!"
           singleLine
         >
           <Mention
-            className="h-10"
             trigger="@"
             data={mentionData}
             displayTransform={(id, display) => `@${display} `}
@@ -105,17 +104,22 @@ export default function SharePopupMentionInput({
               focused: boolean
             ) =>
               focused ? (
-                <div key={index} className="py-1 bg-blue-100">
+                <div
+                  key={index}
+                  className="py-1 bg-blue-100 px-1 text-body-medium"
+                >
                   {suggestion.display}
                 </div>
               ) : (
-                <div key={index} className="py-1">
+                <div key={index} className="py-1 px-1 text-body-medium">
                   {suggestion.display}
                 </div>
               )
             }
           />
         </MentionsInput>
+      ) : (
+        <div className="w-full text-gray-400">로딩중</div>
       )}
     </div>
   );

@@ -16,13 +16,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <NextTopLoader
-          speed={500}
-          showSpinner={false}
-          color="#FFD13A"
-          crawlSpeed={500}
-          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-        />
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>

@@ -12,6 +12,7 @@ type PromptChatBoxProps = {
 export function PromptChatBox({ containerRef }: PromptChatBoxProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const { chatData, isAnswering, answeringData } = useStore();
+  const [isLoading, setIsLoading] = useState(true);
   const isBottom = useBottomScrollListener(containerRef);
   const [isInitialChat, setIsInitialChat] = useState(true);
 
@@ -22,6 +23,7 @@ export function PromptChatBox({ containerRef }: PromptChatBoxProps) {
   useLayoutEffect(() => {
     if (chatData.length >= 1 && isInitialChat) {
       setIsInitialChat(false);
+      setIsLoading(false);
       bottomRef.current?.scrollIntoView({ behavior: "instant" });
     } else if (chatData.length === 0 && !isInitialChat) {
       setIsInitialChat(true);

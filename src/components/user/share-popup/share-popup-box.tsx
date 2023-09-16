@@ -1,12 +1,10 @@
 import { useStore } from "@/store/store";
 import ShareHeader from "./share-popup-header";
 import ShareChatSection from "./share-popup-chat-section";
-import ShareTitleSection from "./share-popup-title-section";
 import { useMutation } from "@tanstack/react-query";
 import postSharePrompt from "@/apis/post-share-prompt";
 import Lottie from "lottie-react";
 import loadingLottie from "../../assets/loading-animation.json";
-import { useState } from "react";
 import SharePopupUnderSection from "./share-popup-under-section";
 
 export default function SharePopupBox() {
