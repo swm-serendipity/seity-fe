@@ -9,6 +9,7 @@ import useRequireLogin from "@/hooks/useRequireLogin";
 export default function SidebarLayout({ children }: PropsWithChildren) {
   const [showSidebar, setShowSidebar, showHiddenButton, setShowHiddenButton] =
     useSidebarWindowResize(true);
+
   const { isLoading } = useRequireLogin();
 
   return (
