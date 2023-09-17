@@ -21,7 +21,7 @@ export default function PostsPopularMainSection({
       {posts.length > 0 ? (
         <div
           className="flex gap-5 flex-shrink-0 whitespace-nowrap overflow-x-auto custom-scrollbar
-         ml-12 pb-1 last:pr-6"
+         pl-12 pb-2 last:pr-6"
         >
           {posts.slice(0, 3).map((post) => {
             return <PostsPopularMainCard post={post} key={post.id} />;

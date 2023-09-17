@@ -41,7 +41,10 @@ export default function PostAllBox({ type }: Props) {
   return (
     <div className="relative flex flex-grow w-full overflow-clip">
       <div className="flex flex-col flex-1 h-screen bg-[#FAFBFD] z-10 w-full overflow-auto">
-        <PostsAllHeader type={type} />
+        <PostsAllHeader
+          type={type}
+          totalPostNumber={data.result.totalPostNumber!}
+        />
         <PostsMainSection
           type={type}
           currentPage={currentPage}

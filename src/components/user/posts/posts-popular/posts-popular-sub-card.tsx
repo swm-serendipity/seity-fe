@@ -14,7 +14,7 @@ export function PostsPopularSubCard({ post }: PostsPopularSubCardProps) {
   };
   return (
     <div
-      className="bg-white w-[410px] h-[125px] rounded-2xl py-5 px-5 flex-col flex gap-2.5 posts-sub-card  cursor-pointer"
+      className="bg-white w-[410px] h-[125px] rounded-2xl py-5 px-5 flex-col flex gap-2.5 posts-sub-card cursor-pointer m-2"
       onClick={handleCardClick}
     >
       <div className="flex justify-between items-center">

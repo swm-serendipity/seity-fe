@@ -13,11 +13,11 @@ export default function PostsPopularSubSection({
   recentSharedPosts,
 }: PostsPopularSubSectionProps) {
   return (
-    <div className="flex mt-14 w-full">
-      <div className="ml-12 flex overflow-x-auto custom-scrollbar gap-5 pb-1 mb-4">
+    <div className="flex pt-12 w-full">
+      <div className="pl-8 flex overflow-x-auto custom-scrollbar gap-5 pb-1 mb-4">
         <div className="flex-col flex">
-          <p className="font-h1 text-h3 mb-4">최근 공유된 프롬프트✨</p>
-          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar pb-4">
+          <p className="font-h1 text-h3 pl-4 mb-4">최근 공유된 프롬프트✨</p>
+          <div className="flex flex-col overflow-y-auto custom-scrollbar pb-4 ml-2 -mt-2">
             {recentSharedPosts.length > 0 ? (
               recentSharedPosts
                 .slice(0, 4)
@@ -27,7 +27,7 @@ export default function PostsPopularSubSection({
             ) : (
               <div
                 className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
-           text-body-medium"
+           text-body-medium mr-4 mb-4 ml-6 mt-2"
               >
                 <Image
                   src="/posts/popular-prompt-none.png"
@@ -48,7 +48,7 @@ export default function PostsPopularSubSection({
 
         <div className="flex-col flex">
           <p className="font-h1 text-h3 mb-4">명예의 전당🥇</p>
-          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar pb-4">
+          <div className="flex flex-col overflow-y-auto custom-scrollbar pb-4 -ml-2 -mt-2">
             {allHotPosts.length > 0 ? (
               allHotPosts
                 .slice(0, 4)
@@ -58,7 +58,7 @@ export default function PostsPopularSubSection({
             ) : (
               <div
                 className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
-             text-body-medium"
+           text-body-medium mr-4 mb-4 ml-6 mt-2"
               >
                 <Image
                   src="/posts/popular-prompt-none.png"
@@ -78,7 +78,7 @@ export default function PostsPopularSubSection({
         </div>
         <div className="flex-col flex mr-12">
           <p className="font-h1 text-h3 mb-4">이번 주 인기 프롬프트🥇</p>
-          <div className="flex gap-2.5 flex-col overflow-y-auto custom-scrollbar pb-4">
+          <div className="flex flex-col overflow-y-auto custom-scrollbar pb-4 -ml-2 -mt-2">
             {recentHotPosts.length > 0 ? (
               recentHotPosts
                 .slice(0, 4)
@@ -88,7 +88,7 @@ export default function PostsPopularSubSection({
             ) : (
               <div
                 className="w-[410px] h-[530px] bg-white rounded-2xl flex flex-col justify-center items-center posts-main-card
-           text-body-medium"
+         text-body-medium mr-4 mb-4 ml-6 mt-2"
               >
                 <Image
                   src="/posts/popular-prompt-none.png"

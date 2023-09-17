@@ -45,7 +45,7 @@ export const NotificationIconButton = ({
 }: NotificationButtonProps) => {
   return (
     <button
-      className="w-[22px] h-[22px] ml-3.5 bg-white rounded-full"
+      className="w-[30px] h-[30px] ml-3.5 bg-white rounded-full border flex justify-center items-center"
       onClick={onClick}
     >
       <SidebarNotificationSvg isAlert={isAlert} color={colors.whitebg.info} />
@@ -60,7 +60,7 @@ type PopularPromptButtonProps = {
 export const PopularPromptButton = ({ onClick }: PopularPromptButtonProps) => {
   return (
     <button
-      className="w-[22px] h-[22px] ml-2.5 bg-white rounded-full"
+      className="w-[30px] h-[30px] ml-2.5 bg-white rounded-full border flex justify-center items-center"
       onClick={onClick}
     >
       <SidebarPopularPromptSvg color={colors.whitebg.info} />

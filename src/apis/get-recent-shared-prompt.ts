@@ -9,7 +9,6 @@ const getRecentSharedPrompt = async ({ queryKey }: Args) => {
   const { data } = await axiosInstance.get(
     `/post/feed?pageNumber=${pageNumber}&pageSize=${pageSize}`
   );
-
   return data;
 };
 

@@ -60,7 +60,7 @@ export default function PostPopularBox() {
         <PostsPopularMainSection posts={results[0].data!.result} />
         <PostsPopularSubSection
           recentHotPosts={results[0].data!.result}
-          recentSharedPosts={results[1].data!.result}
+          recentSharedPosts={results[1].data!.result.posts}
           allHotPosts={results[2].data!.result}
         />
       </div>

@@ -25,11 +25,11 @@ export default function SidebarMenu() {
         onClick={handleScrapPromptButton}
         type="scrap"
       />
-      <SidebarMenuButton
+      {/* <SidebarMenuButton
         text="공유한 프롬프트"
         onClick={handleScrapPromptButton}
         type="share"
-      />
+      /> */}
       <SidebarMenuButton
         text="알림"
         onClick={toggleNotification}
