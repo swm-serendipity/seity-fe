@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import NotificationBox from "@/components/common/notification/notification-box";
 import NotificationBackground from "@/components/common/notification/notification-background";
 import Popup from "@/components/ui/popup/popup";
-import DashboardHeader from "./dashboard-header";
 import DashboardSection from "./dashboard-section";
 
 export default function DashboardBox() {

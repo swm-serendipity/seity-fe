@@ -35,7 +35,7 @@ export default function DashboardLeftCard({
               backgroundColor: nameBackgroundColor,
             }}
           >
-            {/* {name.slice(0, 1)} */}
+            {name.slice(0, 1)}
           </div>
           <div className="text-body-medium text-whitebg-serve">{name}</div>
         </div>

@@ -1,35 +1,26 @@
 import React, { useEffect, useRef } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { InfiniteData } from "@tanstack/react-query";
 import DashboardLeftCard from "./dashboard-left-card";
-import getDetectionDashboard from "@/apis/get-detection-dashboard";
 import { convertToDotFormat } from "@/utils/formatTime";
 
 type DashboardLeftSectionProps = {
   seletedId: string | null;
   handleCard: (id: string) => void;
+  data: InfiniteData<any> | undefined;
+  isLoading: boolean;
+  fetchNextPage: () => void;
+  hasNextPage: boolean | undefined;
 };
 
 export default function DashboardLeftSection({
   seletedId,
   handleCard,
+  data,
+  isLoading,
+  fetchNextPage,
+  hasNextPage,
 }: DashboardLeftSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ["dashboard"],
-    ({ pageParam = 0 }) => getDetectionDashboard(pageParam),
-    {
-      getNextPageParam: (lastPage, allPages) => {
-        if (
-          lastPage.result.detections &&
-          lastPage.result.detections.length > 0
-        ) {
-          return allPages.length;
-        }
-        return false;
-      },
-    }
-  );
 
   useEffect(() => {
     const handleScroll = (e: Event) => {

@@ -1,15 +1,22 @@
+import deleteDetectionDashboard from "@/apis/delete-detection-dashboard";
 import getSingleDetectionDashboard from "@/apis/get-single-detection-dashboard";
 import { ColoredButton } from "@/components/ui/color-button";
+import { useStore } from "@/store/store";
 import { convertToDotFormat } from "@/utils/formatTime";
 import { highlightedDetectionList } from "@/utils/highlightedDetectionList";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { Dispatch, SetStateAction } from "react";
 
 type DashboardRightSectionProps = {
   seletedId: string | null;
+  setSelectedId: Dispatch<SetStateAction<string | null>>;
+  refetch: () => void;
 };
 
 export default function DashboardRightSection({
   seletedId,
+  setSelectedId,
+  refetch,
 }: DashboardRightSectionProps) {
   if (!seletedId) return <div className="bg-white w-full flex-1 h-full"></div>;
 
@@ -18,6 +25,39 @@ export default function DashboardRightSection({
     ["dashboard-item", seletedId],
     getSingleDetectionDashboard
   );
+
+  const { mutate } = useMutation(deleteDetectionDashboard, {
+    onSuccess: (data) => {
+      refetch();
+    },
+  });
+  const { setPopupData } = useStore();
+
+  const handleIgnoreButton = () => {
+    console.log(seletedId);
+    setPopupData({
+      type: "title-ok-cancel",
+      title: "알림",
+      content: "정말 삭제하시겠습니까?",
+      handleCancel: () => {},
+      handleOk: () => {
+        setSelectedId(null);
+        mutate({ id: seletedId });
+      },
+      isVisible: true,
+    });
+  };
+
+  const handleRequestButton = () => {
+    setPopupData({
+      type: "title-ok",
+      title: "알림",
+      content: "소명 요청 기능은 비활성화 되어 있어요.",
+      handleCancel: () => {},
+      handleOk: () => {},
+      isVisible: true,
+    });
+  };
 
   if (isLoading) return <div className="bg-white w-full flex-1 h-full"></div>;
   const result: DetectionSingleItem = data.result;
@@ -68,6 +108,7 @@ export default function DashboardRightSection({
             textColor="black"
             width={90}
             height={36}
+            onClick={handleIgnoreButton}
           />
           <ColoredButton
             buttonText="소명 요청"
@@ -75,6 +116,7 @@ export default function DashboardRightSection({
             textColor="black"
             width={90}
             height={36}
+            onClick={handleRequestButton}
           />
         </div>
       </div>
