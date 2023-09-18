@@ -147,7 +147,7 @@ export const SidebarHistoryButton = ({
   onDeleteButtonClick,
 }: SidebarHistoryButtonProps) => {
   const [color, setColor] = useState(colors.blackbg.default);
-  const { toggleSharePopup, isAnswering, setPopupData } = useStore();
+  const { toggleSharePopup, isAnswering, setPopupData, chatData } = useStore();
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -176,6 +176,16 @@ export const SidebarHistoryButton = ({
         type: "title-ok",
         title: "공유하기",
         content: "진행중인 채팅이 있습니다. 답변을 마친 후에 공유해주세요!",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+      });
+      return;
+    } else if (chatData.length == 0) {
+      setPopupData({
+        type: "title-ok",
+        title: "공유하기",
+        content: "데이터 로딩중입니다. 잠시후 다시 시도해주세요!",
         handleCancel: () => {},
         handleOk: () => {},
         isVisible: true,
