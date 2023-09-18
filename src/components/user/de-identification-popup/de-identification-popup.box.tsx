@@ -89,6 +89,14 @@ export default function DeIdentificationPopupBox() {
     toggleDeIdentificationPopup();
   };
 
+  const handleCancelButton = () => {
+    setChatData((prev) => {
+      return prev.slice(0, prev.length - 1);
+    });
+    setIsAnswering(false);
+    toggleDeIdentificationPopup();
+  };
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-auto">
       <div
@@ -107,6 +115,7 @@ export default function DeIdentificationPopupBox() {
           deidentificateDatas={deIdentificationData}
           setDeidentificateDatas={setDeIdentificationData}
           handleSendButton={handleSendButton}
+          handleCancelButton={handleCancelButton}
         />
       </div>
     </div>

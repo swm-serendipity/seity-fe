@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import DeIdentificationCard from "./de-identification-card";
+import { ColoredButton } from "@/components/ui/color-button";
 
 type DeIdentificationCardsBoxProps = {
   deidentificateDatas: DeIdentification[];
@@ -7,6 +8,7 @@ type DeIdentificationCardsBoxProps = {
   id: string;
   setId: Dispatch<SetStateAction<string>>;
   handleSendButton: () => void;
+  handleCancelButton: () => void;
 };
 
 export default function DeIdentificationCardsBox({
@@ -15,6 +17,7 @@ export default function DeIdentificationCardsBox({
   id,
   setId,
   handleSendButton,
+  handleCancelButton,
 }: DeIdentificationCardsBoxProps) {
   return (
     <div className="flex-1 flex flex-col">
@@ -48,14 +51,23 @@ export default function DeIdentificationCardsBox({
             );
         })}
       </div>
-      <div className="w-full flex justify-end h-[50px] px-5 mt-1">
-        <button
+      <div className="w-full flex justify-end h-[50px] px-5 mt-1 gap-4">
+        <ColoredButton
+          buttonText="질의 취소"
+          color="white"
+          textColor="black"
+          onClick={handleCancelButton}
+          width={120}
+          height={50}
+        />
+        <ColoredButton
+          buttonText="보내기"
+          color="default"
+          textColor="white"
           onClick={handleSendButton}
-          className="text text-body-large font-body-large 
-        w-[120px] h-[50px] bg-whitebg-default text-white rounded-lg"
-        >
-          send
-        </button>
+          width={120}
+          height={50}
+        />
       </div>
     </div>
   );
