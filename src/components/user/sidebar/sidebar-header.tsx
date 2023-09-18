@@ -17,7 +17,7 @@ export default function SidebarHeader({ setShowSidebar }: SidebarHeaderProps) {
     router.push("/chat");
   };
   return (
-    <div className="flex items-center ml-7 mt-7 mr-5 gap-18">
+    <div className="flex items-center ml-7 mt-7 mr-5 justify-between">
       <Image
         width={100}
         height={24}
