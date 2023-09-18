@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 import Link from "next/link";
 import MobileMenu from "./mobile-menu";
-import Logo from "./logo";
 import LandingHeaderNav from "./landing-header-nav";
+import Logo from "../assets/logo";
 
 export default function LandingHeader() {
   const [top, setTop] = useState<boolean>(true);
