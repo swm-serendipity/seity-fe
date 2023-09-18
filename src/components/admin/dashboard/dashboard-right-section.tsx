@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react";
 
 type DashboardRightSectionProps = {
-  seletedId: string | null;
+  seletedId: string;
   setSelectedId: Dispatch<SetStateAction<string | null>>;
   refetch: () => void;
 };
@@ -18,9 +18,6 @@ export default function DashboardRightSection({
   setSelectedId,
   refetch,
 }: DashboardRightSectionProps) {
-  if (!seletedId) return <div className="bg-white w-full flex-1 h-full"></div>;
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data, isLoading } = useQuery(
     ["dashboard-item", seletedId],
     getSingleDetectionDashboard
@@ -34,7 +31,6 @@ export default function DashboardRightSection({
   const { setPopupData } = useStore();
 
   const handleIgnoreButton = () => {
-    console.log(seletedId);
     setPopupData({
       type: "title-ok-cancel",
       title: "알림",
