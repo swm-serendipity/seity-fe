@@ -52,7 +52,7 @@ export default function DashboardLeftSection({
 
   return (
     <div
-      className="overflow-y-auto custom-scrollbar pr-3 ml-12 mt-7"
+      className="overflow-y-auto custom-scrollbar pr-3 ml-10 mt-7"
       ref={scrollRef}
     >
       {data?.pages

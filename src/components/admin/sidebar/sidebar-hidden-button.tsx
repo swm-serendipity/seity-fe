@@ -19,9 +19,6 @@ export default function SidebarHiddenButton({
   const { toggleNotification } = useStore();
   const router = useRouter();
 
-  const handlePopularPromptButton = () => {
-    router.push("/posts/popular");
-  };
   const handleFoldButton = () => {
     setShowSidebar(true);
   };
@@ -30,7 +27,6 @@ export default function SidebarHiddenButton({
     <div className="absolute top-6 left-5 z-20 items-center hidden sm:flex">
       <FoldIconButton color="white" onClick={handleFoldButton} />
       <NotificationIconButton isAlert={true} onClick={toggleNotification} />
-      <PopularPromptButton onClick={handlePopularPromptButton} />
     </div>
   );
 }

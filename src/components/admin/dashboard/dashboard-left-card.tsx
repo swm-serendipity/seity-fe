@@ -22,7 +22,7 @@ export default function DashboardLeftCard({
   return (
     <div
       onClick={() => handleCard(id)}
-      className={`w-[420px] h-[96px] bg-white gap-2 mb-2.5 dashboard-card px-6 py-5.5 flex flex-col cursor-pointer ${
+      className={`w-[420px] h-[96px] bg-white gap-2 mb-2.5 dashboard-card px-6 py-5.5 flex flex-col cursor-pointer ml-2 ${
         isSelected && "border border-whitebg-default"
       }`}
     >

@@ -16,8 +16,8 @@ export default function SidebarMenu() {
     });
   };
 
-  const handleDashboardButton = () => {
-    router.push("/dashboard");
+  const handleRouteButton = (path: string) => {
+    router.push(path);
   };
 
   return (
@@ -30,12 +30,12 @@ export default function SidebarMenu() {
       />
       <SidebarMenuButton
         text="대시보드"
-        onClick={handleDashboardButton}
+        onClick={() => handleRouteButton("/dashboard")}
         type="dashboard"
       />
       <SidebarMenuButton
         text="사용자 관리"
-        onClick={handleDisabledButton}
+        onClick={() => handleRouteButton("/user-management")}
         type="user-management"
       />
       <SidebarMenuButton

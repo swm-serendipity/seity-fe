@@ -12,8 +12,6 @@ export default function Pagination({
   setCurrentPage,
   totalPages,
 }: Props) {
-  const maxPage = 100; // 예시로 100페이지까지 있다고 가정
-
   const getDisplayPages = () => {
     const start = currentPage - 4 < 1 ? 1 : currentPage - 4;
     const end = start + 9 > totalPages ? totalPages : start + 9;
