@@ -21,6 +21,7 @@ module.exports = {
         7.5: "30px",
       },
       margin: {
+        7.5: "30px",
         18.5: "75px",
       },
       fontFamily: {

@@ -1,9 +1,4 @@
-import React, {
-  Dispatch,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  SetStateAction,
-} from "react";
+import React, { Dispatch, KeyboardEvent, SetStateAction } from "react";
 
 type Props = {
   hintText: string;
@@ -11,6 +6,8 @@ type Props = {
   text: string;
   setText: Dispatch<SetStateAction<string>>;
   onKeyPress?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  width?: number;
+  height?: number;
 };
 
 export const HintTextInputBox = ({
@@ -19,9 +16,13 @@ export const HintTextInputBox = ({
   text,
   setText,
   onKeyPress,
+  width = 320,
+  height = 52,
 }: Props) => {
   return (
-    <div className="w-[320px] h-[52px] flex-shrink-0 border rounded-md flex items-center pl-3 mb-2 bg-white">
+    <div
+      className={`w-[${width}px] h-[${height}px] flex-shrink-0 border rounded-md flex items-center pl-3 mb-2 bg-white`}
+    >
       <input
         type={password ? "password" : "text"}
         placeholder={hintText}

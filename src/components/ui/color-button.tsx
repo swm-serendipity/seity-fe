@@ -3,8 +3,8 @@ import Lottie from "lottie-react";
 import loadingLottie from "../assets/white-loading-animation.json";
 type ColoredButtonProps = {
   buttonText: string;
-  color: "point" | "default" | "white" | "gray";
-  textColor: "black" | "white";
+  color: "point" | "default" | "white" | "gray" | "alert";
+  textColor: "black" | "white" | "alert";
   width?: number;
   height?: number;
   onClick?: () => void;
@@ -23,9 +23,13 @@ export const ColoredButton = ({
   return (
     <button
       className={`${
-        textColor == "black" ? "text-whitebg-default" : "text-blackbg-default"
+        textColor == "black"
+          ? "text-whitebg-default"
+          : textColor == "alert"
+          ? "text-[#FF5E5E]"
+          : "text-blackbg-default"
       } ${
-        color == "white" && "border border-whitebg-default"
+        (color == "white" || color == "alert") && "border"
       }  rounded-md mb-2 text-body-medium flex justify-center items-center`}
       onClick={onClick}
       style={{
@@ -34,11 +38,12 @@ export const ColoredButton = ({
         backgroundColor:
           color == "point"
             ? colors.blackbg.point
-            : color == "white"
-            ? colors.blackbg.default
+            : color == "gray"
+            ? "#E7E7E7"
             : color == "default"
             ? colors.whitebg.default
-            : "#E7E7E7",
+            : colors.blackbg.default,
+        borderColor: color == "alert" ? "#FF5E5E" : "#232527",
       }}
     >
       {isLoading ? (

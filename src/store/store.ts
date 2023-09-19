@@ -2,6 +2,7 @@ import { PopupData } from "@/type/popup";
 import { create } from "zustand";
 import { GlobalState } from "./interface";
 import { SharePostData } from "@/type/share-post";
+import { UserDetailSettingData } from "@/type/user-detail-setting-data";
 
 export const useStore = create<GlobalState>((set) => ({
   //비식별화 팝업 상태
@@ -80,4 +81,18 @@ export const useStore = create<GlobalState>((set) => ({
   //답변 지속 상태
   isAnsweringPersist: false,
   setIsAnsweringPersist: (isAnsweringPersist) => set({ isAnsweringPersist }),
+
+  //사용자 세부설정 데이터
+  userDetailSettingData: {
+    id: "",
+    name: "",
+    email: "",
+    part: "",
+    authority: "",
+    profileBackgroundHex: "",
+    profileTextHex: "",
+    isVisible: false,
+  },
+  setUserDetailSettingData: (data: UserDetailSettingData) =>
+    set({ userDetailSettingData: data }),
 }));

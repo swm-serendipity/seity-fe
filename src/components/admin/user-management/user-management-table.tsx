@@ -1,6 +1,12 @@
+import { useEffect, useState } from "react";
 import UserManagementCell from "./user-management-cell";
 
 export default function UserManagementTable() {
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const testData = [
     {
       NO: 1,
@@ -74,27 +80,32 @@ export default function UserManagementTable() {
     },
   ];
   return (
-    <table className="border-t border-t-black border-b border-b-black text-body-medium font-[400]">
-      <colgroup>
-        <col width="16.6%" />
-        <col width="16.6%" />
-        <col width="16.6%" />
-        <col width="16.6%" />
-        <col width="16.6%" />
-        <col width="16.7%" />
-      </colgroup>
-      <tr className="bg-[#ECECEC] h-[46px] text-center">
-        <td>No.</td>
-        <td>ID</td>
-        <td>이름</td>
-        <td>직무</td>
-        <td>권한</td>
-        <td>세부 설정</td>
-      </tr>
-
-      {testData.map((data) => {
-        return <UserManagementCell data={data} />;
-      })}
-    </table>
+    mounted && (
+      <table className="border-t border-t-black border-b border-b-black text-body-medium font-[400]">
+        <colgroup>
+          <col width="16.6%" />
+          <col width="16.6%" />
+          <col width="16.6%" />
+          <col width="16.6%" />
+          <col width="16.6%" />
+          <col width="16.7%" />
+        </colgroup>
+        <thead>
+          <tr className="bg-[#ECECEC] h-[46px] text-center">
+            <td>No.</td>
+            <td>ID</td>
+            <td>이름</td>
+            <td>직무</td>
+            <td>권한</td>
+            <td>세부 설정</td>
+          </tr>
+        </thead>
+        <tbody>
+          {testData.map((data) => {
+            return <UserManagementCell key={data.NO} data={data} />;
+          })}
+        </tbody>
+      </table>
+    )
   );
 }

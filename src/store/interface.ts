@@ -1,5 +1,6 @@
 import { PopupData } from "@/type/popup";
 import { SharePostData } from "@/type/share-post";
+import { UserDetailSettingData } from "@/type/user-detail-setting-data";
 
 export interface GlobalState {
   isDeIdentificationPopupOpen: boolean;
@@ -39,4 +40,7 @@ export interface GlobalState {
 
   isAnsweringPersist: boolean;
   setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
+
+  userDetailSettingData: UserDetailSettingData;
+  setUserDetailSettingData: (data: UserDetailSettingData) => void;
 }

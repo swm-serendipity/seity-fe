@@ -12,16 +12,18 @@ type UserManagementCellProps = {
 };
 
 export default function UserManagementCell({ data }: UserManagementCellProps) {
-  const { setPopupData } = useStore();
+  const { setUserDetailSettingData } = useStore();
 
   const handleSettingButton = () => {
-    setPopupData({
-      type: "title-ok",
-      title: "알림",
-      content: "사용자 설정 기능은 비활성화 되어 있어요.",
-      handleCancel: () => {},
-      handleOk: () => {},
+    setUserDetailSettingData({
+      id: "1",
       isVisible: true,
+      authority: "User",
+      name: "Test User 1",
+      email: "whddnd0728@gmail.com",
+      part: "Frontend",
+      profileBackgroundHex: "#B43851",
+      profileTextHex: "#fff",
     });
   };
   return (
