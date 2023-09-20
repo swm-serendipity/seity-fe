@@ -7,6 +7,7 @@ import DashboardSection from "./dashboard-section";
 
 export default function DashboardBox() {
   const { isNotificationOpen, popupData } = useStore();
+
   return (
     <div className="relative flex w-full">
       <DashboardSection />

@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { InfiniteData } from "@tanstack/react-query";
 import DashboardLeftCard from "./dashboard-left-card";
 import { convertToDotFormat } from "@/utils/formatTime";
+import Lottie from "lottie-react";
+import loadingLottie from "@/components/assets/loading-animation.json";
 
 type DashboardLeftSectionProps = {
   seletedId: string | null;
@@ -45,11 +47,6 @@ export default function DashboardLeftSection({
     };
   }, [hasNextPage, fetchNextPage]);
 
-  if (isLoading)
-    return (
-      <div className="min-w-[420px] ml-12 pr-3">데이터를 불러오는 중...</div>
-    );
-
   return (
     <div
       className="overflow-y-auto custom-scrollbar pr-3 ml-10 mt-7"
@@ -72,6 +69,12 @@ export default function DashboardLeftSection({
             />
           );
         })}
+      {isLoading && (
+        <>
+          <div className="w-full flex justify-center items-center" />
+          <Lottie animationData={loadingLottie} className="" />
+        </>
+      )}
     </div>
   );
 }
