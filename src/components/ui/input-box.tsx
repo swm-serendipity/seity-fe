@@ -29,7 +29,7 @@ export const HintTextInputBox = ({
         value={text}
         onChange={(text) => setText(text.target.value)}
         onKeyPress={onKeyPress}
-        className="w-full h-full border-none outline-none text-black text-body-medium bg-transparent"
+        className="w-full h-full border-none outline-none text-black text-body-medium bg-transparent placeholder"
       />
     </div>
   );

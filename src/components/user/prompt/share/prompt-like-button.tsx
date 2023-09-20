@@ -1,6 +1,5 @@
 import LikeOff from "@/components/assets/like-off";
 import LikeOn from "@/components/assets/like-on";
-import Image from "next/image";
 
 type PromptLikeButtonProps = {
   onClick: () => void;

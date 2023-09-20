@@ -1,4 +1,5 @@
 import CheckBox from "@/components/ui/checkbox";
+import { DropdownBox } from "@/components/ui/dropdown-box";
 import { HintTextInputBox } from "@/components/ui/input-box";
 import { useStore } from "@/store/store";
 import { useState } from "react";
@@ -33,12 +34,11 @@ export default function UserManagementAuthInfoEditSection() {
       <div className="flex justify-between items-center px-3.5 mb-4">
         <div className="text-body-medium">권한선택</div>
         <div className="-mb-2">
-          <HintTextInputBox
+          <DropdownBox
             width={320}
             height={46}
             hintText="권한선택"
-            text={name}
-            setText={setName}
+            items={["User", "Admin"]}
           />
         </div>
       </div>

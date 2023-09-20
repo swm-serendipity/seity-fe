@@ -1,3 +1,4 @@
+import { DropdownBox } from "@/components/ui/dropdown-box";
 import { HintTextInputBox } from "@/components/ui/input-box";
 import { useState } from "react";
 
@@ -22,12 +23,11 @@ export default function UserManagementInfoEditSection() {
       <div className="flex justify-between items-center px-3.5">
         <div className="text-body-medium">직무 선택</div>
         <div className="-mb-2">
-          <HintTextInputBox
+          <DropdownBox
             width={320}
             height={46}
             hintText="직무선택"
-            text={name}
-            setText={setName}
+            items={["frontend", "backend", "ai", "data"]}
           />
         </div>
       </div>

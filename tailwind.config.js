@@ -210,6 +210,10 @@ module.exports = {
           "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.1)",
           "border-radius": "10px",
         },
+
+        ".placeholder::placeholder": {
+          color: "#777777",
+        },
       };
       addUtilities(newUtilities);
     },
