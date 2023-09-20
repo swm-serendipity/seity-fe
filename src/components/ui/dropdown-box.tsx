@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DropdownArrowUp from "../assets/dropdown-arrow-up";
+import DropdownArrowDown from "../assets/dropdown-arrow-down";
 
 type Props = {
   hintText: string;
@@ -18,7 +20,7 @@ export const DropdownBox = ({
   return (
     <>
       <div
-        className={`w-[${width}px] h-[${height}px] flex-shrink-0 ${
+        className={`w-[${width}px] h-[${height}px] flex-shrink-0 flex justify-between ${
           dropdownVisibie
             ? "border-r border-l border-t rounded-t"
             : "border rounded-md"
@@ -27,12 +29,15 @@ export const DropdownBox = ({
         onClick={() => setDropdownVisible(!dropdownVisibie)}
       >
         <div
-          className={` pl-3
+          className={`pl-3
         ${
           selectedItem.length > 0 ? "text-whitebg-default" : "text-whitebg-info"
         }`}
         >
           {selectedItem.length > 0 ? selectedItem : hintText}
+        </div>
+        <div className="pr-3">
+          {dropdownVisibie ? <DropdownArrowUp /> : <DropdownArrowDown />}
         </div>
       </div>
 
