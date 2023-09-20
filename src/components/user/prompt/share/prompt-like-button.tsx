@@ -1,3 +1,5 @@
+import LikeOff from "@/components/assets/like-off";
+import LikeOn from "@/components/assets/like-on";
 import Image from "next/image";
 
 type PromptLikeButtonProps = {
@@ -17,13 +19,7 @@ export default function PromptLikeButton({
         flex flex-col justify-center items-center"
         onClick={onClick}
       >
-        <Image
-          src="/share/share-like-on.png"
-          width={18}
-          height={18}
-          alt="좋아요"
-          priority
-        />
+        <LikeOn />
       </button>
     );
   } else {
@@ -34,13 +30,7 @@ export default function PromptLikeButton({
         flex flex-col justify-center items-center"
         onClick={onClick}
       >
-        <Image
-          src="/share/share-like.png"
-          width={18}
-          height={18}
-          alt="좋아요"
-          priority
-        />
+        <LikeOff />
       </button>
     );
   }

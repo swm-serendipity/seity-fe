@@ -22,7 +22,6 @@ export default function PostsTypeButton({
   isMyPost = false,
   refetch,
 }: Props) {
-  const router = useRouter();
   const { setPopupData } = useStore();
 
   const { mutate } = useMutation(deletePost, {
@@ -36,7 +35,7 @@ export default function PostsTypeButton({
     setPopupData({
       type: "title-ok-cancel",
       title: "삭제",
-      content: "정말 삭제하시겠습니까?",
+      content: `정말 "${title}" 글을 삭제하시겠습니까?`,
       handleCancel: () => {},
       handleOk: () => {
         mutate({ postId: id });

@@ -1,3 +1,5 @@
+import ScrapOff from "@/components/assets/scrap-off";
+import ScrapOn from "@/components/assets/scrap-on";
 import Image from "next/image";
 
 type PromptScrapButtonProps = {
@@ -17,12 +19,7 @@ export default function PromptScrapButton({
         flex-col justify-center items-center"
         onClick={onClick}
       >
-        <Image
-          src="/share/share-scrap-on.png"
-          width={15}
-          height={15}
-          alt="스크랩"
-        />
+        <ScrapOn />
       </button>
     );
   } else {
@@ -33,12 +30,7 @@ export default function PromptScrapButton({
         flex-col justify-center items-center"
         onClick={onClick}
       >
-        <Image
-          src="/share/share-scarp.png"
-          width={15}
-          height={15}
-          alt="스크랩"
-        />
+        <ScrapOff />
       </button>
     );
   }
