@@ -1,12 +1,15 @@
 import SearchSet from "@/components/ui/search/search-set";
 import { useState } from "react";
 
-type Props = {
-  type: "all" | "scrap" | "share";
+type PostsAllHeaderProps = {
+  type: "all" | "scrap" | "myshare";
   totalPostNumber: number;
 };
 
-export default function PostsAllHeader({ type, totalPostNumber }: Props) {
+export default function PostsAllHeader({
+  type,
+  totalPostNumber,
+}: PostsAllHeaderProps) {
   const [searchText, setSearchText] = useState("");
 
   const getTitle = () => {

@@ -4,30 +4,25 @@ import ProfileIcon from "@/components/ui/posts/profile-icon";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/ui/posts/pagination";
 import timeAgo from "@/utils/timeAgo";
-import Image from "next/image";
 import PostsTypeButton from "./posts-type-button";
 
-type Props = {
+type PostsMainSectionProps = {
   currentPage: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  type: "all" | "scrap" | "share";
+  type: "all" | "scrap" | "myshare";
   data: any;
+  refetch: () => void;
 };
 
 export default function PostsMainSection({
   currentPage,
-  setCurrentPage,
   type,
   data,
-}: Props) {
+  refetch,
+}: PostsMainSectionProps) {
   const router = useRouter();
 
   const handleCardClick = (id: string) => {
     router.push(`/share/${id}`);
-  };
-
-  const handleScrapClick = (e: { stopPropagation: () => void }) => {
-    e.stopPropagation();
   };
 
   return (
@@ -42,7 +37,14 @@ export default function PostsMainSection({
           >
             <div className="flex flex-col">
               <div className="h-[190px]">
-                <PostsTypeButton title={post.title} type={type} />
+                <PostsTypeButton
+                  id={post.id}
+                  title={post.title}
+                  type={type}
+                  isScrap={post.scrap}
+                  isMyPost={post.myPost}
+                  refetch={refetch}
+                />
                 <PostsAllUserChat
                   text={post.firstQna.question}
                   user={post.memberName}
@@ -72,7 +74,7 @@ export default function PostsMainSection({
       </div>
       <Pagination
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+        url={`/posts/${type}`}
         totalPages={data!.result.totalPages}
       />
     </div>

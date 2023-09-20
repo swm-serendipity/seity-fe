@@ -10,7 +10,11 @@ export default function SidebarMenu() {
   };
 
   const handleScrapPromptButton = () => {
-    router.push("/posts/mypage/scrap");
+    router.push("/posts/scrap/1");
+  };
+
+  const handleMySharedPromptButton = () => {
+    router.push("/posts/myshare/1");
   };
 
   return (
@@ -25,11 +29,11 @@ export default function SidebarMenu() {
         onClick={handleScrapPromptButton}
         type="scrap"
       />
-      {/* <SidebarMenuButton
+      <SidebarMenuButton
         text="공유한 프롬프트"
-        onClick={handleScrapPromptButton}
+        onClick={handleMySharedPromptButton}
         type="share"
-      /> */}
+      />
       <SidebarMenuButton
         text="알림"
         onClick={toggleNotification}

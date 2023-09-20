@@ -20,9 +20,7 @@ type PromptSharedChatBoxProps = {
 export function PromptSharedChatBox({
   containerRef,
 }: PromptSharedChatBoxProps) {
-  const { chatData, setPopupData, sharePostData, setSharePostData } =
-    useStore();
-  const [isScraped, setIsScraped] = useState<boolean>(false);
+  const { chatData, sharePostData, setSharePostData } = useStore();
   const bottomRef = useRef<HTMLDivElement>(null);
   const isBottom = useBottomScrollListener(containerRef);
 
@@ -45,17 +43,19 @@ export function PromptSharedChatBox({
       },
     }
   );
-  //To-Do scrap api response 업데이트 되었을때 기능 추가
   const { mutate: mutateScrap } = useMutation(
-    sharePostData.like ? postShareScrap : deleteShareScrap,
+    sharePostData.scrap ? postShareScrap : deleteShareScrap,
     {
       onMutate: () => {
-        const previousData = isScraped;
-        setIsScraped(!isScraped);
+        const previousData = sharePostData;
+        setSharePostData({
+          ...sharePostData,
+          scrap: !sharePostData.scrap,
+        });
         return previousData;
       },
       onError: (error, variables, previousData) => {
-        setIsScraped(previousData!);
+        setSharePostData(previousData!);
       },
     }
   );
@@ -75,7 +75,10 @@ export function PromptSharedChatBox({
         onClick={handleLikeButton}
         isLiked={sharePostData.like}
       />
-      <PromptScrapButton onClick={handleScrapButton} isScraped={isScraped} />
+      <PromptScrapButton
+        onClick={handleScrapButton}
+        isScraped={sharePostData.scrap}
+      />
 
       {chatData.map((chat) => {
         if (chat.user === "user") {

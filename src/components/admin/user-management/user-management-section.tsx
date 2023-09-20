@@ -11,11 +11,7 @@ export default function UserManagementSection() {
       <UserManagementHeader />
       <div className="w-[1000px] flex flex-col gap-10 mt-5 ml-12">
         <UserManagementTable />
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalPages={10}
-        />
+        <Pagination currentPage={currentPage} totalPages={10} url="/" />
       </div>
     </div>
   );

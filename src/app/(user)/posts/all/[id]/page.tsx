@@ -6,6 +6,6 @@ export const metadata: Metadata = {
   description: "사내 전체 프롬프트",
 };
 
-export default function MyScrapPage() {
-  return <PostAllBox type="scrap" />;
+export default function AllPromptPage() {
+  return <PostAllBox type="all" />;
 }

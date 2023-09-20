@@ -11,7 +11,7 @@ export default function PostsPopularMainSection({
 }: PostsPopularMainSectionProps) {
   const router = useRouter();
   const handleOtherPosts = () => {
-    router.push("/posts/all");
+    router.push("/posts/all/1");
   };
 
   return (

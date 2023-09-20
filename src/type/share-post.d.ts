@@ -5,6 +5,8 @@ export type SharePostData = {
   createdAt: string;
   lastModifiedAt: string;
   like: boolean;
+  scrap: boolean;
+  myPost: boolean;
   likeNumber: number;
   memberName: string;
   memberPart: string;

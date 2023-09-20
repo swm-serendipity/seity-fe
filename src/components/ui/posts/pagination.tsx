@@ -1,17 +1,14 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
+  url: string;
   totalPages: number;
 };
 
-export default function Pagination({
-  currentPage,
-  setCurrentPage,
-  totalPages,
-}: Props) {
+export default function Pagination({ currentPage, totalPages, url }: Props) {
+  const router = useRouter();
   const getDisplayPages = () => {
     const start = currentPage - 4 < 1 ? 1 : currentPage - 4;
     const end = start + 9 > totalPages ? totalPages : start + 9;
@@ -20,20 +17,29 @@ export default function Pagination({
   };
 
   const increasePage = () => {
-    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+    if (currentPage < totalPages) {
+      router.push(`${url}/${currentPage + 1}`);
+    }
   };
 
   const decreasePage = () => {
-    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+    if (currentPage > 1) {
+      router.push(`${url}/${currentPage - 1}`);
+    }
   };
 
   const increasePageBy10 = () => {
-    if (currentPage + 10 <= totalPages) setCurrentPage((prev) => prev + 10);
+    if (currentPage + 10 <= totalPages) {
+      router.push(`${url}/${currentPage + 10}`);
+    }
   };
 
   const decreasePageBy10 = () => {
-    if (currentPage - 10 >= 1) setCurrentPage((prev) => prev - 10);
-    else setCurrentPage(1);
+    if (currentPage - 10 >= 1) {
+      router.push(`${url}/${currentPage - 10}`);
+    } else {
+      router.push(`${url}/1`);
+    }
   };
 
   const pages = getDisplayPages();
@@ -65,7 +71,7 @@ export default function Pagination({
               ? "text-white bg-whitebg-default rounded-full"
               : ""
           } text-body-medium w-9 h-9`}
-          onClick={() => setCurrentPage(number)}
+          onClick={() => router.push(`${url}/${number}`)}
         >
           {number}
         </button>

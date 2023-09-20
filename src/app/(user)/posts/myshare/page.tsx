@@ -2,10 +2,10 @@
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
-export default function AllPromptPage() {
+export default function MySharePage() {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/posts/all/1");
+    router.replace("/posts/myshare/1");
   }, []);
   return <div></div>;
 }

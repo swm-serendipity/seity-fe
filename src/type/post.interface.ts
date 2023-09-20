@@ -1,6 +1,8 @@
 interface Post {
   id: string;
   like: boolean;
+  scrap: boolean;
+  myPost: boolean;
   likeNumber: number;
   views: number;
   llm: string;

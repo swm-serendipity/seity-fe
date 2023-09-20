@@ -58,6 +58,8 @@ export const useStore = create<GlobalState>((set) => ({
     createdAt: "",
     lastModifiedAt: "",
     like: false,
+    scrap: false,
+    myPost: false,
     likeNumber: 0,
     memberName: "",
     memberPart: "",
