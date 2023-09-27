@@ -1,12 +1,12 @@
 import { axiosInstance } from "./axios-setting";
 
-type deleteDetectionDashboardArgs = {
+type DeleteDetectionDashboardArgs = {
   id: string;
 };
 
 const deleteDetectionDashboard = async ({
   id,
-}: deleteDetectionDashboardArgs) => {
+}: DeleteDetectionDashboardArgs) => {
   const { data } = await axiosInstance.delete(`/detection?id=${id}`);
   return data;
 };

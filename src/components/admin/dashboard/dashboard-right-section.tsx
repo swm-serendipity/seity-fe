@@ -1,5 +1,6 @@
 import deleteDetectionDashboard from "@/apis/delete-detection-dashboard";
 import getSingleDetectionDashboard from "@/apis/get-single-detection-dashboard";
+import postCallingDetectionDashboard from "@/apis/post-calling-detection-dashboard";
 import { ColoredButton } from "@/components/ui/color-button";
 import { useStore } from "@/store/store";
 import { convertToDotFormat } from "@/utils/formatTime";
@@ -23,11 +24,33 @@ export default function DashboardRightSection({
     getSingleDetectionDashboard
   );
 
-  const { mutate } = useMutation(deleteDetectionDashboard, {
-    onSuccess: (data) => {
-      refetch();
-    },
-  });
+  const { mutate: deleteDetectionMutate } = useMutation(
+    deleteDetectionDashboard,
+    {
+      onSuccess: (data) => {
+        refetch();
+      },
+    }
+  );
+
+  const { mutate: callingDetectionMutate } = useMutation(
+    postCallingDetectionDashboard,
+    {
+      onSuccess: (data) => {
+        setPopupData({
+          type: "title-ok",
+          title: "소명 요청",
+          content: "소명 요청을 완료했습니다.",
+          handleCancel: () => {},
+          handleOk: () => {
+            setSelectedId(null);
+          },
+          isVisible: true,
+        });
+      },
+    }
+  );
+
   const { setPopupData } = useStore();
 
   const handleIgnoreButton = () => {
@@ -38,20 +61,15 @@ export default function DashboardRightSection({
       handleCancel: () => {},
       handleOk: () => {
         setSelectedId(null);
-        mutate({ id: seletedId });
+        deleteDetectionMutate({ id: seletedId });
       },
       isVisible: true,
     });
   };
 
   const handleRequestButton = () => {
-    setPopupData({
-      type: "title-ok",
-      title: "알림",
-      content: "소명 요청 기능은 비활성화 되어 있어요.",
-      handleCancel: () => {},
-      handleOk: () => {},
-      isVisible: true,
+    callingDetectionMutate({
+      promptDetectionId: seletedId,
     });
   };
 
