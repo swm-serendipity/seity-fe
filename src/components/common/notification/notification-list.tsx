@@ -1,63 +1,66 @@
+import { useInfiniteQuery } from "@tanstack/react-query";
 import NotificationListCard from "./notification-list-card";
+import getCallingNotification from "@/apis/get-calling-notification";
+import { useEffect, useRef } from "react";
+import { Calling } from "@/type/calling";
 
 export default function NotificationList() {
-  const data = [
-    {
-      id: 1,
-      name: "김민수",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: true,
-    },
-    {
-      id: 7,
-      name: "신종웅",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청asdadas춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: false,
-    },
-    {
-      id: 5,
-      name: "신종웅",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청asdadas춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: false,
-    },
-    {
-      id: 2,
-      name: "신종웅",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: true,
-    },
-    {
-      id: 3,
-      name: "조민호",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: false,
-    },
-    {
-      id: 4,
-      name: "안지수",
-      team: "보안관리팀",
-      content:
-        "우리 맺어, 같은 청춘에서만 그들에게 보배를 영락과 운다. 있는 속잎나고, 되려니와, 그들의 사람은 봄바람이다. 그들은 황금시대의 예수는 풀이 눈이",
-      alert: false,
-    },
-  ];
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
+    useInfiniteQuery(
+      ["notification-user"],
+      ({ pageParam = 0 }) => getCallingNotification(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          if (
+            lastPage.result.detections &&
+            lastPage.result.detections.length > 0
+          ) {
+            return allPages.length;
+          }
+          return false;
+        },
+      }
+    );
+
+  useEffect(() => {
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
+        hasNextPage
+      ) {
+        fetchNextPage();
+      }
+    };
+
+    const container = scrollRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [hasNextPage, fetchNextPage]);
+
   return (
-    <div className="w-full flex-1 overflow-y-auto custom-scrollbar">
-      <div className="text-body-medium mt-7 mb-2 mx-5">알림이 없습니다.</div>
-      {/* Todo */}
-      {[].map((item) => (
-        <NotificationListCard key={item} data={item} />
-      ))}
+    <div
+      className="w-full flex-1 overflow-y-auto custom-scrollbar"
+      ref={scrollRef}
+    >
+      {!isLoading &&
+        data!.pages.map((page) =>
+          page.result.callings.map((item: Calling) => (
+            <NotificationListCard
+              key={item.callingId}
+              data={item}
+              type={"calling"}
+            />
+          ))
+        )}
     </div>
   );
 }

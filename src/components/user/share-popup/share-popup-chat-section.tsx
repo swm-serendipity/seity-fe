@@ -1,7 +1,7 @@
 import { useStore } from "@/store/store";
 import ShareUserChat from "./share-popup-user-chat";
 import ShareAIChat from "./share-popup-ai-chat";
-import React, { memo } from "react";
+import React from "react";
 
 export default function ShareChatSection() {
   const { chatData } = useStore();

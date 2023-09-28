@@ -1,4 +1,4 @@
-import { PopupData } from "@/type/popup";
+import { CallingPopupData, PopupData } from "@/type/popup";
 import { create } from "zustand";
 import { GlobalState } from "./interface";
 import { SharePostData } from "@/type/share-post";
@@ -79,6 +79,17 @@ export const useStore = create<GlobalState>((set) => ({
     handleOk: () => {},
   },
   setPopupData: (data: PopupData) => set({ popupData: data }),
+
+  //소명 팝업 데이터
+  callingData: {
+    id: "",
+    isLoading: false,
+    isVisible: false,
+    question: "",
+    answer: "",
+    handleSend: () => {},
+  },
+  setCallingData: (data: CallingPopupData) => set({ callingData: data }),
 
   //답변 지속 상태
   isAnsweringPersist: false,

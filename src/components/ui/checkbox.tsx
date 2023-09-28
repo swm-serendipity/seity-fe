@@ -3,10 +3,13 @@ import CheckboxOn from "../assets/checkbox-on";
 
 type CheckBoxProps = {
   isChecked: boolean;
-  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsChecked?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function CheckBox({ isChecked, setIsChecked }: CheckBoxProps) {
+export default function CheckBox({
+  isChecked,
+  setIsChecked = () => {},
+}: CheckBoxProps) {
   return (
     <button
       onClick={() => setIsChecked(!isChecked)}

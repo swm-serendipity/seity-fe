@@ -6,3 +6,11 @@ export type PopupData = {
   handleCancel: () => void;
   handleOk: () => void;
 };
+
+export type CallingPopupData = {
+  id: string;
+  isLoading: boolean;
+  isVisible: boolean;
+  question: string;
+  answer: string;
+};

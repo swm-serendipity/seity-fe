@@ -1,4 +1,4 @@
-import { PopupData } from "@/type/popup";
+import { CallingPopupData, PopupData } from "@/type/popup";
 import { SharePostData } from "@/type/share-post";
 import { UserDetailSettingData } from "@/type/user-detail-setting-data";
 
@@ -37,6 +37,9 @@ export interface GlobalState {
 
   popupData: PopupData;
   setPopupData: (data: PopupData) => void;
+
+  callingData: CallingPopupData;
+  setCallingData: (data: CallingPopupData) => void;
 
   isAnsweringPersist: boolean;
   setIsAnsweringPersist: (isAnsweringPersist: boolean) => void;
