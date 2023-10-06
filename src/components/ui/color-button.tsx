@@ -5,6 +5,7 @@ type ColoredButtonProps = {
   buttonText: string;
   color: "point" | "default" | "white" | "gray" | "alert";
   textColor: "black" | "white" | "alert";
+  type?: "button" | "submit";
   width?: number;
   height?: number;
   onClick?: () => void;
@@ -15,6 +16,7 @@ export const ColoredButton = ({
   buttonText,
   color,
   textColor,
+  type = "button",
   onClick,
   width = 320,
   height = 54,
@@ -22,6 +24,7 @@ export const ColoredButton = ({
 }: ColoredButtonProps) => {
   return (
     <button
+      type={type}
       className={`${
         textColor == "black"
           ? "text-whitebg-default"

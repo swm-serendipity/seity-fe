@@ -1,5 +1,5 @@
 "use client";
-import { KeyboardEvent, useState } from "react";
+import { useState } from "react";
 import { ColoredButton } from "../ui/color-button";
 import { HintTextInputBox } from "../ui/input-box";
 import { useMutation } from "@tanstack/react-query";
@@ -19,13 +19,14 @@ export default function LoginInput() {
       localStorage.setItem("accessToken", data.result.accessToken);
       localStorage.setItem("refreshToken", data.result.refreshToken);
       const role: string[] = data.result.role;
-      setLoginId("");
-      setPassword("");
+
       if (role.includes("ADMIN")) {
         router.push("/dashboard");
         return;
       }
       router.push("/chat");
+      setLoginId("");
+      setPassword("");
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) alert(error.response?.data.message);
@@ -33,17 +34,9 @@ export default function LoginInput() {
     },
   });
 
-  const handleOnEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && e.shiftKey) return;
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (loginId.length > 0 && password.length > 0) {
-        handleLogin();
-      }
-    }
-  };
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const handleLogin = () => {
     if (!loginId || !password) {
       alert("아이디와 비밀번호를 입력해주세요");
       return;
@@ -64,7 +57,7 @@ export default function LoginInput() {
 
   return (
     <div>
-      <div className="mt-16 flex-col flex">
+      <form onSubmit={handleLogin} className="mt-16 flex-col flex">
         <HintTextInputBox
           hintText="아이디 입력"
           text={loginId}
@@ -73,19 +66,20 @@ export default function LoginInput() {
         <HintTextInputBox
           hintText="비밀번호 입력"
           password
-          onKeyPress={handleOnEnter}
           text={password}
           setText={setPassword}
         />
-      </div>
+        <div className="mt-3 flex-col flex">
+          <ColoredButton
+            type="submit"
+            color="point"
+            buttonText="로그인"
+            textColor="black"
+          />
+        </div>
+      </form>
 
       <div className="mt-3 flex-col flex">
-        <ColoredButton
-          color="point"
-          buttonText="로그인"
-          textColor="black"
-          onClick={handleLogin}
-        />
         <ColoredButton
           color="default"
           buttonText="데모버전 사용"
