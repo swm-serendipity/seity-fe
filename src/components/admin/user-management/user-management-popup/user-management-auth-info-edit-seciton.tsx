@@ -8,6 +8,7 @@ export default function UserManagementAuthInfoEditSection() {
   const { setPopupData } = useStore();
   const [promptAuth, setPromptAuth] = useState(false);
   const [userManagementAuth, setUserManagementAuth] = useState(false);
+  const [authority, setAuthority] = useState("");
   const handleDeleteUserButton = () => {
     setPopupData({
       type: "title-ok",
@@ -35,6 +36,8 @@ export default function UserManagementAuthInfoEditSection() {
         <div className="text-body-medium">권한선택</div>
         <div className="-mb-2">
           <DropdownBox
+            selectedItem={authority}
+            setSelectedItem={setAuthority}
             width={320}
             height={46}
             hintText="권한선택"

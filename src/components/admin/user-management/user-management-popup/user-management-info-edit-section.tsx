@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function UserManagementInfoEditSection() {
   const [name, setName] = useState("");
+  const [job, setJob] = useState("");
   return (
     <div className="mt-7.5">
       <div className="font-[500] text-body-large">정보수정</div>
@@ -24,6 +25,8 @@ export default function UserManagementInfoEditSection() {
         <div className="text-body-medium">직무 선택</div>
         <div className="-mb-2">
           <DropdownBox
+            selectedItem={job}
+            setSelectedItem={setJob}
             width={320}
             height={46}
             hintText="직무선택"
