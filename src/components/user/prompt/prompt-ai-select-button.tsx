@@ -6,6 +6,7 @@ type PromptAiSelectButtonProps = {
   isActive: boolean;
   isDisabled?: boolean;
   setAi: Dispatch<SetStateAction<string>>;
+  onClick?: () => void;
 };
 
 export default function PromptAiSelectButton({
@@ -13,8 +14,11 @@ export default function PromptAiSelectButton({
   isActive = false,
   isDisabled = false,
   setAi,
+  onClick = () => {},
 }: PromptAiSelectButtonProps) {
   const handleButton = () => {
+    onClick();
+    if (isDisabled) return;
     setAi(text);
   };
 
@@ -27,7 +31,6 @@ export default function PromptAiSelectButton({
           : "bg-prompt-ai-select-button-bg"
       }`}
       onClick={handleButton}
-      disabled={isDisabled}
     >
       <div className="flex gap-1.5">
         <Image

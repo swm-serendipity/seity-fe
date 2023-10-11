@@ -78,7 +78,7 @@ export default function PostsPopularSubSection({
         </div>
         <div className="flex-col flex mr-12">
           <p className="font-h1 text-h3 mb-4">이번 주 인기 프롬프트🥇</p>
-          <div className="flex flex-col overflow-y-auto custom-scrollbar pb-4 -ml-2 -mt-2">
+          <div className="flex flex-col overflow-y-auto custom-scrollbar pb-4 -ml-6 -mt-2">
             {recentHotPosts.length > 0 ? (
               recentHotPosts
                 .slice(0, 4)

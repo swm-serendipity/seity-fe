@@ -5,6 +5,7 @@ import {
   SignupDateInput,
   SignupLoginInput,
   SignupPasswordCheckInput,
+  SignupRankDropDown,
 } from "./signup-input";
 import { useMutation } from "@tanstack/react-query";
 import postSignUp from "@/apis/post-signup";
@@ -19,7 +20,7 @@ export default function SignupInputs() {
     email: "",
     birthDate: "",
     memberRole: "USER",
-    part: "FRONT_END",
+    part: "",
   });
 
   const [errorMessages, setErrorMessages] = useState({
@@ -57,12 +58,28 @@ export default function SignupInputs() {
       alert("이메일을 입력해주세요.");
       return;
     }
+    if (!formValues.email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)) {
+      alert("이메일 형식이 올바르지 않습니다.");
+      return;
+    }
     if (!formValues.name) {
       alert("이름을 입력해주세요.");
       return;
     }
     if (!formValues.birthDate) {
       alert("생년월일을 입력해주세요.");
+      return;
+    }
+    if (
+      !formValues.birthDate.match(
+        /^(19[0-9][0-9]|20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/
+      )
+    ) {
+      alert("생년월일 형식이 올바르지 않습니다.");
+      return;
+    }
+    if (!formValues.part) {
+      alert("직급을 선택해주세요.");
       return;
     }
     if (formValues.password !== checkPassword) {
@@ -82,7 +99,7 @@ export default function SignupInputs() {
   });
 
   return (
-    <div className="flex-1 flex-col flex justify-center items-center">
+    <div className="flex-1 flex-col flex justify-center items-center h-full overflow-y-auto">
       <h1 className="block md:hidden mb-4">Seity에 회원가입</h1>
       <form onSubmit={handleSubmit}>
         <SignupLoginInput
@@ -123,6 +140,12 @@ export default function SignupInputs() {
           onChange={handleChange}
         />
         <SignupDateInput value={formValues.birthDate} onChange={handleChange} />
+        <SignupRankDropDown
+          label="직급"
+          placeholder="직급을 선택해주세요."
+          onChange={handleChange}
+          value={formValues.part}
+        />
         <button
           type="submit"
           className="py-2 px-4 w-full bg-whitebg-default text-white rounded-lg text-body-medium h-[54px]"

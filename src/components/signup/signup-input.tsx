@@ -1,4 +1,5 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { DropdownBox } from "../ui/dropdown-box";
 
 type SignupLoginInputProps = {
   label: string;
@@ -135,6 +136,42 @@ export function SignupDateInput({ onChange }: SignupDateInputProps) {
           />
         </div>
       </div>
+    </div>
+  );
+}
+
+type SignupRankDropDownProps = {
+  label: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: any) => void;
+};
+
+export function SignupRankDropDown({
+  label,
+  placeholder,
+  value,
+  onChange,
+}: SignupRankDropDownProps) {
+  const [selectedItem, setSelectedItem] = useState("");
+  useEffect(() => {
+    onChange({
+      target: {
+        name: "part",
+        value: selectedItem,
+      },
+    });
+  }, [selectedItem]);
+  return (
+    <div className="mb-4 w-[360px]">
+      <div className="block mb-2">{label}</div>
+      <DropdownBox
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        items={["FRONT_END", "BACK_END"]}
+        hintText={placeholder}
+        width={360}
+      />
     </div>
   );
 }

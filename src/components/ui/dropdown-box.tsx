@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import DropdownArrowUp from "../assets/dropdown-arrow-up";
 import DropdownArrowDown from "../assets/dropdown-arrow-down";
 
@@ -7,6 +7,8 @@ type Props = {
   items: string[];
   width?: number;
   height?: number;
+  selectedItem: string;
+  setSelectedItem: Dispatch<SetStateAction<string>>;
 };
 
 export const DropdownBox = ({
@@ -14,9 +16,11 @@ export const DropdownBox = ({
   items,
   width = 320,
   height = 52,
+  selectedItem,
+  setSelectedItem,
 }: Props) => {
   const [dropdownVisibie, setDropdownVisible] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
+
   return (
     <>
       <div

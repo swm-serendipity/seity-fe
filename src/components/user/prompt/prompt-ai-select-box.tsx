@@ -1,8 +1,10 @@
 import { useState } from "react";
 import PromptAiSelectButton from "./prompt-ai-select-button";
+import { useStore } from "@/store/store";
 
 export default function PromptAiSelectBox() {
   const [chatAi, setChatAi] = useState("GPT-3.5");
+  const { setPopupData } = useStore();
 
   return (
     <div className="flex text-center w-full justify-center pt-10">
@@ -17,6 +19,16 @@ export default function PromptAiSelectBox() {
           isActive={chatAi == "GPT-4.0"}
           setAi={setChatAi}
           isDisabled={true}
+          onClick={() => {
+            setPopupData({
+              type: "title-ok",
+              isVisible: true,
+              title: "알림",
+              content: "GPT-4.0은 비활성화 되어있어요. 어드민에게 문의하세요.",
+              handleCancel: () => {},
+              handleOk: () => {},
+            });
+          }}
         />
         {/* Todo */}
         {/* <PromptAiSelectButton
