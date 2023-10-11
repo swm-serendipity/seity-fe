@@ -7,11 +7,9 @@ function useRequireLogin() {
   const router = useRouter();
   const { setPopupData } = useStore();
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     setIsLoading(true);
     const token = localStorage.getItem("accessToken");
-
     if (!token) {
       router.replace("/login");
       return;

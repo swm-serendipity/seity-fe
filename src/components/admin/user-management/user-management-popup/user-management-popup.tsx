@@ -1,5 +1,4 @@
 import { useStore } from "@/store/store";
-import Image from "next/image";
 import UserManagementPopupHeader from "./user-management-popup-header";
 import UserManagementUserInfoSection from "./user-management-user-info-section";
 import UserManagementInfoEditSection from "./user-management-info-edit-section";
