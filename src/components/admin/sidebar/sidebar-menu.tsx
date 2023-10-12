@@ -39,14 +39,14 @@ export default function SidebarMenu() {
         type="user-management"
       />
       <SidebarMenuButton
+        text="메시지 관리"
+        onClick={() => handleRouteButton("/message-management")}
+        type="message-management"
+      />
+      <SidebarMenuButton
         text="통계"
         onClick={handleDisabledButton}
         type="statistics"
-      />
-      <SidebarMenuButton
-        text="메시지 관리"
-        onClick={handleDisabledButton}
-        type="message-management"
       />
       <SidebarMenuButton
         text="금칙어 관리"
