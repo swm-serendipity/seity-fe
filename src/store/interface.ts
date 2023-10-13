@@ -46,4 +46,7 @@ export interface GlobalState {
 
   userDetailSettingData: UserDetailSettingData;
   setUserDetailSettingData: (data: UserDetailSettingData) => void;
+
+  selectedCallingId: string;
+  setSelectedCallingId: (id: string) => void;
 }

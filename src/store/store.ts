@@ -88,6 +88,7 @@ export const useStore = create<GlobalState>((set) => ({
     question: "",
     answer: "",
     handleSend: () => {},
+    onRemove: (id: string) => null,
   },
   setCallingData: (data: CallingPopupData) => set({ callingData: data }),
 
@@ -108,4 +109,8 @@ export const useStore = create<GlobalState>((set) => ({
   },
   setUserDetailSettingData: (data: UserDetailSettingData) =>
     set({ userDetailSettingData: data }),
+
+  //선택된 소명 아이디
+  selectedCallingId: "",
+  setSelectedCallingId: (id) => set({ selectedCallingId: id }),
 }));

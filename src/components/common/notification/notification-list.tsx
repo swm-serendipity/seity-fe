@@ -63,8 +63,10 @@ export default function NotificationList() {
       ref={scrollRef}
     >
       {!isLoading &&
-        data!.pages.map((page) =>
-          page.result.callings
+        data!.pages.map((page) => {
+          // result.callings가 undefined면 빈 배열을 기본값으로 사용
+          const callings = page.result.callings || [];
+          return callings
             .filter((item: Calling) => !removedItems.includes(item.callingId))
             .map((item: Calling) => (
               <NotificationListCard
@@ -72,13 +74,13 @@ export default function NotificationList() {
                 data={{
                   ...item,
                   read: readItems.includes(item.callingId) || item.read,
-                }} // 읽은 아이템은 read를 true로 설정
+                }}
                 type={"calling"}
                 onMarkAsRead={markAsRead}
                 onRemove={removeCard}
               />
-            ))
-        )}
+            ));
+        })}
     </div>
   );
 }

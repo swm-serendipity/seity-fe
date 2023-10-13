@@ -1,88 +1,73 @@
+import Lottie from "lottie-react";
+import loadingLottie from "../../assets/loading-animation.json";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import getCallingNotification from "@/apis/get-calling-notification";
+import { useEffect, useRef } from "react";
+import MessageManagementCallingRequestCard from "./message-management-calling-request-card";
+import { AdminCalling } from "@/type/admin-calling";
 export default function MessageManagementCallingRequest() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
+    useInfiniteQuery(
+      ["admin-calling-request"],
+      ({ pageParam = 0 }) => getCallingNotification(pageParam),
+      {
+        getNextPageParam: (lastPage, allPages) => {
+          if (
+            lastPage.result.detections &&
+            lastPage.result.detections.length > 0
+          ) {
+            return allPages.length;
+          }
+          return false;
+        },
+      }
+    );
+
+  useEffect(() => {
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
+        hasNextPage
+      ) {
+        fetchNextPage();
+      }
+    };
+
+    const container = scrollRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [hasNextPage, fetchNextPage]);
   return (
     <div className="bg-white notice-card w-[400px] h-[540px] rounded-xl flex flex-col">
       <div className=" px-7.5 pt-6 pb-5.5 border-b border-[#E2E2E2]">
         <div className="text-h4 font-h4">소명 요청</div>
       </div>
-      <div className="w-full h-20 px-7.5 py-4.5 border-b border-[#E2E2E2]">
-        <div className="flex gap-3 items-center">
-          <div className="w-9 h-9 rounded-full bg-slate-300"></div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            <div className="flex justify-between">
-              <div className="text-body-medium font-bold">Username</div>
-              <div className="text-body-small text-whitebg-info">
-                오늘, 9:52pm
-              </div>
-            </div>
-            <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
-            </div>
+      <div className="flex-1 flex flex-col overflow-y-auto" ref={scrollRef}>
+        {data! &&
+          data!.pages.map((page) =>
+            page.result.map((item: AdminCalling) => {
+              return (
+                <MessageManagementCallingRequestCard
+                  key={item.callingId}
+                  item={item}
+                />
+              );
+            })
+          )}
+        {isLoading && (
+          <div className="flex justify-center items-center rounded-b-xl">
+            <Lottie animationData={loadingLottie} />
           </div>
-        </div>
-      </div>
-      <div className="w-full h-20 px-7.5 py-4.5 border-b border-[#E2E2E2]">
-        <div className="flex gap-3 items-center">
-          <div className="w-9 h-9 rounded-full bg-slate-300"></div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            <div className="flex justify-between">
-              <div className="text-body-medium font-bold">Username</div>
-              <div className="text-body-small text-whitebg-info">
-                오늘, 9:52pm
-              </div>
-            </div>
-            <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-20 px-7.5 py-4.5 border-b border-[#E2E2E2]">
-        <div className="flex gap-3 items-center">
-          <div className="w-9 h-9 rounded-full bg-slate-300"></div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            <div className="flex justify-between">
-              <div className="text-body-medium font-bold">Username</div>
-              <div className="text-body-small text-whitebg-info">
-                오늘, 9:52pm
-              </div>
-            </div>
-            <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-20 px-7.5 py-4.5 border-b border-[#E2E2E2]">
-        <div className="flex gap-3 items-center">
-          <div className="w-9 h-9 rounded-full bg-slate-300"></div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            <div className="flex justify-between">
-              <div className="text-body-medium font-bold">Username</div>
-              <div className="text-body-small text-whitebg-info">
-                오늘, 9:52pm
-              </div>
-            </div>
-            <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-20 px-7.5 py-4.5 border-b border-[#E2E2E2]">
-        <div className="flex gap-3 items-center">
-          <div className="w-9 h-9 rounded-full bg-slate-300"></div>
-          <div className="flex flex-col gap-1.5 flex-1">
-            <div className="flex justify-between">
-              <div className="text-body-medium font-bold">Username</div>
-              <div className="text-body-small text-whitebg-info">
-                오늘, 9:52pm
-              </div>
-            </div>
-            <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
