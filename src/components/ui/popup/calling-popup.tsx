@@ -58,6 +58,7 @@ export default function CallingPopup() {
             isVisible: false,
             answer: "",
             question: "",
+            onRemove: () => {},
           });
           setPopupData({
             type: "title-ok",
@@ -74,6 +75,7 @@ export default function CallingPopup() {
             isVisible: true,
             answer: data.result.answer,
             question: data.result.question,
+            onRemove: callingData.onRemove,
           });
         }
       },
@@ -91,6 +93,7 @@ export default function CallingPopup() {
       isVisible: false,
       answer: "",
       question: "",
+      onRemove: () => {},
     });
     const content = checkBoxData.isPersonalInfo
       ? "개인정보가 아님"
@@ -101,6 +104,8 @@ export default function CallingPopup() {
       id: callingData.id,
       content: content,
     });
+    console.log(callingData.id);
+    callingData.onRemove(callingData.id);
   };
 
   const handleCancel = () => {
@@ -110,6 +115,7 @@ export default function CallingPopup() {
       isVisible: false,
       answer: "",
       question: "",
+      onRemove: () => {},
     });
   };
 

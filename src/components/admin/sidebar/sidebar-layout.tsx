@@ -9,7 +9,7 @@ import useRequireLogin from "@/hooks/useRequireLogin";
 export default function AdminSidebarLayout({ children }: PropsWithChildren) {
   const [showSidebar, setShowSidebar, showHiddenButton, setShowHiddenButton] =
     useSidebarWindowResize(true);
-  // const { isLoading } = useRequireLogin();
+  const { isLoading } = useRequireLogin();
 
   return (
     <div className="flex z-50 h-screen max-w-full bg-[#FAFAFA]">

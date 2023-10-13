@@ -5,7 +5,7 @@ export default function NotificationMenus() {
   const menus = [
     { name: "전체", id: 0, isAlert: false },
     { name: "소명", id: 1, isAlert: false },
-    { name: "공지", id: 2, isAlert: false },
+    // { name: "공지", id: 2, isAlert: false },
   ];
 
   const onClickMenu = (id: number) => {
