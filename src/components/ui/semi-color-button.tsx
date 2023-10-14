@@ -11,7 +11,7 @@ export default function SemiColorButton({
 }: SemiColorButtonProps) {
   return (
     <button
-      className={`rounded-md text-center ${
+      className={`rounded-md text-center text-body-medium ${
         type == "positive"
           ? "bg-[#D0FFF4] text-[#12A480]"
           : "bg-[#FFD9D9] text-[#FF3434]"
