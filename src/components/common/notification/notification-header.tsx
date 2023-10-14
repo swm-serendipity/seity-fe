@@ -7,9 +7,9 @@ export default function NotificationHeader() {
         <div className="font-h3 text-h3 text-whitebg-default flex">알림</div>
         <NotificationCount notificationCount={0} />
       </div>
-      <button className="pr-0.5 font-body-medium text-body-medium text-whitebg-serve underline">
+      {/* <button className="pr-0.5 font-body-medium text-body-medium text-whitebg-serve underline">
         모든 알림 읽음처리
-      </button>
+      </button> */}
     </div>
   );
 }

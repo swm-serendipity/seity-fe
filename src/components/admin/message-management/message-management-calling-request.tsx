@@ -1,16 +1,16 @@
 import Lottie from "lottie-react";
 import loadingLottie from "../../assets/loading-animation.json";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import getCallingNotification from "@/apis/get-calling-notification";
 import { useEffect, useRef } from "react";
 import MessageManagementCallingRequestCard from "./message-management-calling-request-card";
 import { AdminCalling } from "@/type/admin-calling";
+import getCallingAdminHistory from "@/apis/get-calling-admin-history";
 export default function MessageManagementCallingRequest() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
     useInfiniteQuery(
       ["admin-calling-request"],
-      ({ pageParam = 0 }) => getCallingNotification(pageParam),
+      ({ pageParam = 0 }) => getCallingAdminHistory(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
           if (
