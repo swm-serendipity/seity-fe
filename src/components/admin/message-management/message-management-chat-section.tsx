@@ -13,7 +13,7 @@ type MessageManagementChatSectionProps = {
 export default function MessageManagementChatSection({
   selectedCallingId,
 }: MessageManagementChatSectionProps) {
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ["admin-calling", selectedCallingId],
     () => getAdminSingleHistory({ callingId: selectedCallingId })
   );
@@ -45,7 +45,7 @@ export default function MessageManagementChatSection({
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-between">
-        <MessageManagementAdminChat result={data.result} />
+        <MessageManagementAdminChat result={data.result} refetch={refetch} />
         <div className="w-full min-h-[100px] flex justify-center items-center bg-white">
           <div className="flex items-center bg-prompt-ai-select-bg w-full xl:w-[768px] mx-4 md:mx-7 min-h-[58px] rounded-xl my-5 relative">
             <ReactTextareaAutosize

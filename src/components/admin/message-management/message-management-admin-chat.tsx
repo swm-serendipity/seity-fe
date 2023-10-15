@@ -1,7 +1,10 @@
+import deleteCalling from "@/apis/delete-calling";
+import patchSolveCalling from "@/apis/patch-solve-calling";
 import SemiColorButton from "@/components/ui/semi-color-button";
 import { useStore } from "@/store/store";
 import formatDate from "@/utils/formatDate";
 import { highlightedDetectionList } from "@/utils/highlightedDetectionList";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type MessageManagementAdminChatProps = {
   result: {
@@ -39,7 +42,8 @@ type MessageManagementAdminChatProps = {
 export default function MessageManagementAdminChat({
   result,
 }: MessageManagementAdminChatProps) {
-  const { setPopupData } = useStore();
+  const { setPopupData, setSelectedCallingId } = useStore();
+  const queryClient = useQueryClient();
 
   const handleDevelopButton = () => {
     setPopupData({
@@ -51,6 +55,56 @@ export default function MessageManagementAdminChat({
       title: "알림",
     });
   };
+
+  const { mutate: mutateDeleteCalling } = useMutation(deleteCalling, {
+    onSuccess: (data) => {
+      setPopupData({
+        type: "title-ok",
+        content: "정상 삭제 되었습니다.",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+        title: "알림",
+      });
+      queryClient.invalidateQueries(["admin-calling-request"]);
+      setSelectedCallingId("");
+    },
+    onError: (error) => {
+      setPopupData({
+        type: "title-ok",
+        content: "문제가 발생했습니다. 잠시 후에 다시 시도해주세요.",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+        title: "알림",
+      });
+    },
+  });
+
+  const { mutate: mutateApproveCalling } = useMutation(patchSolveCalling, {
+    onSuccess: (data) => {
+      setPopupData({
+        type: "title-ok",
+        content: "정상 처리 되었습니다.",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+        title: "알림",
+      });
+      queryClient.invalidateQueries(["admin-calling-request"]);
+      setSelectedCallingId("");
+    },
+    onError: (error) => {
+      setPopupData({
+        type: "title-ok",
+        content: "문제가 발생했습니다. 잠시 후에 다시 시도해주세요.",
+        handleCancel: () => {},
+        handleOk: () => {},
+        isVisible: true,
+        title: "알림",
+      });
+    },
+  });
 
   const highlightedText = highlightedDetectionList({
     text: result.detection.question,
@@ -107,7 +161,9 @@ export default function MessageManagementAdminChat({
               <SemiColorButton
                 text="삭제"
                 type="negative"
-                onClick={handleDevelopButton}
+                onClick={() =>
+                  mutateDeleteCalling({ callingId: result.callingId })
+                }
               />
             </div>
           </div>
@@ -124,7 +180,9 @@ export default function MessageManagementAdminChat({
               <SemiColorButton
                 text="승인"
                 type="positive"
-                onClick={handleDevelopButton}
+                onClick={() => {
+                  mutateApproveCalling({ callingId: result.callingId });
+                }}
               />
             </div>
           </div>
