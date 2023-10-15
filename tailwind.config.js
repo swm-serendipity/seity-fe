@@ -118,9 +118,9 @@ module.exports = {
           height: "8px",
           background: "transparent",
         },
-        ".custom-scrollbar": {
-          "box-sizing": "content-box",
-        },
+        // ".custom-scrollbar": {
+        //   "box-sizing": "content-box",
+        // },
         ".custom-scrollbar::-webkit-scrollbar-thumb": {
           "background-color": "rgba(217, 217, 217, 1)",
           "border-radius": "40px",

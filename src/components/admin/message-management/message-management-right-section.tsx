@@ -9,7 +9,7 @@ export default function MessageManagementRightSection() {
         <MessageManagementChatSection selectedCallingId={selectedCallingId} />
       ) : (
         <div className="w-full h-full flex justify-center items-center text-whitebg-info text-body-medium">
-          공지사항 또는 소명 요청을 클릭해주세요.
+          공지사항 또는 소명 요청을 선택 해주세요.
         </div>
       )}
     </div>
