@@ -14,6 +14,7 @@ type MessageManagementAdminChatProps = {
     deadline: string;
     userId: string;
     userName: string;
+    userPart: string;
     userProfileBackgroundHex: string;
     userProfileTextHex: string;
     detection: {
@@ -139,7 +140,7 @@ export default function MessageManagementAdminChat({
                 </div>
               </div>
               <div className="border-b mx-[15px]" />
-              <div className="pt-2 pb-3 text-body-medium flex-col flex gap-1.5 mx-5">
+              <div className="pt-2 pb-5 text-body-medium flex-col flex gap-1.5 mx-5">
                 <div>질의 내용</div>
                 <div className="pr-3 text-whitebg-serve">
                   {highlightedText.map((part, index) => (
@@ -172,7 +173,7 @@ export default function MessageManagementAdminChat({
       <div className="flex-col flex">
         <div className="flex mt-5 justify-start">
           <div className="flex flex-col gap-1.5">
-            <div className="bg-[#F9F9F9] rounded-e-xl rounded-ee-xl rounded-bl-xl border-[#E6E6E6] border text-body-medium px-5 py-4 flex flex-col gap-1.5">
+            <div className="bg-[#F9F9F9] rounded-e-xl rounded-ee-xl rounded-bl-xl border-[#E6E6E6] border text-body-medium px-5 py-4 flex flex-col gap-1">
               <div>응답 내용</div>
               <div className="text-whitebg-serve">{result.content}</div>
             </div>
