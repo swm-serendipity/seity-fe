@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import getAdminSingleHistory from "@/apis/get-admin-single-history";
 import Lottie from "lottie-react";
-import loadingLottie from "../../assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import { useStore } from "@/store/store";
 type MessageManagementChatSectionProps = {
   selectedCallingId: string;

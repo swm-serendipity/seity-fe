@@ -1,6 +1,6 @@
 import { colors } from "@/styles/color-guide";
 import Lottie from "lottie-react";
-import loadingLottie from "../assets/white-loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/white-loading-animation.json";
 type ColoredButtonProps = {
   buttonText: string;
   color: "point" | "default" | "white" | "gray" | "alert";

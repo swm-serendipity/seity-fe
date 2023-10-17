@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import loadingLottie from "../../assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import MessageManagementCallingRequestCard from "./message-management-calling-request-card";

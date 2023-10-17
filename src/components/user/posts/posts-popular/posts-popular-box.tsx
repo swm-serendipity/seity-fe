@@ -13,7 +13,7 @@ import getRecentSharedPrompt from "@/apis/get-recent-shared-prompt";
 import getRecentHotPrompt from "@/apis/get-recent-hot-prompt";
 import getAllHotPrompt from "@/apis/get-all-hot-prompt";
 import Lottie from "lottie-react";
-import loadingLottie from "../../../assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 
 export default function PostPopularBox() {
   const { isNotificationOpen, isSharePopupOpen, popupData } = useStore();

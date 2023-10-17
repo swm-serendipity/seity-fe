@@ -1,7 +1,7 @@
 import { useStore } from "@/store/store";
 import { ColoredButton } from "../color-button";
 import Lottie from "lottie-react";
-import loadingLottie from "../../assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import ShareUserChat from "@/components/user/share-popup/share-popup-user-chat";
 import ShareAIChat from "@/components/user/share-popup/share-popup-ai-chat";
 import Image from "next/image";

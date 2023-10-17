@@ -118,7 +118,9 @@ export default function MessageManagementAdminChat({
         <div className="flex mt-5 justify-end">
           <div className="flex flex-col gap-1.5">
             <div className="w-[320px] min-h-[200px] bg-[#F9F9F9] rounded-xl flex-col border-[#E6E6E6] border">
-              <div className="ml-5 mt-5 mb-4 font-bold">소명요청</div>
+              <div className="ml-5 mt-5 mb-4 font-bold">
+                {result.status == "SOLVED" ? "완료된 소명" : "소명 요청"}
+              </div>
               <div className="border-b mx-[15px]" />
               <div className="flex-1 flex flex-col mx-5 gap-2.5 mt-4 text-body-medium pb-3">
                 <div>소명 정보</div>
@@ -161,6 +163,7 @@ export default function MessageManagementAdminChat({
             <div className="flex justify-end">
               <SemiColorButton
                 text="삭제"
+                disabled={result.status == "SOLVED"}
                 type="negative"
                 onClick={() =>
                   mutateDeleteCalling({ callingId: result.callingId })
@@ -180,6 +183,7 @@ export default function MessageManagementAdminChat({
             <div className="flex justify-end">
               <SemiColorButton
                 text="승인"
+                disabled={result.status == "SOLVED"}
                 type="positive"
                 onClick={() => {
                   mutateApproveCalling({ callingId: result.callingId });

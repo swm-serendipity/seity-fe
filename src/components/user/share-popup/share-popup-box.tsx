@@ -4,7 +4,7 @@ import ShareChatSection from "./share-popup-chat-section";
 import { useMutation } from "@tanstack/react-query";
 import postSharePrompt from "@/apis/post-share-prompt";
 import Lottie from "lottie-react";
-import loadingLottie from "../../assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import SharePopupUnderSection from "./share-popup-under-section";
 
 export default function SharePopupBox() {

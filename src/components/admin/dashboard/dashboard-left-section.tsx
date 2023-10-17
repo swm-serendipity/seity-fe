@@ -3,7 +3,7 @@ import { InfiniteData } from "@tanstack/react-query";
 import DashboardLeftCard from "./dashboard-left-card";
 import { convertToDotFormat } from "@/utils/formatTime";
 import Lottie from "lottie-react";
-import loadingLottie from "@/components/assets/loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 
 type DashboardLeftSectionProps = {
   seletedId: string | null;

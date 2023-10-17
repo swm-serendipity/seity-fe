@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ChatResponseMarkdownParser from "../../ui/markdown/chat-markdown-parser";
 import Lottie from "lottie-react";
-import loadingLottie from "../../assets/chat-word-box-loading-animation.json";
+import loadingLottie from "@/components/assets/lottie/chat-word-box-loading-animation.json";
 import { useStore } from "@/store/store";
 
 type PromptAIChatProps = {

@@ -1,3 +1,4 @@
+import PurpleWhiteCheck from "@/components/assets/purple-white-check";
 import { useStore } from "@/store/store";
 import { AdminCalling } from "@/type/admin-calling";
 import formatDate from "@/utils/formatDate";
@@ -34,8 +35,11 @@ export default function MessageManagementCallingRequestCard({
               {formatDate(item.lastModifiedAt)}
             </div>
           </div>
-          <div className="line-clamp-1 text-body-medium">
-            ChatGPT 사용 중 개인정보 입력 건 소명 요청
+          <div className="flex justify-between">
+            <div className="line-clamp-1 text-body-medium">
+              ChatGPT 사용 중 개인정보 입력 건 소명 요청
+            </div>
+            {item.resolved && <PurpleWhiteCheck />}
           </div>
         </div>
       </div>
