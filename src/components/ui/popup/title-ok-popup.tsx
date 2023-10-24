@@ -32,7 +32,7 @@ export default function TitleOkPopup() {
         <div className="justify-center items-center flex font-h3 text-h3">
           {popupData.title}
         </div>
-        <div className="justify-center items-center flex mt-7 h-[46px]">
+        <div className="justify-center items-center flex mt-7 h-[46px] text-center whitespace-pre">
           {popupData.content}
         </div>
         <div className="flex justify-center w-full gap-3 mt-10">

@@ -9,8 +9,9 @@ export default function SidebarMenu() {
     setPopupData({
       type: "title-ok",
       isVisible: true,
-      title: "아직 개발되지 않은 기능이에요!",
-      content: "추후 더 멋있는 모습으로 공개할게요!",
+      title: "알림",
+      content:
+        "아직 개발되지 않은 기능이에요!\n추후 더 멋있는 모습으로 공개할게요!",
       handleCancel: () => {},
       handleOk: () => {},
     });

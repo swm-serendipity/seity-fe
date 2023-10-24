@@ -60,8 +60,9 @@ export default function SidebarHistoryFullBox({
     setPopupData({
       type: "title-ok-cancel",
       isVisible: true,
-      title: "삭제하시겠습니까?",
-      content: "삭제된 데이터는 복구할 수 없습니다. 삭제하시겠습니까?",
+      title: "알림",
+      content:
+        "해당 프롬프트를 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다. 삭제하시겠습니까?",
       handleCancel: () => {},
       handleOk: () => {
         mutate({ sessionId: chatSessionId });
