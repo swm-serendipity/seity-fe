@@ -46,7 +46,7 @@ export default function SidebarMenu() {
       />
       <SidebarMenuButton
         text="금칙어 관리"
-        onClick={handleDisabledButton}
+        onClick={() => handleRouteButton("/forbidden-word-management")}
         type="forbidden-word-management"
       />
       <SidebarMenuButton

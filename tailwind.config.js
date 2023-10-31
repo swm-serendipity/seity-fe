@@ -44,6 +44,7 @@ module.exports = {
         h2: "bold",
         h3: "bold",
         h4: "bold",
+        h5: "semibold",
         "body-large": "regular",
         "body-medium": "regular",
         "body-small": "regular",

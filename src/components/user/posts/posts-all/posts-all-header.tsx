@@ -1,4 +1,4 @@
-import SearchSet from "@/components/ui/search/search-set";
+import SearchSet from "@/components/ui/inputs/search-set";
 import { useState } from "react";
 
 type PostsAllHeaderProps = {
