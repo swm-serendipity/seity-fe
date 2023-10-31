@@ -35,7 +35,7 @@ export default function SidebarMenu() {
         type="detection-request"
       />
       <SidebarMenuButton
-        text="메시지 관리"
+        text="소명 관리"
         onClick={() => handleRouteButton("/message-management")}
         type="message-management"
       />

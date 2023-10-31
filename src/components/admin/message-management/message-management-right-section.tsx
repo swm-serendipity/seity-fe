@@ -4,7 +4,7 @@ import MessageManagementChatSection from "./message-management-chat-section";
 export default function MessageManagementRightSection() {
   const { selectedCallingId } = useStore();
   return (
-    <div className="bg-white notice-card w-[580px] h-[870px] rounded-xl">
+    <div className="bg-white notice-card w-[580px] h-[800px] rounded-xl">
       {selectedCallingId.length > 0 ? (
         <MessageManagementChatSection selectedCallingId={selectedCallingId} />
       ) : (

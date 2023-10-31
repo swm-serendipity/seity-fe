@@ -47,7 +47,7 @@ export default function MessageManagementCallingRequest() {
     };
   }, [hasNextPage, fetchNextPage]);
   return (
-    <div className="bg-white notice-card w-[400px] h-[540px] rounded-xl flex flex-col">
+    <div className="bg-white notice-card w-[400px] h-[800px] rounded-xl flex flex-col">
       <div className=" px-7.5 pt-6 pb-5.5 border-b border-[#E2E2E2]">
         <div className="text-h4 font-h4">소명 요청</div>
       </div>
