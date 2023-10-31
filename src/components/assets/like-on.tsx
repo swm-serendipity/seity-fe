@@ -7,7 +7,7 @@ export default function LikeOn() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_779_19972)">
+      <g clipPath="url(#clip0_779_19972)">
         <path
           d="M4.25 22.25H1.75C1.19921 22.25 0.75 21.8008 0.75 21.25V9.75C0.75 9.19921 1.19921 8.75 1.75 8.75H4.25C4.80079 8.75 5.25 9.19921 5.25 9.75V21.25C5.25 21.8008 4.80079 22.25 4.25 22.25Z"
           fill="white"

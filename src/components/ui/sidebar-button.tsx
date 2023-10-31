@@ -19,6 +19,7 @@ import SidebarStatsticsSvg from "../assets/sidebar-statstics";
 import SidebarMessageManagementSvg from "../assets/sidebar-message-management";
 import SidebarForbiddenWordManagementSvg from "../assets/sidebar-forbidden-word-management";
 import SidebarSettingSvg from "../assets/sidebar-setting";
+import { usePathname } from "next/navigation";
 
 type SidebarMenuButtonProps = {
   type: SidebarButtonType;
@@ -34,7 +35,9 @@ export const SidebarMenuButton = ({
   notificationCount = 0,
   onClick,
 }: SidebarMenuButtonProps) => {
+  const pathName = usePathname();
   const [color, setColor] = useState(colors.blackbg.default);
+  const isActive = pathName.split("/")[1] == type;
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
@@ -55,12 +58,20 @@ export const SidebarMenuButton = ({
 
   return (
     <button
-      className="flex w-[220px] h-[44px] bg-sidebar-button-default hover:bg-sidebar-button-hover rounded-md relative
-    active:bg-sidebar-button-click text-body-medium items-center"
+      className={`flex w-[220px] h-[44px] ${
+        isActive ? "bg-sidebar-button-click" : "bg-sidebar-button-default"
+      } hover:bg-sidebar-button-hover rounded-md relative
+    active:bg-sidebar-button-click text-body-medium items-center`}
       onMouseDown={handleMouseDown}
     >
-      <SidebarButtonIcon type={type} color={color} />
-      <p className="ml-1.5" style={{ color: color }}>
+      <SidebarButtonIcon
+        type={type}
+        color={isActive ? colors.blackbg.point : color}
+      />
+      <p
+        className="ml-1.5"
+        style={{ color: isActive ? colors.blackbg.point : color }}
+      >
         {text}
       </p>
       {notificationCount ? (
@@ -85,7 +96,7 @@ type SideBarButtonProps = {
 };
 
 const SidebarButtonIcon = ({ type, color }: SideBarButtonProps) => {
-  if (type == "detection-request") {
+  if (type == "detection-request" || type == "notification") {
     return <SidebarNotificationSvg color={color} className="ml-2.5" />;
   } else if (type == "popular") {
     return <SidebarPopularPromptSvg color={color} className="ml-2.5" />;
