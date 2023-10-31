@@ -68,9 +68,9 @@ export default function Hero() {
                 <div>
                   <a
                     className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="https://team-serendipity.vercel.app/chat-gpt"
+                    href="https://team-serendipity.vercel.app/seity"
                   >
-                    더 알아보기
+                    자세히 알아보기
                   </a>
                 </div>
               </div>
