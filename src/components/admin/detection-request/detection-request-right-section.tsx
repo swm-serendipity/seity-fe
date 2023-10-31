@@ -3,6 +3,8 @@ import getSingleDetectionDashboard from "@/apis/get-single-detection-dashboard";
 import postCallingDetectionDashboard from "@/apis/post-calling-detection-dashboard";
 import { ColoredButton } from "@/components/ui/color-button";
 import { useStore } from "@/store/store";
+import Lottie from "lottie-react";
+import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import { convertToDotFormat } from "@/utils/formatTime";
 import { highlightedDetectionList } from "@/utils/highlightedDetectionList";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -14,13 +16,13 @@ type DashboardRightSectionProps = {
   refetch: () => void;
 };
 
-export default function DashboardRightSection({
+export default function DetectionRequestRightSection({
   seletedId,
   setSelectedId,
   refetch,
 }: DashboardRightSectionProps) {
   const { data, isLoading } = useQuery(
-    ["dashboard-item", seletedId],
+    ["detection-item", seletedId],
     getSingleDetectionDashboard
   );
 
@@ -73,7 +75,12 @@ export default function DashboardRightSection({
     });
   };
 
-  if (isLoading) return <div className="bg-white w-full flex-1 h-full"></div>;
+  if (isLoading)
+    return (
+      <div className="bg-white w-full flex-1 h-full flex justify-center items-center">
+        <Lottie animationData={loadingLottie} />
+      </div>
+    );
   const result: DetectionSingleItem = data.result;
   const highlightedText = highlightedDetectionList({
     text: result.question,

@@ -26,7 +26,7 @@ export default function SidebarHiddenButton({
   return (
     <div className="absolute top-6 left-5 z-20 items-center hidden sm:flex">
       <FoldIconButton color="white" onClick={handleFoldButton} />
-      <NotificationIconButton isAlert={true} onClick={toggleNotification} />
+      {/* <NotificationIconButton isAlert={true} onClick={toggleNotification} /> */}
     </div>
   );
 }

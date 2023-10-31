@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { InfiniteData } from "@tanstack/react-query";
-import DashboardLeftCard from "./dashboard-left-card";
 import { convertToDotFormat } from "@/utils/formatTime";
 import Lottie from "lottie-react";
 import loadingLottie from "@/components/assets/lottie/loading-animation.json";
+import DetectionRequestLeftCard from "./detection-request-left-card";
 
 type DashboardLeftSectionProps = {
   seletedId: string | null;
@@ -14,7 +14,7 @@ type DashboardLeftSectionProps = {
   hasNextPage: boolean | undefined;
 };
 
-export default function DashboardLeftSection({
+export default function DetectionRequestLeftSection({
   seletedId,
   handleCard,
   data,
@@ -56,7 +56,7 @@ export default function DashboardLeftSection({
         .flatMap((page) => page.result.detections)
         .map((item: Detection) => {
           return (
-            <DashboardLeftCard
+            <DetectionRequestLeftCard
               key={item.id}
               id={item.id}
               title={item.question}
@@ -69,12 +69,7 @@ export default function DashboardLeftSection({
             />
           );
         })}
-      {isLoading && (
-        <>
-          <div className="w-full flex justify-center items-center" />
-          <Lottie animationData={loadingLottie} className="" />
-        </>
-      )}
+      {isLoading && <Lottie animationData={loadingLottie} />}
     </div>
   );
 }

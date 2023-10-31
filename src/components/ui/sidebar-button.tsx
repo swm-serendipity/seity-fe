@@ -85,7 +85,7 @@ type SideBarButtonProps = {
 };
 
 const SidebarButtonIcon = ({ type, color }: SideBarButtonProps) => {
-  if (type == "notification") {
+  if (type == "detection-request") {
     return <SidebarNotificationSvg color={color} className="ml-2.5" />;
   } else if (type == "popular") {
     return <SidebarPopularPromptSvg color={color} className="ml-2.5" />;
@@ -98,8 +98,8 @@ const SidebarButtonIcon = ({ type, color }: SideBarButtonProps) => {
         className="ml-2.5 w-[22px] h-[22px] p-0.5"
       />
     );
-  } else if (type == "dashboard") {
-    return <SidebarDashboardSvg color={color} className="ml-2.5" />;
+    // } else if (type == "detection-request") {
+    //   return <SidebarDashboardSvg color={color} className="ml-2.5" />;
   } else if (type == "user-management") {
     return (
       <SidebarUserManagementSvg

@@ -1,6 +1,6 @@
 import { axiosInstance } from "./axios-setting";
 
-const getDetectionDashboard = async (pageNumber = 0) => {
+const getDetectionRequest = async (pageNumber = 0) => {
   const { data } = await axiosInstance.get(`/detection`, {
     params: {
       pageNumber: pageNumber,
@@ -10,4 +10,4 @@ const getDetectionDashboard = async (pageNumber = 0) => {
   return data;
 };
 
-export default getDetectionDashboard;
+export default getDetectionRequest;

@@ -9,7 +9,7 @@ type DashboardLeftCardProps = {
   handleCard: (id: string) => void;
 };
 
-export default function DashboardLeftCard({
+export default function DetectionRequestLeftCard({
   id,
   title,
   name,

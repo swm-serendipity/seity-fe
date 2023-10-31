@@ -3,7 +3,7 @@ export type SidebarButtonType =
   | "notification"
   | "scrap"
   | "share"
-  | "dashboard"
+  | "detection-request"
   | "user-management"
   | "statistics"
   | "message-management"

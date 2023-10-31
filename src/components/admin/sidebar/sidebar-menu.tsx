@@ -23,21 +23,16 @@ export default function SidebarMenu() {
 
   return (
     <div className="mt-7 flex flex-col items-center gap-2">
-      <SidebarMenuButton
+      {/* <SidebarMenuButton
         text="알림"
         onClick={toggleNotification}
         type="notification"
         notificationCount={0}
-      />
+      /> */}
       <SidebarMenuButton
-        text="대시보드"
-        onClick={() => handleRouteButton("/dashboard")}
-        type="dashboard"
-      />
-      <SidebarMenuButton
-        text="사용자 관리"
-        onClick={() => handleRouteButton("/user-management")}
-        type="user-management"
+        text="검출 알림"
+        onClick={() => handleRouteButton("/detection-request")}
+        type="detection-request"
       />
       <SidebarMenuButton
         text="메시지 관리"
@@ -45,14 +40,19 @@ export default function SidebarMenu() {
         type="message-management"
       />
       <SidebarMenuButton
-        text="통계"
-        onClick={handleDisabledButton}
-        type="statistics"
+        text="사용자 관리"
+        onClick={() => handleRouteButton("/user-management")}
+        type="user-management"
       />
       <SidebarMenuButton
         text="금칙어 관리"
         onClick={handleDisabledButton}
         type="forbidden-word-management"
+      />
+      <SidebarMenuButton
+        text="통계"
+        onClick={handleDisabledButton}
+        type="statistics"
       />
       <SidebarMenuButton
         text="설정"

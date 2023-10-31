@@ -21,7 +21,7 @@ export default function LoginInput() {
       const role: string[] = data.result.role;
 
       if (role.includes("ADMIN")) {
-        router.push("/dashboard");
+        router.push("/detection-request");
         return;
       }
       router.push("/chat");

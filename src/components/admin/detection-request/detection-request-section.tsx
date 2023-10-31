@@ -1,11 +1,11 @@
 import { useState } from "react";
-import DashboardHeader from "./dashboard-header";
-import DashboardLeftSection from "./dashboard-left-section";
-import DashboardRightSection from "./dashboard-right-section";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import getDetectionDashboard from "@/apis/get-detection-dashboard";
+import getDetectionRequest from "@/apis/get-detection-request";
+import DetectionRequestHeader from "./detection-request-header";
+import DetectionRequestLeftSection from "./detection-request-left-section";
+import DetectionRequestRightSection from "./detection-request-right-section";
 
-export default function DashboardSection() {
+export default function DetectionRequestSection() {
   const [seletedId, setSelectedId] = useState<string | null>(null);
   const handleCard = (id: string) => {
     setSelectedId(id);
@@ -13,8 +13,8 @@ export default function DashboardSection() {
 
   const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
     useInfiniteQuery(
-      ["dashboard"],
-      ({ pageParam = 0 }) => getDetectionDashboard(pageParam),
+      ["detection-requests"],
+      ({ pageParam = 0 }) => getDetectionRequest(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
           if (
@@ -31,8 +31,8 @@ export default function DashboardSection() {
   return (
     <div className="flex flex-grow w-full flex-1 h-screen bg-[#FAFAFA] z-10">
       <div className="flex-col flex mr-6">
-        <DashboardHeader />
-        <DashboardLeftSection
+        <DetectionRequestHeader />
+        <DetectionRequestLeftSection
           seletedId={seletedId}
           handleCard={handleCard}
           data={data}
@@ -42,7 +42,7 @@ export default function DashboardSection() {
         />
       </div>
       {seletedId && (
-        <DashboardRightSection
+        <DetectionRequestRightSection
           seletedId={seletedId}
           setSelectedId={setSelectedId}
           refetch={refetch}

@@ -3,14 +3,14 @@ import { Fragment } from "react";
 import NotificationBox from "@/components/common/notification/notification-box";
 import NotificationBackground from "@/components/common/notification/notification-background";
 import Popup from "@/components/ui/popup/popup";
-import DashboardSection from "./dashboard-section";
+import DetectionRequestSection from "./detection-request-section";
 
-export default function DashboardBox() {
+export default function DetectionRequestBox() {
   const { isNotificationOpen, popupData } = useStore();
 
   return (
     <div className="relative flex w-full">
-      <DashboardSection />
+      <DetectionRequestSection />
 
       {popupData.isVisible && <Popup />}
       {isNotificationOpen && (
