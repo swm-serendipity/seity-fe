@@ -1,6 +1,7 @@
-import ForbiddenWordRegisterSet from "@/components/ui/inputs/forbidden-word-register-set";
 import { Dispatch, SetStateAction, useState } from "react";
 import ForbiddenWordManagementChip from "./forbidden-word-management-chip";
+import { toast } from "react-toastify";
+import ForbiddenWordSet from "@/components/ui/inputs/forbidden-word-set";
 
 type ForbiddenWordManagementBottomSectionProps = {
   textDatas: string[];
@@ -20,6 +21,9 @@ export default function ForbiddenWordManagementBottomSection({
     }
     const index = textDatas.findIndex((text) => text === searchText);
     if (index === -1) {
+      toast(`"${searchText}"라는 금칙어는 존재하지 않습니다.`, {
+        type: "error",
+      });
       setHighlightText("");
       return;
     }
@@ -33,10 +37,10 @@ export default function ForbiddenWordManagementBottomSection({
       <div className="flex gap-2">
         <div className="text-h4 font-h4">등록된 금칙어</div>
         <div>
-          총 <span className="text-[#29CCA4]">23</span>개
+          총 <span className="text-[#29CCA4]">{textDatas.length}</span>개
         </div>
       </div>
-      <ForbiddenWordRegisterSet
+      <ForbiddenWordSet
         placeholder="검색어를 입력해주세요."
         buttonText="검색"
         onClick={handleSearch}

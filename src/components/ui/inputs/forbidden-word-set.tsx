@@ -9,13 +9,18 @@ type SearchSetProps = {
   onClick: () => void;
 };
 
-export default function ForbiddenWordRegisterSet({
+export default function ForbiddenWordSet({
   placeholder,
   buttonText,
   text,
   setText,
   onClick,
 }: SearchSetProps) {
+  const handleKeyPress = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      onClick();
+    }
+  };
   return (
     <div className="flex gap-2.5">
       <input
@@ -24,6 +29,7 @@ export default function ForbiddenWordRegisterSet({
         placeholder={placeholder}
         value={text}
         onChange={(e) => setText(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
       <ColoredButton
         onClick={onClick}
