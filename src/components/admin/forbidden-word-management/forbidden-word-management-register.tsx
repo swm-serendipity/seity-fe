@@ -1,5 +1,6 @@
 import ForbiddenWordRegisterSet from "@/components/ui/inputs/forbidden-word-register-set";
 import { Dispatch, SetStateAction, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 type ForbiddenWordManagementRegisterProps = {
   textDatas: string[];
@@ -18,7 +19,10 @@ export default function ForbiddenWordManagementRegister({
         placeholder="금칙어를 입력해주세요."
         buttonText="금칙어 등록"
         onClick={() => {
-          if (searchText === "") return;
+          if (searchText === "") {
+            toast("toastify test!");
+            return;
+          }
           setTextDatas((prev) => [...prev, searchText]);
           setSearchText("");
         }}
