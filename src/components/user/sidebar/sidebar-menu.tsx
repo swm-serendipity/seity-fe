@@ -1,8 +1,11 @@
+import getNotificationCount from "@/apis/get-notification-count";
 import { SidebarMenuButton } from "@/components/ui/sidebar-button";
 import { useStore } from "@/store/store";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 export default function SidebarMenu() {
+  const { data } = useQuery(["notification-count"], getNotificationCount);
   const { toggleNotification } = useStore();
   const router = useRouter();
   const handlePopularPromptButton = () => {
@@ -38,7 +41,7 @@ export default function SidebarMenu() {
         text="알림"
         onClick={toggleNotification}
         type="notification"
-        notificationCount={0}
+        notificationCount={data?.result.count}
       />
     </div>
   );

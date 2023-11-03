@@ -47,6 +47,7 @@ export default function CallingPopup() {
     },
     onSettled: () => {
       queryClient.invalidateQueries(["notification-user"]);
+      queryClient.invalidateQueries(["notification-count"]);
     },
   });
 
@@ -116,6 +117,7 @@ export default function CallingPopup() {
 
   const handleCancel = () => {
     queryClient.invalidateQueries(["notification-user"]);
+    queryClient.invalidateQueries(["notification-count"]);
     setCallingData({
       id: "",
       isLoading: false,

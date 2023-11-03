@@ -37,12 +37,6 @@ export default function NotificationList() {
   useEffect(() => {
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement;
-      console.log(
-        target.scrollHeight,
-        target.scrollTop,
-        target.clientHeight,
-        hasNextPage
-      );
       if (
         target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
         hasNextPage

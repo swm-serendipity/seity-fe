@@ -177,13 +177,21 @@ export default function MessageManagementAdminChat({
         <div className="flex mt-5 justify-start">
           <div className="flex flex-col gap-1.5">
             <div className="bg-[#F9F9F9] rounded-e-xl rounded-ee-xl rounded-bl-xl border-[#E6E6E6] border text-body-medium px-5 py-4 flex flex-col gap-1">
-              <div>응답 내용</div>
-              <div className="text-whitebg-serve">{result.content}</div>
+              <div>
+                {result.status == "PENDING" ? "응답 대기" : "응답 내용"}
+              </div>
+              <div className="text-whitebg-serve">
+                {result.status == "PENDING"
+                  ? "응답을 기다리고 있는 소명입니다."
+                  : result.content}
+              </div>
             </div>
             <div className="flex justify-end">
               <SemiColorButton
                 text="승인"
-                disabled={result.status == "SOLVED"}
+                disabled={
+                  result.status == "SOLVED" || result.status == "PENDING"
+                }
                 type="positive"
                 onClick={() => {
                   mutateApproveCalling({ callingId: result.callingId });

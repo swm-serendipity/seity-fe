@@ -6,6 +6,8 @@ import {
 } from "./sidebar-menu-buttons";
 import { useStore } from "@/store/store";
 import { useRouter } from "next/navigation";
+import getNotificationCount from "@/apis/get-notification-count";
+import { useQuery } from "@tanstack/react-query";
 
 type SidebarHiddenButtonProps = {
   showSidebar: boolean;
@@ -13,9 +15,9 @@ type SidebarHiddenButtonProps = {
 };
 
 export default function SidebarHiddenButton({
-  showSidebar,
   setShowSidebar,
 }: SidebarHiddenButtonProps) {
+  const { data } = useQuery(["notification-count"], getNotificationCount);
   const { toggleNotification } = useStore();
   const router = useRouter();
 
@@ -29,7 +31,10 @@ export default function SidebarHiddenButton({
   return (
     <div className="absolute top-6 left-5 z-20 items-center hidden sm:flex">
       <FoldIconButton color="white" onClick={handleFoldButton} />
-      <NotificationIconButton isAlert={true} onClick={toggleNotification} />
+      <NotificationIconButton
+        isAlert={data?.result.count}
+        onClick={toggleNotification}
+      />
       <PopularPromptButton onClick={handlePopularPromptButton} />
     </div>
   );
