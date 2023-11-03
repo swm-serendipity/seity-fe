@@ -195,7 +195,7 @@ export const SidebarHistoryButton = ({
     } else if (chatData.length == 0) {
       setPopupData({
         type: "title-ok",
-        title: "공유하기",
+        title: "알림",
         content: "데이터 로딩중입니다. 잠시후 다시 시도해주세요!",
         handleCancel: () => {},
         handleOk: () => {},

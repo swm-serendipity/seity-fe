@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { InfiniteData } from "@tanstack/react-query";
 import { convertToDotFormat } from "@/utils/formatTime";
 import Lottie from "lottie-react";
 import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import DetectionRequestLeftCard from "./detection-request-left-card";
+import { debounce } from "lodash";
 
 type DashboardLeftSectionProps = {
   seletedId: string | null;
@@ -25,27 +26,28 @@ export default function DetectionRequestLeftSection({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = (e: Event) => {
+    const handleScroll = debounce((e: Event) => {
       const target = e.target as HTMLElement;
       if (
-        target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
+        target.scrollHeight - target.scrollTop <= target.clientHeight + 100 &&
         hasNextPage
       ) {
         fetchNextPage();
       }
-    };
+    }, 200);
 
     const container = scrollRef.current;
     if (container) {
-      container.addEventListener("scroll", handleScroll);
+      container.addEventListener("scroll", (e) => handleScroll(e));
     }
 
     return () => {
       if (container) {
-        container.removeEventListener("scroll", handleScroll);
+        container.removeEventListener("scroll", (e) => handleScroll(e));
       }
+      handleScroll.cancel();
     };
-  }, [hasNextPage, fetchNextPage]);
+  }, [fetchNextPage, hasNextPage]);
 
   return (
     <div

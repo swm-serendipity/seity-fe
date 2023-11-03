@@ -6,7 +6,7 @@ import { ChatHistoryData } from "@/type/history";
 import groupByDate from "@/utils/groupByDate";
 import { useMutation } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
-import { Key, useEffect } from "react";
+import { Key } from "react";
 
 type SidebarHistoryFullBoxProps = {
   data: ChatHistoryData | undefined;
@@ -70,7 +70,7 @@ export default function SidebarHistoryFullBox({
     });
   };
 
-  const allData = data?.pages.flatMap((page) => page.result) || [];
+  const allData = data?.pages.flatMap((page) => page.result.prompts) || [];
 
   const groupedData = groupByDate(allData);
 

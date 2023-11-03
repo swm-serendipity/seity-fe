@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import MessageManagementCallingRequestCard from "./message-management-calling-request-card";
 import { AdminCalling } from "@/type/admin-calling";
 import getCallingAdminHistory from "@/apis/get-calling-admin-history";
+import { debounce } from "lodash";
 export default function MessageManagementCallingRequest() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
@@ -13,39 +14,37 @@ export default function MessageManagementCallingRequest() {
       ({ pageParam = 0 }) => getCallingAdminHistory(pageParam),
       {
         getNextPageParam: (lastPage, allPages) => {
-          if (
-            lastPage.result.detections &&
-            lastPage.result.detections.length > 0
-          ) {
-            return allPages.length;
+          if (lastPage.result.currentPageNumber >= lastPage.result.totalPages) {
+            return undefined;
           }
-          return false;
+          return lastPage.result.currentPageNumber + 1;
         },
       }
     );
 
   useEffect(() => {
-    const handleScroll = (e: Event) => {
+    const handleScroll = debounce((e: Event) => {
       const target = e.target as HTMLElement;
       if (
-        target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
+        target.scrollHeight - target.scrollTop <= target.clientHeight + 100 &&
         hasNextPage
       ) {
         fetchNextPage();
       }
-    };
+    }, 200);
 
     const container = scrollRef.current;
     if (container) {
-      container.addEventListener("scroll", handleScroll);
+      container.addEventListener("scroll", (e) => handleScroll(e));
     }
 
     return () => {
       if (container) {
-        container.removeEventListener("scroll", handleScroll);
+        container.removeEventListener("scroll", (e) => handleScroll(e));
       }
+      handleScroll.cancel();
     };
-  }, [hasNextPage, fetchNextPage]);
+  }, [fetchNextPage, hasNextPage]);
   return (
     <div className="bg-white notice-card w-[400px] h-[800px] rounded-xl flex flex-col">
       <div className=" px-7.5 pt-6 pb-5.5 border-b border-[#E2E2E2]">
@@ -54,7 +53,7 @@ export default function MessageManagementCallingRequest() {
       <div className="flex-1 flex flex-col overflow-y-auto" ref={scrollRef}>
         {data! &&
           data!.pages.map((page) =>
-            page.result.map((item: AdminCalling) => {
+            page.result.callings.map((item: AdminCalling) => {
               return (
                 <MessageManagementCallingRequestCard
                   key={item.callingId}

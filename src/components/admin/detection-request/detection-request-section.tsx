@@ -16,14 +16,11 @@ export default function DetectionRequestSection() {
       ["detection-requests"],
       ({ pageParam = 0 }) => getDetectionRequest(pageParam),
       {
-        getNextPageParam: (lastPage, allPages) => {
-          if (
-            lastPage.result.detections &&
-            lastPage.result.detections.length > 0
-          ) {
-            return allPages.length;
+        getNextPageParam: (lastPage) => {
+          if (lastPage.result.currentPageNumber >= lastPage.result.totalPages) {
+            return undefined;
           }
-          return false;
+          return lastPage.result.currentPageNumber + 1;
         },
       }
     );

@@ -8,7 +8,12 @@ export type PromptHistory = {
 };
 
 export type PromptHistoryPage = {
-  result: PromptHistory[];
+  result: {
+    totalPages: number;
+    totalPromptNumber: number;
+    currentPageNumber: number;
+    prompts: PromptHistory[];
+  };
   nextPage: string | null;
 };
 

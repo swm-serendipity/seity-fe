@@ -10,7 +10,7 @@ import {
 } from "date-fns";
 import { ko } from "date-fns/locale";
 
-const groupByDate = (results: PromptHistoryPage["result"]) => {
+const groupByDate = (results: PromptHistoryPage["result"]["prompts"]) => {
   const groups = results.reduce(
     (groups: { [x: string]: any[] }, item: { lastModifiedAt: string }) => {
       const date = parseISO(item.lastModifiedAt);

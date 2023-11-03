@@ -11,16 +11,15 @@ const useChatHistory = () => {
     isFetchingNextPage,
     refetch,
   } = useInfiniteQuery(["chat-history"], getPromptHistory, {
-    getNextPageParam: (lastPage, allPages) => {
-      if (lastPage.result.length === 0) {
+    getNextPageParam: (lastPage) => {
+      if (lastPage.result.currentPageNumber === lastPage.result.totalPages) {
         return false;
       }
-      return allPages.length + 1;
+      return lastPage.result.currentPageNumber + 1;
     },
     refetchOnWindowFocus: false,
   });
-
-  const hasData = isSuccess && data.pages[0].result.length > 0; // 첫 페이지에 데이터가 있는지 확인
+  const hasData = isSuccess && data.pages[0].result.prompts.length > 0;
 
   return {
     data,

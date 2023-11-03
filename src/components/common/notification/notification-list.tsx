@@ -3,6 +3,7 @@ import NotificationListCard from "./notification-list-card";
 import getCallingNotification from "@/apis/get-calling-notification";
 import { useEffect, useRef, useState } from "react";
 import { Calling } from "@/type/calling";
+import { debounce } from "lodash";
 
 export default function NotificationList() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -11,14 +12,11 @@ export default function NotificationList() {
       ["notification-user"],
       ({ pageParam = 0 }) => getCallingNotification(pageParam),
       {
-        getNextPageParam: (lastPage, allPages) => {
-          if (
-            lastPage.result.detections &&
-            lastPage.result.detections.length > 0
-          ) {
-            return allPages.length;
+        getNextPageParam: (lastPage) => {
+          if (lastPage.result.currentPageNumber >= lastPage.result.totalPages) {
+            return undefined;
           }
-          return false;
+          return lastPage.result.currentPageNumber + 1;
         },
       }
     );
@@ -35,27 +33,28 @@ export default function NotificationList() {
   };
 
   useEffect(() => {
-    const handleScroll = (e: Event) => {
+    const handleScroll = debounce((e: Event) => {
       const target = e.target as HTMLElement;
       if (
-        target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
+        target.scrollHeight - target.scrollTop <= target.clientHeight + 100 &&
         hasNextPage
       ) {
         fetchNextPage();
       }
-    };
+    }, 200);
 
     const container = scrollRef.current;
     if (container) {
-      container.addEventListener("scroll", handleScroll);
+      container.addEventListener("scroll", (e) => handleScroll(e));
     }
 
     return () => {
       if (container) {
-        container.removeEventListener("scroll", handleScroll);
+        container.removeEventListener("scroll", (e) => handleScroll(e));
       }
+      handleScroll.cancel();
     };
-  }, [hasNextPage, fetchNextPage]);
+  }, [fetchNextPage, hasNextPage]);
   return (
     <div
       className="w-full flex-1 overflow-y-auto custom-scrollbar"
@@ -63,7 +62,6 @@ export default function NotificationList() {
     >
       {!isLoading &&
         data!.pages.map((page) => {
-          // result.callings가 undefined면 빈 배열을 기본값으로 사용
           const callings = page.result.callings || [];
           return callings
             .filter((item: Calling) => !removedItems.includes(item.callingId))
