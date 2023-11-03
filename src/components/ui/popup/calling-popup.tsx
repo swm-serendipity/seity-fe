@@ -7,12 +7,13 @@ import ShareAIChat from "@/components/user/share-popup/share-popup-ai-chat";
 import Image from "next/image";
 import CheckBox from "../checkbox";
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import getSingleCallingNotification from "@/apis/get-single-calling-notification";
 import postCallingSend from "@/apis/post-calling-send";
 
 export default function CallingPopup() {
   const { callingData, setCallingData, setPopupData } = useStore();
+  const queryClient = useQueryClient();
   const [checkBoxData, setCheckBoxData] = useState({
     isPersonalInfo: false,
     isConfidentialInfo: false,
@@ -44,6 +45,9 @@ export default function CallingPopup() {
         isVisible: true,
       });
     },
+    onSettled: () => {
+      queryClient.invalidateQueries(["notification-user"]);
+    },
   });
 
   const {} = useQuery(
@@ -59,7 +63,7 @@ export default function CallingPopup() {
             answer: "",
             question: "",
             onRemove: () => {},
-            handleSend: () => {},
+            handleExit: () => {},
           });
           setPopupData({
             type: "title-ok",
@@ -77,7 +81,7 @@ export default function CallingPopup() {
             answer: data.result.answer,
             question: data.result.question,
             onRemove: callingData.onRemove,
-            handleSend: () => {},
+            handleExit: () => {},
           });
         }
       },
@@ -96,7 +100,7 @@ export default function CallingPopup() {
       answer: "",
       question: "",
       onRemove: () => {},
-      handleSend: () => {},
+      handleExit: () => {},
     });
     const content = checkBoxData.isPersonalInfo
       ? "개인정보가 아님"
@@ -107,11 +111,11 @@ export default function CallingPopup() {
       id: callingData.id,
       content: content,
     });
-    console.log(callingData.id);
     callingData.onRemove(callingData.id);
   };
 
   const handleCancel = () => {
+    queryClient.invalidateQueries(["notification-user"]);
     setCallingData({
       id: "",
       isLoading: false,
@@ -119,7 +123,7 @@ export default function CallingPopup() {
       answer: "",
       question: "",
       onRemove: () => {},
-      handleSend: () => {},
+      handleExit: () => {},
     });
   };
 

@@ -30,7 +30,6 @@ export default function NotificationList() {
     setReadItems((prev) => [...prev, id]);
   };
 
-  // 카드를 삭제하는 함수
   const removeCard = (id: string) => {
     setRemovedItems((prev) => [...prev, id]);
   };
@@ -38,6 +37,12 @@ export default function NotificationList() {
   useEffect(() => {
     const handleScroll = (e: Event) => {
       const target = e.target as HTMLElement;
+      console.log(
+        target.scrollHeight,
+        target.scrollTop,
+        target.clientHeight,
+        hasNextPage
+      );
       if (
         target.scrollHeight - target.scrollTop <= target.clientHeight + 50 &&
         hasNextPage

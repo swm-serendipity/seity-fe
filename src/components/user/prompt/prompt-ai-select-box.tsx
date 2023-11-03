@@ -24,7 +24,7 @@ export default function PromptAiSelectBox() {
               type: "title-ok",
               isVisible: true,
               title: "알림",
-              content: "GPT-4.0은 비활성화 되어있어요. 어드민에게 문의하세요.",
+              content: "GPT-4.0은 비활성화 되어있어요.\n관리자에게 문의하세요.",
               handleCancel: () => {},
               handleOk: () => {},
             });

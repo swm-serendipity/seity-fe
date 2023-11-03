@@ -87,7 +87,7 @@ export const useStore = create<GlobalState>((set) => ({
     isVisible: false,
     question: "",
     answer: "",
-    handleSend: () => {},
+    handleExit: () => {},
     onRemove: (id: string) => null,
   },
   setCallingData: (data: CallingPopupData) => set({ callingData: data }),

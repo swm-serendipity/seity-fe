@@ -13,6 +13,6 @@ export type CallingPopupData = {
   isVisible: boolean;
   question: string;
   answer: string;
-  handleSend: () => void;
+  handleExit: () => void;
   onRemove: (id: string) => void | null;
 };
