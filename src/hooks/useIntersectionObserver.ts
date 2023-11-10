@@ -19,12 +19,11 @@ function useIntersectionObserver(
           fetchMore();
         }
       },
-      { threshold: 1.0 }
+      { threshold: 0.2 }
     );
 
     observer.observe(currentObserverRef);
 
-    // Clean up function
     return () => observer.unobserve(currentObserverRef);
   }, [observerRef.current, isFetching, canFetchMore]);
 
