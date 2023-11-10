@@ -4,6 +4,7 @@ import { animated, useSpring } from "@react-spring/web";
 import { useStore } from "@/store/store";
 import SidebarHeader from "./sidebar-header";
 import SidebarMenu from "./sidebar-menu";
+import SidebarSetting from "@/components/user/sidebar/sidebar-setting";
 
 type SideBarBoxProps = {
   showSidebar: boolean;
@@ -53,6 +54,7 @@ export default function SideBarBox({
         <SidebarHeader setShowSidebar={setShowSidebar} />
         <SideBarProfile />
         <SidebarMenu />
+        <SidebarSetting />
       </div>
     </animated.div>
   );

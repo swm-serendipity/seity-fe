@@ -22,7 +22,7 @@ export default function SidebarMenu() {
   };
 
   return (
-    <div className="mt-7 flex flex-col items-center gap-2">
+    <div className="mt-7 flex flex-col items-center gap-2 flex-1">
       {/* <SidebarMenuButton
         text="알림"
         onClick={toggleNotification}
