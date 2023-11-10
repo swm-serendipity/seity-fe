@@ -1,5 +1,7 @@
 "use client";
 
+import deleteLogout from "@/apis/delete-logout";
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,14 +12,22 @@ export default function LandingHeaderNav() {
   useEffect(() => {
     setIsLogin(localStorage.getItem("accessToken") !== null);
   }, []);
+
+  const { mutate } = useMutation(deleteLogout, {
+    onSettled: () => {
+      localStorage.removeItem("refreshToken");
+      localStorage.removeItem("accessToken");
+      setIsLogin(false);
+      router.replace("/");
+    },
+  });
+
   const handleLogin = () => {
     router.push("/login");
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsLogin(false);
+    mutate({ refreshToken: localStorage.getItem("refreshToken")! });
   };
   return (
     <nav className="hidden md:flex md:grow">
