@@ -4,10 +4,11 @@ import getCallingNotification from "@/apis/get-calling-notification";
 import { useEffect, useRef, useState } from "react";
 import { Calling } from "@/type/calling";
 import { debounce } from "lodash";
+import { toast } from "react-toastify";
 
 export default function NotificationList() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const { data, isLoading, fetchNextPage, hasNextPage, refetch } =
+  const { data, isLoading, fetchNextPage, hasNextPage, refetch, isError } =
     useInfiniteQuery(
       ["notification-user"],
       ({ pageParam = 0 }) => getCallingNotification(pageParam),
@@ -55,6 +56,11 @@ export default function NotificationList() {
       handleScroll.cancel();
     };
   }, [fetchNextPage, hasNextPage]);
+
+  if (isError) {
+    return <div className="mx-4 mt-2">에러가 발생했습니다.</div>;
+  }
+
   return (
     <div
       className="w-full flex-1 overflow-y-auto custom-scrollbar"
