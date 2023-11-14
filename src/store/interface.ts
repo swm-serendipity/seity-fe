@@ -23,6 +23,9 @@ export interface GlobalState {
   setChatData: (fn: (data: Chat[]) => Chat[]) => void;
   addChatData: (data: Chat) => void;
 
+  chatLLM: "chatGPT3.5" | "chatGPT4.0";
+  setChatLLM: (llm: "chatGPT3.5" | "chatGPT4.0") => void;
+
   chatSessionId: string;
   setChatSessionId: (sessionId: string) => void;
 

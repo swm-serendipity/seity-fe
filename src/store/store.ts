@@ -38,6 +38,10 @@ export const useStore = create<GlobalState>((set) => ({
   addChatData: (data) =>
     set((state) => ({ chatData: [...state.chatData, data] })),
 
+  //GPT 버전
+  chatLLM: "chatGPT3.5",
+  setChatLLM: (llm) => set({ chatLLM: llm }),
+
   //답변중인지 상태
   isAnswering: false,
   setIsAnswering: (isAnswering) => set({ isAnswering: isAnswering }),

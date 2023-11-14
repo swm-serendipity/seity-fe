@@ -49,11 +49,11 @@ export default function SidebarMenu() {
         onClick={() => handleRouteButton("/forbidden-word-management")}
         type="forbidden-word-management"
       />
-      <SidebarMenuButton
+      {/* <SidebarMenuButton
         text="통계"
         onClick={handleDisabledButton}
         type="statistics"
-      />
+      /> */}
       <SidebarMenuButton
         text="설정"
         onClick={handleDisabledButton}

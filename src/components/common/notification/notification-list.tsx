@@ -4,7 +4,6 @@ import getCallingNotification from "@/apis/get-calling-notification";
 import { useEffect, useRef, useState } from "react";
 import { Calling } from "@/type/calling";
 import { debounce } from "lodash";
-import { toast } from "react-toastify";
 
 export default function NotificationList() {
   const scrollRef = useRef<HTMLDivElement>(null);

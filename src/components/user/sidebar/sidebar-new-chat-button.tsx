@@ -5,12 +5,13 @@ export default function SidebarNewChatButton() {
   const router = useRouter();
   const pathName = usePathname();
 
-  const { setChatData, setChatSessionId } = useStore();
+  const { setChatData, setChatSessionId, setChatLLM } = useStore();
 
   const handleClick = () => {
     if (pathName === "/chat") {
       setChatData(() => []);
       setChatSessionId("");
+      setChatLLM("chatGPT3.5");
     } else {
       router.push("/chat");
     }

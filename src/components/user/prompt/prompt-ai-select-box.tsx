@@ -1,23 +1,28 @@
-import { useState } from "react";
 import PromptAiSelectButton from "./prompt-ai-select-button";
 import { useStore } from "@/store/store";
 
 export default function PromptAiSelectBox() {
-  const [chatAi, setChatAi] = useState("GPT-3.5");
-  const { setPopupData } = useStore();
+  const { setPopupData, chatLLM, setChatLLM } = useStore();
+  const setChatAi = (ai: "chatGPT3.5" | "chatGPT4.0") => {
+    setChatLLM(ai);
+  };
 
   return (
     <div className="flex text-center w-full justify-center pt-10">
       <div className="w-[120px] lg:w-[320px] h-[62px] flex items-center bg-prompt-ai-select-bg rounded-lg gap-2.5 justify-center">
         <PromptAiSelectButton
           text="GPT-3.5"
-          isActive={chatAi == "GPT-3.5"}
-          setAi={setChatAi}
+          isActive={chatLLM == "chatGPT3.5"}
+          setAi={() => {
+            setChatAi("chatGPT3.5");
+          }}
         />
         <PromptAiSelectButton
           text="GPT-4.0"
-          isActive={chatAi == "GPT-4.0"}
-          setAi={setChatAi}
+          isActive={chatLLM == "chatGPT4.0"}
+          setAi={() => {
+            setChatAi("chatGPT4.0");
+          }}
           isDisabled={true}
           onClick={() => {
             setPopupData({
