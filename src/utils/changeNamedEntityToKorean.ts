@@ -24,6 +24,8 @@ export default function changeNamdeEntityToKorean(entity: string) {
     return "MAC 주소";
   } else if (entity === "COMPANY_REGISTRATION_NUMBER") {
     return "사업자등록번호";
+  } else if (entity === "DENY_LIST") {
+    return "금칙어";
   }
 
   return "알 수 없음";

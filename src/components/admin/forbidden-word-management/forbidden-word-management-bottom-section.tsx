@@ -2,10 +2,13 @@ import { Dispatch, SetStateAction, useState } from "react";
 import ForbiddenWordManagementChip from "./forbidden-word-management-chip";
 import { toast } from "react-toastify";
 import ForbiddenWordSet from "@/components/ui/inputs/forbidden-word-set";
+import { text } from "stream/consumers";
+import { useMutation } from "@tanstack/react-query";
+import deleteForbiddenWord from "@/apis/delete-forbidden-word";
 
 type ForbiddenWordManagementBottomSectionProps = {
-  textDatas: string[];
-  setTextDatas: Dispatch<SetStateAction<string[]>>;
+  textDatas: { word: string; id: string }[];
+  setTextDatas: Dispatch<SetStateAction<{ word: string; id: string }[]>>;
 };
 
 export default function ForbiddenWordManagementBottomSection({
@@ -14,12 +17,15 @@ export default function ForbiddenWordManagementBottomSection({
 }: ForbiddenWordManagementBottomSectionProps) {
   const [highlightText, setHighlightText] = useState<string>("");
   const [searchText, setSearchText] = useState("");
+  const { mutate } = useMutation(deleteForbiddenWord);
   const handleSearch = () => {
     if (searchText === "") {
       setHighlightText("");
       return;
     }
-    const index = textDatas.findIndex((text) => text === searchText);
+    const index = textDatas.findIndex(
+      (textData) => textData.word === searchText
+    );
     if (index === -1) {
       toast(`"${searchText}"라는 금칙어는 존재하지 않습니다.`, {
         type: "error",
@@ -27,11 +33,32 @@ export default function ForbiddenWordManagementBottomSection({
       setHighlightText("");
       return;
     }
-    setHighlightText(textDatas[index]);
+    setHighlightText(textDatas[index].word);
     setTimeout(() => {
       setHighlightText("");
     }, 5000);
   };
+
+  const handleDelete = (text: { word: string; id: string }) => {
+    const deleteData = textDatas.filter((data) => data.word !== text.word);
+    mutate(
+      { wordId: text.id },
+      {
+        onSuccess: (data) => {
+          toast(`"${text.word}" 금칙어가 성공적으로 삭제되었습니다.`, {
+            type: "success",
+          });
+          setTextDatas(deleteData);
+        },
+        onError: (error) => {
+          toast("금칙어 삭제에 실패했습니다.", {
+            type: "error",
+          });
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex gap-2">
@@ -52,12 +79,9 @@ export default function ForbiddenWordManagementBottomSection({
           return (
             <ForbiddenWordManagementChip
               key={index}
-              text={text}
-              active={highlightText === text}
-              onClickDelete={() => {
-                const deleteData = textDatas.filter((data) => data !== text);
-                setTextDatas(deleteData);
-              }}
+              text={text.word}
+              active={highlightText === text.word}
+              onClickDelete={() => handleDelete(text)}
             />
           );
         })}

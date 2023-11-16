@@ -3,13 +3,13 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { toast } from "react-toastify";
 
 type ForbiddenWordManagementRegisterProps = {
-  textDatas: string[];
-  setTextDatas: Dispatch<SetStateAction<string[]>>;
+  textDatas: { word: string; id: string }[];
+  handleRegister: (text: string) => void;
 };
 
 export default function ForbiddenWordManagementRegister({
   textDatas,
-  setTextDatas,
+  handleRegister,
 }: ForbiddenWordManagementRegisterProps) {
   const [searchText, setSearchText] = useState("");
   return (
@@ -32,7 +32,7 @@ export default function ForbiddenWordManagementRegister({
             });
             return;
           }
-          if (textDatas.includes(searchText)) {
+          if (textDatas.some((textData) => textData.word === searchText)) {
             toast("이미 등록된 금칙어입니다.", {
               type: "error",
             });
@@ -42,7 +42,7 @@ export default function ForbiddenWordManagementRegister({
             type: "success",
           });
 
-          setTextDatas((prev) => [...prev, searchText]);
+          handleRegister(searchText);
           setSearchText("");
         }}
         text={searchText}
