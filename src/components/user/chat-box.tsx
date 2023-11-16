@@ -6,10 +6,12 @@ import NotificationBackground from "../common/notification/notification-backgrou
 import { Fragment } from "react";
 import SharePopupBox from "./share-popup/share-popup-box";
 import Popup from "../ui/popup/popup";
+import SensitivePopupBox from "./sensitive-popup/sensitive-popup.box";
 
 export default function ChatBox() {
   const {
     isDeIdentificationPopupOpen,
+    isSensitiveDataPopupOpen,
     isNotificationOpen,
     isSharePopupOpen,
     popupData,
@@ -18,6 +20,7 @@ export default function ChatBox() {
     <div className="relative flex w-full">
       <PromptBox />
       {popupData.isVisible && <Popup />}
+      {isSensitiveDataPopupOpen && <SensitivePopupBox />}
       {isDeIdentificationPopupOpen && <DeIdentificationPopupBox />}
       {isNotificationOpen && (
         <Fragment>

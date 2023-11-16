@@ -37,7 +37,7 @@ const changeDeIdentificationState = (data: DeIdentificationData) => {
         text: data.convertedQuestion.substr(item.index, item.length),
         originalData: item.original_data,
         deIdentificateData: item.converted_data,
-        type: item.entity == "DENY_LIST" ? "민감정보" : "개인정보",
+        type: item.entity == "DENY_LIST" ? "금칙어" : "개인정보",
         changed: false,
         entity: item.entity,
         startIndex: item.index,

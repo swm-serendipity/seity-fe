@@ -52,8 +52,8 @@ export default function Hero() {
                   대화형 인공지능 보안 솔루션 Seity를 소개합니다.
                 </p>
                 <p className="text-xl text-gray-600 ">
-                  개인정보와 민감정보를 안전하게 보호하고, 사용자의 편의성을
-                  높이는 보안 솔루션입니다.
+                  개인정보와 기업 내부 정보를 안전하게 보호하고, 사용자의
+                  편의성을 높이는 보안 솔루션입니다.
                 </p>
               </div>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center mt-20">

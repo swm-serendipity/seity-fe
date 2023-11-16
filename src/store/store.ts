@@ -16,6 +16,28 @@ export const useStore = create<GlobalState>((set) => ({
   setDeIdentificationData: (data: DeIdentification[]) =>
     set({ deIdentificationData: data }),
 
+  //민감정보 팝업 상태
+  isSensitiveDataPopupOpen: false,
+  toggleSensitiveDataPopup: () =>
+    set((state) => ({
+      isSensitiveDataPopupOpen: !state.isSensitiveDataPopupOpen,
+    })),
+
+  //민감정보 데이터
+  sensitiveData: { result: [], question: "", detectionData: [] },
+  setSensitiveData: (data: {
+    result: SensitiveData[];
+    question: string;
+    detectionData:
+      | ({
+          index: number;
+          length: number;
+          entity: string;
+          isDeIdentified: boolean;
+        } | null)[]
+      | null;
+  }) => set({ sensitiveData: data }),
+
   //알림 팝업 상태
   isNotificationOpen: false,
   toggleNotification: () =>

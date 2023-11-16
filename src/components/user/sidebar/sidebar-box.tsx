@@ -49,7 +49,7 @@ export default function SideBarBox({
       <div
         className={`flex flex-col bg-whitebg-default rounded-tr-4xl w-[260px] h-full
         ${
-          isDeIdentificationPopupOpen ? "opacity-50 pointer-events-none" : ""
+          isDeIdentificationPopupOpen ? "pointer-events-none" : ""
         } overflow-y-auto`}
       >
         <SidebarHeader setShowSidebar={setShowSidebar} />

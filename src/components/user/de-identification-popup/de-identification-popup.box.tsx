@@ -3,12 +3,15 @@ import { useState } from "react";
 import DeIdentificationCardsBox from "./de-dentification-cards-box";
 import DeIdentificationMainTextBox from "./de-dentification-main-text-box";
 import postPromptAsk from "@/utils/postPromptAsk";
+import { dprTestData } from "@/utils/dprTestData";
 
 export default function DeIdentificationPopupBox() {
   const [id, setId] = useState("0");
   const {
     toggleDeIdentificationPopup,
     deIdentificationData,
+    toggleSensitiveDataPopup,
+    setSensitiveData,
     setDeIdentificationData,
     addChatData,
     setChatData,
@@ -68,25 +71,31 @@ export default function DeIdentificationPopupBox() {
             if (item != null) return item;
           })
       : null;
-    setChatData((prev) => {
-      const newData = [...prev];
-      newData[newData.length - 1].message = deIdentificationText;
-      return newData;
-    });
+    // setChatData((prev) => {
+    //   const newData = [...prev];
+    //   newData[newData.length - 1].message = deIdentificationText;
+    //   return newData;
+    // });
 
-    postPromptAsk({
-      text: deIdentificationText,
-      addChatData,
-      chatSessionId,
-      setChatSessionId,
-      setIsAnswering,
-      setAnsweringData,
-      isAnsweringPersist,
-      setIsAnsweringPersist,
-      setPopupData,
-      detectionData,
-    });
+    // postPromptAsk({
+    //   text: deIdentificationText,
+    //   addChatData,
+    //   chatSessionId,
+    //   setChatSessionId,
+    //   setIsAnswering,
+    //   setAnsweringData,
+    //   isAnsweringPersist,
+    //   setIsAnsweringPersist,
+    //   setPopupData,
+    //   detectionData,
+    // });
     toggleDeIdentificationPopup();
+    setSensitiveData({
+      question: deIdentificationText,
+      result: dprTestData.result.detections,
+      detectionData: detectionData,
+    });
+    toggleSensitiveDataPopup();
   };
 
   const handleCancelButton = () => {

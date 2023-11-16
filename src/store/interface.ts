@@ -9,6 +9,34 @@ export interface GlobalState {
   deIdentificationData: DeIdentification[];
   setDeIdentificationData: (data: DeIdentification[]) => void;
 
+  isSensitiveDataPopupOpen: boolean;
+  toggleSensitiveDataPopup: () => void;
+
+  sensitiveData: {
+    result: SensitiveData[];
+    question: string;
+    detectionData:
+      | ({
+          index: number;
+          length: number;
+          entity: string;
+          isDeIdentified: boolean;
+        } | null)[]
+      | null;
+  };
+  setSensitiveData: (data: {
+    result: SensitiveData[];
+    question: string;
+    detectionData:
+      | ({
+          index: number;
+          length: number;
+          entity: string;
+          isDeIdentified: boolean;
+        } | null)[]
+      | null;
+  }) => void;
+
   isNotificationOpen: boolean;
   toggleNotification: () => void;
   disableNotification: () => void;

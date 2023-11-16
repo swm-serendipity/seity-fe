@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { KeyboardEvent, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import PromptReAnsweringBox from "./prompt-re-answering-box";
+import { dprTestData } from "@/utils/dprTestData";
 
 export default function PromptInputBox() {
   const [text, setText] = useState("");
@@ -19,6 +20,8 @@ export default function PromptInputBox() {
     setIsAnswering,
     setAnsweringData,
     setDeIdentificationData,
+    toggleSensitiveDataPopup,
+    setSensitiveData,
     isAnsweringPersist,
     setIsAnsweringPersist,
     setPopupData,
@@ -28,17 +31,23 @@ export default function PromptInputBox() {
   const { mutate } = useMutation(postDlpDeIendification, {
     onSuccess: (data) => {
       if (data.result.length === 0) {
-        postPromptAsk({
-          text: tempText,
-          addChatData,
-          chatSessionId,
-          setChatSessionId,
-          setIsAnswering,
-          setAnsweringData,
-          isAnsweringPersist,
-          setIsAnsweringPersist,
-          setPopupData,
+        // postPromptAsk({
+        //   text: tempText,
+        //   addChatData,
+        //   chatSessionId,
+        //   setChatSessionId,
+        //   setIsAnswering,
+        //   setAnsweringData,
+        //   isAnsweringPersist,
+        //   setIsAnsweringPersist,
+        //   setPopupData,
+        // });
+        setSensitiveData({
+          question: tempText,
+          result: dprTestData.result.detections,
+          detectionData: null,
         });
+        toggleSensitiveDataPopup();
         setTempText("");
         return;
       }

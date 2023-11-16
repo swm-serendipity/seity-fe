@@ -43,11 +43,13 @@ const postPromptAsk = async ({
           sessionId: chatSessionId.length > 0 ? chatSessionId : null,
           detections: detectionData,
           question: text,
+          chatModel: "gpt-3.5-turbo",
         })
       : JSON.stringify({
           sessionId: chatSessionId.length > 0 ? chatSessionId : null,
           detections: [],
           question: text,
+          chatModel: "gpt-3.5-turbo",
         });
 
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {

@@ -84,6 +84,7 @@ module.exports = {
           "de-identification-divider-color": "#EBEBEB",
           "de-identification-red-point-color": "#FF5E5E",
           "de-identification-green-point-color": "#05DCA8",
+          "de-identification-yellow-point-color": "#FFE55E",
         },
         share: {
           "chat-bg": "#EEEEEE",
@@ -164,6 +165,11 @@ module.exports = {
           "border-radius": "10px",
           border: "1px solid #6DF1D1",
         },
+        ".de-identification-card-focus-yellow": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+          "border-radius": "10px",
+          border: "1px solid #EEF16D",
+        },
         ".de-identification-change-button-red": {
           "background-color": "#FFD9D9",
           color: "#FF3434",
@@ -172,6 +178,12 @@ module.exports = {
         ".de-identification-change-button-green": {
           "background-color": "#D0FFF4",
           color: "#12A480",
+          "border-radius": "6px",
+        },
+
+        ".de-identification-change-button-yellow": {
+          "background-color": "#FFFBD9",
+          color: "#F0A22C",
           "border-radius": "6px",
         },
 
