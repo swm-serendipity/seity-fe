@@ -12,8 +12,8 @@ export interface GlobalState {
   isSensitiveDataPopupOpen: boolean;
   toggleSensitiveDataPopup: () => void;
 
-  sensitiveData: {
-    result: SensitiveData[];
+  sensitiveDatas: {
+    result: SensitiveDataWithId[];
     question: string;
     detectionData:
       | ({
@@ -24,8 +24,8 @@ export interface GlobalState {
         } | null)[]
       | null;
   };
-  setSensitiveData: (data: {
-    result: SensitiveData[];
+  setSensitiveDatas: (data: {
+    result: SensitiveDataWithId[];
     question: string;
     detectionData:
       | ({

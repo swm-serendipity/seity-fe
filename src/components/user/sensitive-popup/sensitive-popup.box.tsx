@@ -6,7 +6,7 @@ import postPromptAsk from "@/utils/postPromptAsk";
 export default function SensitivePopupBox() {
   const {
     toggleSensitiveDataPopup,
-    sensitiveData,
+    sensitiveDatas,
     addChatData,
     setChatData,
     chatSessionId,
@@ -25,12 +25,12 @@ export default function SensitivePopupBox() {
   const handleSendButton = () => {
     setChatData((prev) => {
       const newData = [...prev];
-      newData[newData.length - 1].message = sensitiveData.question;
+      newData[newData.length - 1].message = sensitiveDatas.question;
       return newData;
     });
 
     postPromptAsk({
-      text: sensitiveData.question,
+      text: sensitiveDatas.question,
       addChatData,
       chatSessionId,
       setChatSessionId,
@@ -39,7 +39,7 @@ export default function SensitivePopupBox() {
       isAnsweringPersist,
       setIsAnsweringPersist,
       setPopupData,
-      detectionData: sensitiveData.detectionData,
+      detectionData: sensitiveDatas.detectionData,
     });
     toggleSensitiveDataPopup();
   };
@@ -53,15 +53,15 @@ export default function SensitivePopupBox() {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 overflow-auto">
+    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-40 overflow-auto">
       <div
         className="flex bg-white rounded-2xl w-[1280px] h-[70%] lg:h-[90%] mx-8 my-8 py-8 lg:py-12 pl-4 pr-8"
         onClick={stopPropagation}
       >
-        <DeIdentificationMainTextBox question={sensitiveData.question} />
+        <DeIdentificationMainTextBox question={sensitiveDatas.question} />
         <div className="bg-prompt-de-identification-divider-color w-[2px]" />
         <DeIdentificationCardsBox
-          sensitiveDatas={sensitiveData.result}
+          sensitiveDatas={sensitiveDatas.result}
           handleSendButton={handleSendButton}
           handleCancelButton={handleCancelButton}
         />

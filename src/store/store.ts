@@ -24,9 +24,9 @@ export const useStore = create<GlobalState>((set) => ({
     })),
 
   //민감정보 데이터
-  sensitiveData: { result: [], question: "", detectionData: [] },
-  setSensitiveData: (data: {
-    result: SensitiveData[];
+  sensitiveDatas: { result: [], question: "", detectionData: [] },
+  setSensitiveDatas: (data: {
+    result: SensitiveDataWithId[];
     question: string;
     detectionData:
       | ({
@@ -36,7 +36,7 @@ export const useStore = create<GlobalState>((set) => ({
           isDeIdentified: boolean;
         } | null)[]
       | null;
-  }) => set({ sensitiveData: data }),
+  }) => set({ sensitiveDatas: data }),
 
   //알림 팝업 상태
   isNotificationOpen: false,

@@ -1,9 +1,10 @@
 import { ColoredButton } from "@/components/ui/color-button";
 import SensitiveCard from "./sensitive-card";
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 type SensitiveCardsBoxProps = {
-  sensitiveDatas: SensitiveData[];
+  sensitiveDatas: SensitiveDataWithId[];
   handleSendButton: () => void;
   handleCancelButton: () => void;
 };
@@ -40,14 +41,21 @@ export default function SensitiveCardsBox({
           width={120}
           height={50}
         />
-        <ColoredButton
-          buttonText="보내기"
-          color="default"
-          textColor="white"
-          onClick={handleSendButton}
-          width={120}
-          height={50}
-        />
+        <a
+          data-tooltip-id="send-button-tooltip"
+          data-tooltip-content="질의 내용과 비슷한 기업 내부 정보들이 탐지되었어요. 질의를 보내시겠어요?"
+          data-tooltip-place="top"
+        >
+          <ColoredButton
+            buttonText="보내기"
+            color="default"
+            textColor="white"
+            onClick={handleSendButton}
+            width={120}
+            height={50}
+          />
+        </a>
+        {sensitiveDatas.length > 0 && <Tooltip id="send-button-tooltip" />}
       </div>
     </div>
   );

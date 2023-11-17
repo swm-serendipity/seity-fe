@@ -21,7 +21,7 @@ export default function PromptInputBox() {
     setAnsweringData,
     setDeIdentificationData,
     toggleSensitiveDataPopup,
-    setSensitiveData,
+    setSensitiveDatas,
     isAnsweringPersist,
     setIsAnsweringPersist,
     setPopupData,
@@ -42,9 +42,16 @@ export default function PromptInputBox() {
         //   setIsAnsweringPersist,
         //   setPopupData,
         // });
-        setSensitiveData({
+
+        const detectionsWithIds = dprTestData.result.detections.map(
+          (detection, index) => {
+            return { ...detection, id: `detection-${index}` };
+          }
+        );
+
+        setSensitiveDatas({
           question: tempText,
-          result: dprTestData.result.detections,
+          result: detectionsWithIds,
           detectionData: null,
         });
         toggleSensitiveDataPopup();

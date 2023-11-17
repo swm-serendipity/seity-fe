@@ -3,3 +3,7 @@ interface SensitiveData {
   content: string;
   similarity: number;
 }
+
+interface SensitiveDataWithId extends SensitiveData {
+  id: string;
+}

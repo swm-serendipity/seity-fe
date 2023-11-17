@@ -11,7 +11,7 @@ export default function DeIdentificationPopupBox() {
     toggleDeIdentificationPopup,
     deIdentificationData,
     toggleSensitiveDataPopup,
-    setSensitiveData,
+    setSensitiveDatas,
     setDeIdentificationData,
     addChatData,
     setChatData,
@@ -90,10 +90,16 @@ export default function DeIdentificationPopupBox() {
     //   detectionData,
     // });
     toggleDeIdentificationPopup();
-    setSensitiveData({
+    const detectionsWithIds = dprTestData.result.detections.map(
+      (detection, index) => {
+        return { ...detection, id: `detection-${index}` };
+      }
+    );
+
+    setSensitiveDatas({
       question: deIdentificationText,
-      result: dprTestData.result.detections,
-      detectionData: detectionData,
+      result: detectionsWithIds,
+      detectionData: null,
     });
     toggleSensitiveDataPopup();
   };

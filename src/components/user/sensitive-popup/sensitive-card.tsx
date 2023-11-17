@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import ShareIcon from "@/components/assets/share";
+import { useStore } from "@/store/store";
 
 type SensitiveCardProps = {
-  sensitiveData: SensitiveData;
+  sensitiveData: SensitiveDataWithId;
   isSelect: boolean;
   handleCard: () => void;
 };
@@ -13,6 +14,8 @@ export default function SensitiveCard({
   isSelect,
   handleCard,
 }: SensitiveCardProps) {
+  const { sensitiveDatas, setSensitiveDatas, setPopupData } = useStore();
+
   const [clicked, setClicked] = useState(false);
 
   const { x } = useSpring({
@@ -26,6 +29,26 @@ export default function SensitiveCard({
     if (isSelect) return;
     setClicked(true);
     setTimeout(() => setClicked(false), 100);
+  };
+
+  const handleIgnoreButton = () => {
+    setSensitiveDatas({
+      ...sensitiveDatas,
+      result: sensitiveDatas.result.filter(
+        (data) => data.id !== sensitiveData.id
+      ),
+    });
+  };
+
+  const handleDevelopButton = () => {
+    setPopupData({
+      type: "title-ok",
+      content: "해당 기능은 비활성화 되어 있어요.",
+      handleCancel: () => {},
+      handleOk: () => {},
+      isVisible: true,
+      title: "알림",
+    });
   };
 
   return (
@@ -58,15 +81,21 @@ export default function SensitiveCard({
           {sensitiveData.content}
         </div>
       </div>
-      <div className="flex justify-between items-center flex-grow text-whitebg-info text-body-small ">
-        요청한 질의에 답변이 될 수 있는 내부 정보가 존재할 수 있습니다. (
-        {sensitiveData.similarity}%)
+      <div className="flex justify-between items-center flex-grow text-whitebg-info text-body-small whitespace-pre-wrap">
+        요청한 질의에 답변이 될 수 있는 내부 정보가 존재할 수 있습니다.{"\n"}
+        (score: {sensitiveData.similarity}%)
         <div className="flex gap-4 flex-shrink-0 flex-basis items-center">
-          <button className="rounded-md bg-whitebg-default text-white text-body-medium px-3 py-1.5 flex gap-2">
+          <button
+            className="rounded-md bg-whitebg-default text-white text-body-medium px-3 py-1.5 flex gap-2"
+            onClick={handleDevelopButton}
+          >
             <div>원본 보기</div>
             <ShareIcon />
           </button>
-          <button className="de-identification-change-button-yellow text-body-medium px-3 py-1.5">
+          <button
+            className="de-identification-change-button-yellow text-body-medium px-3 py-1.5"
+            onClick={handleIgnoreButton}
+          >
             무시
           </button>
         </div>
