@@ -43,7 +43,7 @@ export default function SensitiveCardsBox({
         />
         <a
           data-tooltip-id="send-button-tooltip"
-          data-tooltip-content="질의 내용과 비슷한 기업 내부 정보들이 탐지되었어요. 질의를 보내시겠어요?"
+          data-tooltip-content="질의 내용과 비슷한 기업 내부 정보들이 탐지되었어요."
           data-tooltip-place="top"
         >
           <ColoredButton

@@ -170,6 +170,11 @@ module.exports = {
           "border-radius": "10px",
           border: "1px solid #EEF16D",
         },
+        ".de-identification-card-focus-disabled": {
+          "box-shadow": "0px 2px 8px rgba(0, 0, 0, 0.15)",
+          "border-radius": "10px",
+          border: "1px solid #828282",
+        },
         ".de-identification-change-button-red": {
           "background-color": "#FFD9D9",
           color: "#FF3434",
@@ -178,6 +183,12 @@ module.exports = {
         ".de-identification-change-button-green": {
           "background-color": "#D0FFF4",
           color: "#12A480",
+          "border-radius": "6px",
+        },
+
+        ".de-identification-change-button-disabled": {
+          "background-color": "#D6D6D6",
+          color: "#828282",
           "border-radius": "6px",
         },
 

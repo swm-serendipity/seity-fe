@@ -23,25 +23,42 @@ export default function SensitivePopupBox() {
   };
 
   const handleSendButton = () => {
-    setChatData((prev) => {
-      const newData = [...prev];
-      newData[newData.length - 1].message = sensitiveDatas.question;
-      return newData;
-    });
+    const sendData = () => {
+      setChatData((prev) => {
+        const newData = [...prev];
+        newData[newData.length - 1].message = sensitiveDatas.question;
+        return newData;
+      });
 
-    postPromptAsk({
-      text: sensitiveDatas.question,
-      addChatData,
-      chatSessionId,
-      setChatSessionId,
-      setIsAnswering,
-      setAnsweringData,
-      isAnsweringPersist,
-      setIsAnsweringPersist,
-      setPopupData,
-      detectionData: sensitiveDatas.detectionData,
-    });
-    toggleSensitiveDataPopup();
+      postPromptAsk({
+        text: sensitiveDatas.question,
+        addChatData,
+        chatSessionId,
+        setChatSessionId,
+        setIsAnswering,
+        setAnsweringData,
+        isAnsweringPersist,
+        setIsAnsweringPersist,
+        setPopupData,
+        detectionData: sensitiveDatas.detectionData,
+      });
+      toggleSensitiveDataPopup();
+    };
+    if (sensitiveDatas.result.length === 0) {
+      sendData();
+    } else {
+      setPopupData({
+        type: "title-ok-cancel",
+        content:
+          "질의 내용과 비슷한 기업 내부 정보들이 탐지되었습니다.\n정말 보내시겠습니까?",
+        handleCancel: () => {},
+        handleOk: () => {
+          sendData();
+        },
+        isVisible: true,
+        title: "주의",
+      });
+    }
   };
 
   const handleCancelButton = () => {

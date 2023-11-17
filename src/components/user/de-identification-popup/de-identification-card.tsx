@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import Image from "next/image";
 import changeNamdeEntityToKorean from "@/utils/changeNamedEntityToKorean";
+import { Tooltip } from "react-tooltip";
 
 type DeIdentificationCardProps = {
   deidentificateData: DeIdentification;
@@ -45,7 +46,9 @@ export default function DeIdentificationCard({
       }}
       className={`p-5 ${
         isSelect
-          ? isChange
+          ? deidentificateData.entity == "DENY_LIST"
+            ? "de-identification-card-focus-disabled"
+            : isChange
             ? "de-identification-card-focus-green"
             : "de-identification-card-focus-red"
           : "de-identification-card"
@@ -83,16 +86,26 @@ export default function DeIdentificationCard({
         </div>
       </div>
       <div className="flex justify-end">
-        <button
-          onClick={handleChangeButton}
-          className={`${
-            isChange
-              ? "de-identification-change-button-green"
-              : "de-identification-change-button-red"
-          } text-body-medium px-3 py-1.5`}
+        <a
+          data-tooltip-id="disabled-button-tooltip"
+          data-tooltip-content="금칙어는 복원 할 수 없어요."
+          data-tooltip-place="top"
         >
-          {isChange ? "비식별화" : "복원"}
-        </button>
+          <button
+            onClick={handleChangeButton}
+            disabled={deidentificateData.entity == "DENY_LIST"}
+            className={`${
+              deidentificateData.entity == "DENY_LIST"
+                ? "de-identification-change-button-disabled"
+                : isChange
+                ? "de-identification-change-button-green"
+                : "de-identification-change-button-red"
+            } text-body-medium px-3 py-1.5`}
+          >
+            {isChange ? "비식별화" : "복원"}
+          </button>
+        </a>
+        <Tooltip id="disabled-button-tooltip" />
       </div>
     </animated.div>
   );
