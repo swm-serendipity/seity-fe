@@ -35,7 +35,6 @@ export default function useFetchAndStoreChat(sessionId: string) {
       } catch (error) {
         if (axios.isAxiosError(error) && error.response!.status === 403) {
           localStorage.removeItem("accessToken");
-          localStorage.removeItem("refreshToken");
           router.push("/login");
         }
 
