@@ -23,17 +23,33 @@ export default function DeIdentificationMainTextBox({
               <span
                 key={item.id}
                 onClick={() => setId(item.id)}
-                className={
-                  item.id === id
-                    ? item.changed
-                      ? "highlight-green"
-                      : "highlight-red"
-                    : item.changed
-                    ? "underline-green"
-                    : "underline-red"
-                }
+                className={`
+                cursor-pointer
+                  ${
+                    item.id === id
+                      ? item.changed
+                        ? "highlight-green"
+                        : "highlight-red"
+                      : item.changed
+                      ? "underline-green"
+                      : "underline-red"
+                  }`}
               >
                 {item.changed ? item.originalData : item.deIdentificateData}
+              </span>
+            );
+          } else if (item.type === "금칙어") {
+            return (
+              <span
+                key={item.id}
+                onClick={() => setId(item.id)}
+                className={`
+                cursor-pointer
+                  ${
+                    item.id === id ? "highlight-disabled" : "underline-disabled"
+                  }`}
+              >
+                {item.text}
               </span>
             );
           } else {

@@ -86,11 +86,27 @@ export default function DeIdentificationCard({
         </div>
       </div>
       <div className="flex justify-end">
-        <a
-          data-tooltip-id="disabled-button-tooltip"
-          data-tooltip-content="금칙어는 복원 할 수 없어요."
-          data-tooltip-place="top"
-        >
+        {deidentificateData.entity == "DENY_LIST" ? (
+          <a
+            data-tooltip-id="disabled-button-tooltip"
+            data-tooltip-content="금칙어는 복원 할 수 없어요."
+            data-tooltip-place="top"
+          >
+            <button
+              onClick={handleChangeButton}
+              disabled={deidentificateData.entity == "DENY_LIST"}
+              className={`${
+                deidentificateData.entity == "DENY_LIST"
+                  ? "de-identification-change-button-disabled"
+                  : isChange
+                  ? "de-identification-change-button-green"
+                  : "de-identification-change-button-red"
+              } text-body-medium px-3 py-1.5`}
+            >
+              {isChange ? "비식별화" : "복원"}
+            </button>
+          </a>
+        ) : (
           <button
             onClick={handleChangeButton}
             disabled={deidentificateData.entity == "DENY_LIST"}
@@ -104,7 +120,8 @@ export default function DeIdentificationCard({
           >
             {isChange ? "비식별화" : "복원"}
           </button>
-        </a>
+        )}
+
         <Tooltip id="disabled-button-tooltip" />
       </div>
     </animated.div>

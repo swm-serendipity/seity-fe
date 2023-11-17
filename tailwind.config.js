@@ -138,6 +138,11 @@ module.exports = {
           "text-decoration-color": "#6DF1D1",
           "text-underline-offset": "2px",
         },
+        ".underline-disabled": {
+          "text-decoration": "underline",
+          "text-decoration-color": "#4D4D4D",
+          "text-underline-offset": "2px",
+        },
         ".highlight-red": {
           "background-color": "rgba(255, 94, 94, 0.2)",
           "text-decoration": "underline",
@@ -148,6 +153,12 @@ module.exports = {
           "background-color": "rgba(109, 241, 209, 0.2)",
           "text-decoration": "underline",
           "text-decoration-color": "#6DF1D1",
+          "text-underline-offset": "2px",
+        },
+        ".highlight-disabled": {
+          "background-color": "rgba(106, 101, 101, 0.2)",
+          "text-decoration": "underline",
+          "text-decoration-color": "#4D4D4D",
           "text-underline-offset": "2px",
         },
 
