@@ -16,6 +16,7 @@ export default function SensitivePopupBox() {
     isAnsweringPersist,
     setIsAnsweringPersist,
     setPopupData,
+    chatLLM,
   } = useStore();
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
@@ -29,7 +30,6 @@ export default function SensitivePopupBox() {
         newData[newData.length - 1].message = sensitiveDatas.question;
         return newData;
       });
-      console.log(sensitiveDatas.detectionData);
       postPromptAsk({
         text: sensitiveDatas.question,
         addChatData,
@@ -41,6 +41,7 @@ export default function SensitivePopupBox() {
         setIsAnsweringPersist,
         setPopupData,
         detectionData: sensitiveDatas.detectionData,
+        chatLLM,
       });
       toggleSensitiveDataPopup();
     };

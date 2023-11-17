@@ -25,16 +25,17 @@ export default function PromptAiSelectButton({
   return (
     <button
       className={`flex justify-center items-center w-[40px] h-[40px] lg:w-[140px] rounded-md
-      ${
-        isActive || !isDisabled
-          ? "bg-blackbg-default"
-          : "bg-prompt-ai-select-button-bg"
-      }`}
+      ${isActive ? "bg-blackbg-default" : "bg-prompt-ai-select-button-bg"}`}
       onClick={handleButton}
     >
       <div className="flex gap-1.5">
         <Image
-          src={"/chat/chat-gpt-3.5.svg"}
+          className="rounded-lg"
+          src={
+            text == "ChatGPT-4.0"
+              ? "/chat/chat-gpt-4.0.jpg"
+              : "/chat/chat-gpt-3.5.svg"
+          }
           alt="chatgpt 3.5"
           width={20}
           height={20}

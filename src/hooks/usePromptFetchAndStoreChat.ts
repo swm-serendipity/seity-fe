@@ -5,13 +5,15 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function useFetchAndStoreChat(sessionId: string) {
-  const { setChatData, setChatSessionId, setIsAnsweringPersist } = useStore();
+  const { setChatData, setChatSessionId, setIsAnsweringPersist, setChatLLM } =
+    useStore();
   const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getPromptData({ sessionId });
+        setChatLLM(response.result.llm);
         const chatData = response.result.qnaList.flatMap(
           (qna: { question: any; answer: any }, index: number) => [
             {

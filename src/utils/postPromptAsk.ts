@@ -21,6 +21,7 @@ type postPromptAskProps = {
         isDeIdentified: boolean;
       } | null)[]
     | null;
+  chatLLM: "gpt-3.5-turbo" | "gpt-4";
 };
 
 const postPromptAsk = async ({
@@ -34,6 +35,7 @@ const postPromptAsk = async ({
   setIsAnsweringPersist,
   setPopupData,
   detectionData = null,
+  chatLLM,
 }: postPromptAskProps) => {
   const chatId = Date.now();
 
@@ -43,13 +45,13 @@ const postPromptAsk = async ({
           sessionId: chatSessionId.length > 0 ? chatSessionId : null,
           detections: detectionData,
           question: text,
-          chatModel: "gpt-3.5-turbo",
+          chatModel: chatLLM,
         })
       : JSON.stringify({
           sessionId: chatSessionId.length > 0 ? chatSessionId : null,
           detections: [],
           question: text,
-          chatModel: "gpt-3.5-turbo",
+          chatModel: chatLLM,
         });
 
   const response = await fetch("https://api.seity.co.kr/prompt/ask", {

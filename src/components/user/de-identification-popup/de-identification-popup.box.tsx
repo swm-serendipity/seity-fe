@@ -2,7 +2,7 @@ import { useStore } from "@/store/store";
 import { useState } from "react";
 import DeIdentificationCardsBox from "./de-dentification-cards-box";
 import DeIdentificationMainTextBox from "./de-dentification-main-text-box";
-import postPromptAsk from "@/utils/postPromptAsk";
+// import postPromptAsk from "@/utils/postPromptAsk";
 import { dprTestData } from "@/utils/dprTestData";
 
 export default function DeIdentificationPopupBox() {
