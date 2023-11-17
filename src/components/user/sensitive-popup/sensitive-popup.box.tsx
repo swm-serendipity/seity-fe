@@ -29,7 +29,7 @@ export default function SensitivePopupBox() {
         newData[newData.length - 1].message = sensitiveDatas.question;
         return newData;
       });
-
+      console.log(sensitiveDatas.detectionData);
       postPromptAsk({
         text: sensitiveDatas.question,
         addChatData,

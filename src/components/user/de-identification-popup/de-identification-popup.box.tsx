@@ -99,7 +99,7 @@ export default function DeIdentificationPopupBox() {
     setSensitiveDatas({
       question: deIdentificationText,
       result: detectionsWithIds,
-      detectionData: null,
+      detectionData: detectionData,
     });
     toggleSensitiveDataPopup();
   };
