@@ -46,10 +46,10 @@ export default function PostsTypeButton({
   if (type == "myshare" || isMyPost == true) {
     return (
       <div className="flex justify-between">
-        <div className="line-clamp-1 mr-10 text-body-large font-bold">
+        <div className="line-clamp-1 mr-10 text-body-large font-bold flex-1">
           {title}
         </div>
-        <button onClick={handleDelete}>
+        <button onClick={handleDelete} className="flex-basis">
           <SidebarDelteSvg color={"#000000"} />
         </button>
       </div>
@@ -58,10 +58,10 @@ export default function PostsTypeButton({
   if (type == "scrap" || isScrap == true) {
     return (
       <div className="flex justify-between">
-        <div className="line-clamp-1 mr-10 text-body-large font-bold">
+        <div className="line-clamp-1 mr-10 text-body-large font-bold flex-1">
           {title}
         </div>
-        <button>
+        <button className="flex-basis">
           <Image
             src="/share/share-scrap-on-black.png"
             width={16}

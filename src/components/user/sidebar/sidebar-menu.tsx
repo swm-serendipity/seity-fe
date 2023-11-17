@@ -26,22 +26,26 @@ export default function SidebarMenu() {
         text="인기 프롬프트"
         onClick={handlePopularPromptButton}
         type="popular"
+        isUser
       />
       <SidebarMenuButton
         text="스크랩한 프롬프트"
         onClick={handleScrapPromptButton}
         type="scrap"
+        isUser
       />
       <SidebarMenuButton
         text="공유한 프롬프트"
         onClick={handleMySharedPromptButton}
         type="share"
+        isUser
       />
       <SidebarMenuButton
         text="알림"
         onClick={toggleNotification}
         type="notification"
         notificationCount={data?.result.count}
+        isUser
       />
     </div>
   );

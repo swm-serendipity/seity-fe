@@ -13,7 +13,6 @@ import { useStore } from "@/store/store";
 import SidebarScrapPromptSvg from "../assets/sidebar-scrap-prompt";
 import SidebarSharePromptSvg from "../assets/sidebar-share-prompt";
 import { SidebarButtonType } from "@/type/sidebar-button";
-import SidebarDashboardSvg from "../assets/sidebar-dashboard";
 import SidebarUserManagementSvg from "../assets/sidebar-user-management";
 import SidebarStatsticsSvg from "../assets/sidebar-statstics";
 import SidebarMessageManagementSvg from "../assets/sidebar-message-management";
@@ -23,6 +22,7 @@ import { usePathname } from "next/navigation";
 
 type SidebarMenuButtonProps = {
   type: SidebarButtonType;
+  isUser?: boolean;
   righticon?: string;
   text: string;
   notificationCount?: number;
@@ -33,11 +33,12 @@ export const SidebarMenuButton = ({
   righticon = "/sidebar/sidebar-open.svg",
   text,
   notificationCount = 0,
+  isUser = true,
   onClick,
 }: SidebarMenuButtonProps) => {
   const pathName = usePathname();
   const [color, setColor] = useState(colors.blackbg.default);
-  const isActive = pathName.split("/")[1] == type;
+  const isActive = pathName.split("/")[1] == type && !isUser;
 
   useEffect(() => {
     const handleGlobalMouseUp = () => {
