@@ -61,7 +61,7 @@ export const useStore = create<GlobalState>((set) => ({
     set((state) => ({ chatData: [...state.chatData, data] })),
 
   //GPT 버전
-  chatLLM: "chatGPT3.5",
+  chatLLM: "gpt-3.5-turbo",
   setChatLLM: (llm) => set({ chatLLM: llm }),
 
   //답변중인지 상태

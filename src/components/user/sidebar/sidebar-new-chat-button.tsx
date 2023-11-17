@@ -11,7 +11,7 @@ export default function SidebarNewChatButton() {
     if (pathName === "/chat") {
       setChatData(() => []);
       setChatSessionId("");
-      setChatLLM("chatGPT3.5");
+      setChatLLM("gpt-3.5-turbo");
     } else {
       router.push("/chat");
     }
