@@ -10,6 +10,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import postSignUp from "@/apis/post-signup";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function SignupInputs() {
   const router = useRouter();
@@ -36,11 +37,11 @@ export default function SignupInputs() {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (!formValues.loginId) {
-      alert("아이디를 입력해주세요.");
+      toast("아이디를 입력해주세요.", { type: "error" });
       return;
     }
     if (!formValues.password) {
-      alert("비밀번호를 입력해주세요.");
+      toast("비밀번호를 입력해주세요.", { type: "error" });
       return;
     }
     if (
@@ -49,25 +50,28 @@ export default function SignupInputs() {
         /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,}$/
       )
     ) {
-      alert(
-        "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다."
+      toast(
+        "비밀번호는 영문과 특수문자 숫자를 포함하며 8자 이상이어야 합니다.",
+        {
+          type: "error",
+        }
       );
       return;
     }
     if (!formValues.email) {
-      alert("이메일을 입력해주세요.");
+      toast("이메일을 입력해주세요.", { type: "error" });
       return;
     }
     if (!formValues.email.match(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/)) {
-      alert("이메일 형식이 올바르지 않습니다.");
+      toast("이메일 형식이 올바르지 않습니다.", { type: "error" });
       return;
     }
     if (!formValues.name) {
-      alert("이름을 입력해주세요.");
+      toast("이름을 입력해주세요.", { type: "error" });
       return;
     }
     if (!formValues.birthDate) {
-      alert("생년월일을 입력해주세요.");
+      toast("생년월일을 입력해주세요.", { type: "error" });
       return;
     }
     if (
@@ -75,15 +79,15 @@ export default function SignupInputs() {
         /^(19[0-9][0-9]|20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/
       )
     ) {
-      alert("생년월일 형식이 올바르지 않습니다.");
+      toast("생년월일 형식이 올바르지 않습니다.", { type: "error" });
       return;
     }
     if (!formValues.part) {
-      alert("직급을 선택해주세요.");
+      toast("직급을 선택해주세요.", { type: "error" });
       return;
     }
     if (formValues.password !== checkPassword) {
-      alert("비밀번호가 일치하지 않습니다.");
+      toast("비밀번호가 일치하지 않습니다.", { type: "error" });
       return;
     }
     mutate({ args: formValues });
@@ -93,14 +97,18 @@ export default function SignupInputs() {
     onSuccess: (data) => {
       router.push("/login");
     },
-    onError: (error) => {
-      alert(error);
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.message ||
+        "문제가 발생했습니다. 잠시 후 다시 요청해주세요";
+      toast(errorMessage, { type: "error" });
     },
   });
 
   return (
-    <div className="flex-1 flex-col flex justify-center items-center h-full overflow-y-auto">
+    <div className="flex-col flex justify-center items-center overflow-y-auto flex-grow">
       <h1 className="block md:hidden mb-4">Seity에 회원가입</h1>
+
       <form onSubmit={handleSubmit}>
         <SignupLoginInput
           label="아이디"
