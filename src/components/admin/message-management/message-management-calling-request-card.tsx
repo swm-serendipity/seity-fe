@@ -10,6 +10,7 @@ type MessageManagementCallingRequestCardProps = {
 export default function MessageManagementCallingRequestCard({
   item,
 }: MessageManagementCallingRequestCardProps) {
+  console.log(item);
   const { setSelectedCallingId } = useStore();
   return (
     <div
@@ -37,7 +38,9 @@ export default function MessageManagementCallingRequestCard({
           </div>
           <div className="flex justify-between">
             <div className="line-clamp-1 text-body-medium">
-              ChatGPT 사용 중 개인정보 입력 건 소명 요청
+              ChatGPT 사용 중{" "}
+              {item.detectionDivision[0] == "PRIVACY" ? "개인정보" : "민감정보"}{" "}
+              입력 건 소명 요청
             </div>
             {item.resolved && <PurpleWhiteCheck />}
           </div>

@@ -4,6 +4,7 @@ export type AdminCalling = {
   userName: string;
   userProfileBackgroundHex: string;
   userProfileTextHex: string;
+  detectionDivision: string[];
   llm: string;
   lastModifiedAt: string;
   resolved: boolean;
