@@ -59,11 +59,11 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      다른 대화형 인공지능들과 비슷한 환경을 갖추고 있습니다.
+                      자체 개인정보 보호 엔진을 사용하여 보안을 강화하였습니다.
                     </div>
                     <div className="text-gray-600">
-                      Chat GPT 또는 Bard를 쓰시다가 Seity Chat을 쓰셔도 바로
-                      적응하실 수 있습니다.
+                      개인정보 및 고유식별정보를 넣으셔도 안전하게 비식별화
+                      됩니다.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -90,10 +90,11 @@ export default function Features() {
                 >
                   <div>
                     <div className="font-bold leading-snug tracking-tight mb-1">
-                      자체 개인정보 보호 엔진을 사용하여 보안을 강화하였습니다.
+                      DPR 엔진을 통해 보안을 강화하였습니다.
                     </div>
                     <div className="text-gray-600">
-                      개인정보, 민감정보들을 넣으셔도 안전하게 비식별화 됩니다.
+                      DPR 사내 문서 검색 AI 엔진을 통해 질의와 비슷한 문서가
+                      발견 되었을 때 질의를 보낼 수 없도록 차단합니다.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -109,11 +110,42 @@ export default function Features() {
                     </svg>
                   </div>
                 </a>
+                <a
+                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out mb-3 ${
+                    tab !== 3
+                      ? "bg-white shadow-md border-gray-200 hover:shadow-lg"
+                      : "bg-gray-200 border-transparent"
+                  }`}
+                  href="#0"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTab(3);
+                  }}
+                >
+                  <div>
+                    <div className="font-bold leading-snug tracking-tight mb-1">
+                      기업 내부 프롬프트 공유 커뮤니티를 제공합니다.
+                    </div>
+                    <div className="text-gray-600">
+                      자신의 프롬프트를 공유하고, 다른 사용자의 프롬프트를 보고
+                      참고할 수 있습니다.
+                    </div>
+                  </div>
+                  <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
+                    <svg
+                      className="w-3 h-3 fill-current"
+                      viewBox="0 0 12 12"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M11.953 4.29a.5.5 0 00-.454-.292H6.14L6.984.62A.5.5 0 006.12.173l-6 7a.5.5 0 00.379.825h5.359l-.844 3.38a.5.5 0 00.864.445l6-7a.5.5 0 00.075-.534z" />
+                    </svg>
+                  </div>
+                </a>
               </div>
             </div>
 
             {/* Tabs items */}
-            <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 md:order-1">
+            <div className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 md:order-1 mt-20">
               <div className="transition-all">
                 <div
                   className="relative flex flex-col text-center lg:text-right"
@@ -162,6 +194,29 @@ export default function Features() {
                       <Image
                         className="md:max-w-none mx-auto rounded"
                         src={"/landing/landing-feature2.png"}
+                        width={600}
+                        height="462"
+                        alt="Features bg"
+                      />
+                    </div>
+                  </Transition>
+                  <Transition
+                    show={tab === 3}
+                    appear={true}
+                    className="w-full"
+                    enter="transition ease-in-out duration-700 transform order-first"
+                    enterFrom="opacity-0 translate-y-16"
+                    enterTo="opacity-100 translate-y-0"
+                    leave="transition ease-in-out duration-300 transform absolute"
+                    leaveFrom="opacity-100 translate-y-0"
+                    leaveTo="opacity-0 -translate-y-16"
+                    beforeEnter={() => heightFix()}
+                    unmount={false}
+                  >
+                    <div className="relative inline-flex flex-col">
+                      <Image
+                        className="md:max-w-none mx-auto rounded"
+                        src={"/landing/landing-feature3.png"}
                         width={600}
                         height="462"
                         alt="Features bg"
