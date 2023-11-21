@@ -7,7 +7,7 @@ import Lottie from "lottie-react";
 import loadingLottie from "@/components/assets/lottie/loading-animation.json";
 import { convertToDotFormat } from "@/utils/formatTime";
 import { highlightedDetectionList } from "@/utils/highlightedDetectionList";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Dispatch, SetStateAction } from "react";
 
 type DashboardRightSectionProps = {
@@ -25,6 +25,7 @@ export default function DetectionRequestRightSection({
     ["detection-item", seletedId],
     getSingleDetectionDashboard
   );
+  const queryClient = useQueryClient();
 
   const { mutate: deleteDetectionMutate } = useMutation(
     deleteDetectionDashboard,
@@ -39,6 +40,7 @@ export default function DetectionRequestRightSection({
     postCallingDetectionDashboard,
     {
       onSuccess: (data) => {
+        queryClient.invalidateQueries(["detection-requests"]);
         setPopupData({
           type: "title-ok",
           title: "소명 요청",
