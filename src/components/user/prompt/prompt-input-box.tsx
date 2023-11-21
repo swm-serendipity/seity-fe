@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { KeyboardEvent, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import PromptReAnsweringBox from "./prompt-re-answering-box";
-import { dprTestData } from "@/utils/dprTestData";
+import postDpr from "@/apis/post-dpr";
 
 export default function PromptInputBox() {
   const [text, setText] = useState("");
@@ -25,48 +25,60 @@ export default function PromptInputBox() {
     isAnsweringPersist,
     setIsAnsweringPersist,
     setPopupData,
+    chatLLM,
   } = useStore();
 
   const isDisabled = text.length > 0 && !isAnswering;
-  const { mutate } = useMutation(postDlpDeIendification, {
+  const { mutate: mutateDpr } = useMutation(postDpr);
+  const { mutate: mutateDlp } = useMutation(postDlpDeIendification, {
     onSuccess: (data) => {
       if (data.result.length === 0) {
-        // postPromptAsk({
-        //   text: tempText,
-        //   addChatData,
-        //   chatSessionId,
-        //   setChatSessionId,
-        //   setIsAnswering,
-        //   setAnsweringData,
-        //   isAnsweringPersist,
-        //   setIsAnsweringPersist,
-        //   setPopupData,
-        // });
-
-        const detectionsWithIds = dprTestData.result.detections.map(
-          (detection, index) => {
-            return { ...detection, id: `detection-${index}` };
+        mutateDpr(
+          { question: tempText },
+          {
+            onSuccess: (dprdata) => {
+              if (dprdata.result.detections.length === 0) {
+                postPromptAsk({
+                  text: tempText,
+                  chatLLM,
+                  addChatData,
+                  chatSessionId,
+                  setChatSessionId,
+                  setIsAnswering,
+                  setAnsweringData,
+                  isAnsweringPersist,
+                  setIsAnsweringPersist,
+                  setPopupData,
+                });
+              } else {
+                const detectionsWithIds = dprdata.result.detections.map(
+                  (detection: SensitiveData, index: number) => {
+                    return { ...detection, id: `detection-${index}` };
+                  }
+                );
+                setSensitiveDatas({
+                  question: tempText,
+                  result: detectionsWithIds,
+                  detectionData: null,
+                });
+                toggleSensitiveDataPopup();
+              }
+              setTempText("");
+              return;
+            },
           }
         );
-
-        setSensitiveDatas({
-          question: tempText,
-          result: detectionsWithIds,
-          detectionData: null,
-        });
-        toggleSensitiveDataPopup();
-        setTempText("");
-        return;
+      } else {
+        const changeData = changeDeIdentificationState(data);
+        setDeIdentificationData(changeData);
+        toggleDeIdentificationPopup();
       }
-      const changeData = changeDeIdentificationState(data);
-      setDeIdentificationData(changeData);
-      toggleDeIdentificationPopup();
     },
   });
 
   const handleSend = () => {
     const chatId = Date.now();
-    mutate({ question: text });
+    mutateDlp({ question: text });
     addChatData({
       id: "user-" + chatId,
       user: "user",

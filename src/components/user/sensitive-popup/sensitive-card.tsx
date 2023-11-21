@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import ShareIcon from "@/components/assets/share";
 import { useStore } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 type SensitiveCardProps = {
   sensitiveData: SensitiveDataWithId;
@@ -14,7 +15,8 @@ export default function SensitiveCard({
   isSelect,
   handleCard,
 }: SensitiveCardProps) {
-  const { sensitiveDatas, setSensitiveDatas, setPopupData } = useStore();
+  const { sensitiveDatas, setSensitiveDatas } = useStore();
+  const { push } = useRouter();
 
   const [clicked, setClicked] = useState(false);
 
@@ -40,15 +42,8 @@ export default function SensitiveCard({
     });
   };
 
-  const handleDevelopButton = () => {
-    setPopupData({
-      type: "title-ok",
-      content: "해당 기능은 비활성화 되어 있어요.",
-      handleCancel: () => {},
-      handleOk: () => {},
-      isVisible: true,
-      title: "알림",
-    });
+  const handleLink = () => {
+    window.open(sensitiveData.link, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -87,7 +82,7 @@ export default function SensitiveCard({
         <div className="flex gap-4 flex-shrink-0 flex-basis items-center">
           <button
             className="rounded-md bg-whitebg-default text-white text-body-medium px-3 py-1.5 flex gap-2"
-            onClick={handleDevelopButton}
+            onClick={handleLink}
           >
             <div>원본 보기</div>
             <ShareIcon />

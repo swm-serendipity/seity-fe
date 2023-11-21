@@ -2,8 +2,9 @@ import { useStore } from "@/store/store";
 import { useState } from "react";
 import DeIdentificationCardsBox from "./de-dentification-cards-box";
 import DeIdentificationMainTextBox from "./de-dentification-main-text-box";
-// import postPromptAsk from "@/utils/postPromptAsk";
-import { dprTestData } from "@/utils/dprTestData";
+import { useMutation } from "@tanstack/react-query";
+import postDpr from "@/apis/post-dpr";
+import postPromptAsk from "@/utils/postPromptAsk";
 
 export default function DeIdentificationPopupBox() {
   const [id, setId] = useState("0");
@@ -21,8 +22,10 @@ export default function DeIdentificationPopupBox() {
     setAnsweringData,
     isAnsweringPersist,
     setIsAnsweringPersist,
+    chatLLM,
     setPopupData,
   } = useStore();
+  const { mutate, isLoading } = useMutation(postDpr);
 
   const stopPropagation = (event: { stopPropagation: () => void }) => {
     event.stopPropagation();
@@ -71,37 +74,47 @@ export default function DeIdentificationPopupBox() {
             if (item != null) return item;
           })
       : null;
-    // setChatData((prev) => {
-    //   const newData = [...prev];
-    //   newData[newData.length - 1].message = deIdentificationText;
-    //   return newData;
-    // });
-
-    // postPromptAsk({
-    //   text: deIdentificationText,
-    //   addChatData,
-    //   chatSessionId,
-    //   setChatSessionId,
-    //   setIsAnswering,
-    //   setAnsweringData,
-    //   isAnsweringPersist,
-    //   setIsAnsweringPersist,
-    //   setPopupData,
-    //   detectionData,
-    // });
-    toggleDeIdentificationPopup();
-    const detectionsWithIds = dprTestData.result.detections.map(
-      (detection, index) => {
-        return { ...detection, id: `detection-${index}` };
+    setChatData((prev) => {
+      const newData = [...prev];
+      newData[newData.length - 1].message = deIdentificationText;
+      return newData;
+    });
+    mutate(
+      { question: deIdentificationText },
+      {
+        onSuccess: (dprdata) => {
+          if (dprdata.result.detections.length === 0) {
+            postPromptAsk({
+              text: deIdentificationText,
+              chatLLM,
+              addChatData,
+              chatSessionId,
+              setChatSessionId,
+              setIsAnswering,
+              setAnsweringData,
+              isAnsweringPersist,
+              setIsAnsweringPersist,
+              setPopupData,
+              detectionData,
+            });
+            toggleDeIdentificationPopup();
+          } else {
+            const detectionsWithIds = dprdata.result.detections.map(
+              (detection: SensitiveData, index: number) => {
+                return { ...detection, id: `detection-${index}` };
+              }
+            );
+            setSensitiveDatas({
+              question: deIdentificationText,
+              result: detectionsWithIds,
+              detectionData: detectionData,
+            });
+            toggleSensitiveDataPopup();
+            toggleDeIdentificationPopup();
+          }
+        },
       }
     );
-
-    setSensitiveDatas({
-      question: deIdentificationText,
-      result: detectionsWithIds,
-      detectionData: detectionData,
-    });
-    toggleSensitiveDataPopup();
   };
 
   const handleCancelButton = () => {
@@ -127,6 +140,7 @@ export default function DeIdentificationPopupBox() {
         <DeIdentificationCardsBox
           id={id}
           setId={setId}
+          isLoading={isLoading}
           deidentificateDatas={deIdentificationData}
           setDeidentificateDatas={setDeIdentificationData}
           handleSendButton={handleSendButton}

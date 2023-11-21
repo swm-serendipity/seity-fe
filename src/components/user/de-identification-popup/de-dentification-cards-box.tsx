@@ -6,6 +6,7 @@ type DeIdentificationCardsBoxProps = {
   deidentificateDatas: DeIdentification[];
   setDeidentificateDatas: (data: DeIdentification[]) => void;
   id: string;
+  isLoading: boolean;
   setId: Dispatch<SetStateAction<string>>;
   handleSendButton: () => void;
   handleCancelButton: () => void;
@@ -16,6 +17,7 @@ export default function DeIdentificationCardsBox({
   setDeidentificateDatas,
   id,
   setId,
+  isLoading,
   handleSendButton,
   handleCancelButton,
 }: DeIdentificationCardsBoxProps) {
@@ -64,6 +66,7 @@ export default function DeIdentificationCardsBox({
           buttonText="보내기"
           color="default"
           textColor="white"
+          isLoading={isLoading}
           onClick={handleSendButton}
           width={120}
           height={50}
