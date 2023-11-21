@@ -1,7 +1,11 @@
 import SearchSet from "@/components/ui/inputs/search-set";
 import { useState } from "react";
 
-export default function UserManagementHeader() {
+export default function UserManagementHeader({
+  totalMemberNumber,
+}: {
+  totalMemberNumber: string;
+}) {
   const [searchText, setSearchText] = useState("");
   return (
     <div className="w-[1000px] mt-14 mx-12">
@@ -11,7 +15,7 @@ export default function UserManagementHeader() {
       </div>
       <div className="flex justify-between mt-10 items-center">
         <div>
-          <span className="font-bold">123</span>명의 사용자{" "}
+          <span className="font-bold">{totalMemberNumber ?? 0}</span>명의 사용자{" "}
         </div>
         <SearchSet
           placeholder="검색어를 입력해 주세요."
