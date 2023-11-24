@@ -6,7 +6,8 @@ import UserManagementAuthInfoEditSection from "./user-management-auth-info-edit-
 import { ColoredButton } from "@/components/ui/color-button";
 
 export default function UserManagementPopup() {
-  const { userDetailSettingData, setUserDetailSettingData } = useStore();
+  const { userDetailSettingData, setUserDetailSettingData, setPopupData } =
+    useStore();
 
   const handleOkButton = () => {
     setUserDetailSettingData({
@@ -18,6 +19,18 @@ export default function UserManagementPopup() {
       profileBackgroundHex: "",
       profileTextHex: "",
       isVisible: false,
+    });
+  };
+
+  const handleDisabledButton = () => {
+    handleOkButton();
+    setPopupData({
+      type: "title-ok",
+      isVisible: true,
+      title: "알림",
+      content: "권한이 없는 기능이에요.\n관리자에게 문의해주세요.",
+      handleCancel: () => {},
+      handleOk: () => {},
     });
   };
 
@@ -46,7 +59,7 @@ export default function UserManagementPopup() {
             buttonText="계정삭제"
             color="alert"
             textColor="alert"
-            onClick={handleOkButton}
+            onClick={handleDisabledButton}
           />
           <ColoredButton
             width={212}
@@ -54,7 +67,7 @@ export default function UserManagementPopup() {
             buttonText="설정완료"
             color="default"
             textColor="white"
-            onClick={handleOkButton}
+            onClick={handleDisabledButton}
           />
         </div>
       </div>
