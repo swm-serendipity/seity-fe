@@ -10,7 +10,6 @@ type MessageManagementCallingRequestCardProps = {
 export default function MessageManagementCallingRequestCard({
   item,
 }: MessageManagementCallingRequestCardProps) {
-  console.log(item);
   const { setSelectedCallingId } = useStore();
   return (
     <div
