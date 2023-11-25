@@ -31,12 +31,23 @@ export default function SidebarHistoryFullBox({
     fetchNextPage
   );
 
-  const { chatSessionId, setPopupData } = useStore();
+  const { chatSessionId, setPopupData, isAnswering } = useStore();
 
   const handlePromptButton = (item: {
     id: Key | null | undefined;
     firstQuestion: string;
   }) => {
+    if (isAnswering) {
+      setPopupData({
+        type: "title-ok",
+        isVisible: true,
+        title: "알림",
+        content: "답변 중에는 다른 페이지로 이동 할 수 없어요.",
+        handleCancel: () => {},
+        handleOk: () => {},
+      });
+      return;
+    }
     if (pathName == "/chat") {
       refetch();
     }

@@ -5,9 +5,26 @@ export default function SidebarNewChatButton() {
   const router = useRouter();
   const pathName = usePathname();
 
-  const { setChatData, setChatSessionId, setChatLLM } = useStore();
+  const {
+    setChatData,
+    setChatSessionId,
+    setChatLLM,
+    isAnswering,
+    setPopupData,
+  } = useStore();
 
   const handleClick = () => {
+    if (isAnswering) {
+      setPopupData({
+        type: "title-ok",
+        isVisible: true,
+        title: "알림",
+        content: "답변 중에는 다른 페이지로 이동 할 수 없어요.",
+        handleCancel: () => {},
+        handleOk: () => {},
+      });
+      return;
+    }
     if (pathName === "/chat") {
       setChatData(() => []);
       setChatSessionId("");
