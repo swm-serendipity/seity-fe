@@ -10,8 +10,7 @@ export default function SidebarMenu() {
       type: "title-ok",
       isVisible: true,
       title: "알림",
-      content:
-        "아직 개발되지 않은 기능이에요!\n추후 더 멋있는 모습으로 공개할게요!",
+      content: "비활성화 된 기능입니다.\n관리자에게 문의해주세요.",
       handleCancel: () => {},
       handleOk: () => {},
     });
