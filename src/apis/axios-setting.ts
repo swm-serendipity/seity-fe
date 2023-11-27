@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://api.seity.co.kr",
+  baseURL: "https://api.seity.co.kr:2096",
   timeout: 5000,
 });
 
@@ -22,11 +22,14 @@ axiosInstance.interceptors.response.use(
 
       const refreshToken = localStorage.getItem("refreshToken");
       try {
-        const res = await axios.get("https://api.seity.co.kr/auth/reissue", {
-          headers: {
-            Authorization: `Bearer ${refreshToken}`,
-          },
-        });
+        const res = await axios.get(
+          "https://api.seity.co.kr:2096/auth/reissue",
+          {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+            },
+          }
+        );
         localStorage.setItem("accessToken", res.data.result.accessToken);
         localStorage.setItem("refreshToken", res.data.result.refreshToken);
 

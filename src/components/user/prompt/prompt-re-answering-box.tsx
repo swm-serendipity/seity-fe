@@ -34,7 +34,7 @@ export default function PromptReAnsweringBox() {
     }
 
     const response = await fetch(
-      `https://api.seity.co.kr/prompt/ask/continue?sessionId=${chatSessionId}`,
+      `https://api.seity.co.kr:2096/prompt/ask/continue?sessionId=${chatSessionId}`,
       {
         method: "POST",
         headers: {

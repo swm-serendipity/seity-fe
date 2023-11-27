@@ -54,7 +54,7 @@ const postPromptAsk = async ({
           chatModel: chatLLM,
         });
 
-  const response = await fetch("https://api.seity.co.kr/prompt/ask", {
+  const response = await fetch("https://api.seity.co.kr:2096/prompt/ask", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
